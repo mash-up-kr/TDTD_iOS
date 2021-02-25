@@ -11,13 +11,15 @@ final class TTSManager: NSObject {
     private override init() {}
     static let shared: TTSManager = TTSManager()
     
-    // MARK: - TTS관련 객체
     private let speaker: AVSpeechSynthesizer = AVSpeechSynthesizer()
-    private let voice: AVSpeechSynthesisVoice? = AVSpeechSynthesisVoice(language: "ko-KR")
+    private let voice: AVSpeechSynthesisVoice! = AVSpeechSynthesisVoice(language: "ko-KR")
     
-    func speakText(_ text: String) {
+    private func setAudioSession() {
         try? AVAudioSession.sharedInstance().setCategory(.playback,
                                                          options: [.allowBluetooth, .duckOthers])
+    }
+    
+    func speakText(_ text: String) {
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = voice
         speaker.speak(utterance)
