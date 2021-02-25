@@ -40,7 +40,7 @@ final class RecordManager: NSObject {
     
     // TODO: 플레이어 기능구현후 구현하기
     func play() {
-        
+        try? PlayManager.shared.play(recorder.url)
     }
 }
 
