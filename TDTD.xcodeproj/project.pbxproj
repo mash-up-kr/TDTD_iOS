@@ -53,6 +53,16 @@
 			path = GlobalExtension;
 			sourceTree = "<group>";
 		};
+		0637E40C25E81859008049F7 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				0637E3FC25E7FB77008049F7 /* TTSManager.swift */,
+				0637E40125E809A3008049F7 /* RecordManager.swift */,
+				0637E40925E811BE008049F7 /* PlayManager.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		B1375B3125E0009D00503DE6 = {
 			isa = PBXGroup;
 			children = (
@@ -75,9 +85,7 @@
 				B1375B3D25E0009D00503DE6 /* AppDelegate.swift */,
 				B1375B3F25E0009D00503DE6 /* SceneDelegate.swift */,
 				B1375B4125E0009D00503DE6 /* ContentView.swift */,
-				0637E3FC25E7FB77008049F7 /* TTSManager.swift */,
-				0637E40125E809A3008049F7 /* RecordManager.swift */,
-				0637E40925E811BE008049F7 /* PlayManager.swift */,
+				0637E40C25E81859008049F7 /* Helper */,
 				0637E40725E80CBC008049F7 /* GlobalExtension */,
 				B1375B4325E0009E00503DE6 /* Assets.xcassets */,
 				B1375B4825E0009E00503DE6 /* LaunchScreen.storyboard */,
