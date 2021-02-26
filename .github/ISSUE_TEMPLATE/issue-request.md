@@ -1,5 +1,5 @@
 ---
-name: 기본 이슈 템플릿
+name: issue request
 about: 이슈를 사용할때 이 템플릿을 사용해주세요
 title: ''
 labels: ''
