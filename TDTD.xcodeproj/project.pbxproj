@@ -262,7 +262,7 @@
 				B1ED9B4D25EA6E19000A8C4D /* CreatCardView.swift */,
 			);
 			path = SupportViews;
-=======
+            sourceTree = "<group>";
         };
 		D545116A25EA6B6B00B19C66 /* CreateRoom */ = {
 			isa = PBXGroup;
@@ -291,7 +291,6 @@
 				D545118925EA87B700B19C66 /* Room.swift */,
 			);
 			path = Models;
->>>>>>> 방 만들기 화면 UI 구성
 			sourceTree = "<group>";
 		};
 		CCECD54389AFC4D330992DC8 /* Pods */ = {
