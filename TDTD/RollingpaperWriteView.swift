@@ -124,13 +124,15 @@ struct RollingpaperWriteView: View {
     }
     
     private func checkComplete() {
-//        if viewModel.mode == .text
-//        if !nickName.isEmpty && viewModel.existRecord {
-//        isDisableComplete = true
+        if viewModel.mode == .text {
+            isDisableComplete = !nickName.isEmpty && !contentText.isEmpty
+        }
+        else {
+            isDisableComplete = !nickName.isEmpty && viewModel.isExistRecord
+        }
     }
 }
-
-
+    
 struct RollingpagerWriteView_Previews: PreviewProvider {
     static var previews: some View {
         RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: .voice))
