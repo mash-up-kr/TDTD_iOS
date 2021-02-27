@@ -15,9 +15,9 @@ extension Font {
         var name: String {
             switch self {
             case .regular:
-                return "UhBee ZIGLE Bold"
-            case .bold:
                 return "UhBee ZIGLE"
+            case .bold:    
+                return "UhBee ZIGLE Bold"
             }
         }
     }
