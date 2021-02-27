@@ -225,15 +225,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B137F52E25EA9FC700F86D45 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B137F53025EAA10B00F86D45 /* Home.swift */,
-				B137F53325EAA15800F86D45 /* RoomSummary.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		B1D97DE725EABF4A0099C9B8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,7 +239,6 @@
 			isa = PBXGroup;
 			children = (
 				B1ED9B4125EA401B000A8C4D /* HomeView.swift */,
-				B137F52E25EA9FC700F86D45 /* Models */,
 				B1ED9B4425EA409F000A8C4D /* SupportViews */,
 			);
 			path = Home;
@@ -262,8 +252,17 @@
 				B1ED9B4D25EA6E19000A8C4D /* CreatCardView.swift */,
 			);
 			path = SupportViews;
-            sourceTree = "<group>";
-        };
+			sourceTree = "<group>";
+		};
+		CCECD54389AFC4D330992DC8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C7BAEECD92407C39446BA28E /* Pods-TDTD.debug.xcconfig */,
+				4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D545116A25EA6B6B00B19C66 /* CreateRoom */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,19 +286,12 @@
 		D545117525EA6E3900B19C66 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B137F53325EAA15800F86D45 /* RoomSummary.swift */,
+				B137F53025EAA10B00F86D45 /* Home.swift */,
 				D545117625EA6E4900B19C66 /* RoomType.swift */,
 				D545118925EA87B700B19C66 /* Room.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		CCECD54389AFC4D330992DC8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C7BAEECD92407C39446BA28E /* Pods-TDTD.debug.xcconfig */,
-				4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

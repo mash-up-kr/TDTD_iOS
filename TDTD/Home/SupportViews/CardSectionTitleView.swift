@@ -16,7 +16,9 @@ struct CardSectionTitleView: View {
                 .font(.uhBeeCustom(16, weight: .bold))
                 .foregroundColor(.init("grayscale_3"))
             Spacer()
-            Button(action: {}, label: {
+            Button(action: {
+                isFavorite.toggle()
+            }, label: {
                 HStack(spacing: 8) {
                     isFavorite ? Image("ic_checkBox_on_16") : Image("ic_checkBox_off_16")
                     Text("즐겨찾기")

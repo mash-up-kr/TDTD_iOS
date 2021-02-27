@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var presentCreatRoom = false
+    
     init() {
         setNavigationBar()
     }
@@ -23,7 +25,9 @@ struct HomeView: View {
                         .frame(maxHeight: 16)
                     ScrollView {
                         VStack(spacing: 8) {
-                            CreatCardView()
+                            CreatCardView(action: {
+                                presentCreatRoom = true
+                            })
                             Spacer().frame(height: 16)
                             CardSectionTitleView()
                         }
@@ -42,14 +46,14 @@ struct HomeView: View {
                     }
                 }
             }
-        
             .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(leading: Text("속닥속닥")
-                                    .foregroundColor(.init("grayscale_1"))
-                                    .font(.uhBeeCustom(26, weight: .bold)),
+            .navigationBarItems(leading: Image("logo"),
                                 trailing: Image("ic_settingButton_40")
             )
         }
+        .sheet(isPresented: $presentCreatRoom, content: {
+            CreateRoomView(viewModel: CreateRoomViewModel())
+        })
     }
 }
 
