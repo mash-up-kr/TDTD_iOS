@@ -43,7 +43,6 @@ struct ToastView<Presenting>: View where Presenting: View {
         }
     }
     
-    
 }
 
 
