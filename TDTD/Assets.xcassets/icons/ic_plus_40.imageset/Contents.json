@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic_favorties_on_16.png",
+      "filename" : "size=40, type=scondary, status=default.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ic_favorties_on_16@2x.png",
+      "filename" : "size=40, type=scondary, status=default@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ic_favorties_on_16@3x.png",
+      "filename" : "size=40, type=scondary, status=default@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
