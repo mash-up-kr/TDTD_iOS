@@ -37,6 +37,16 @@
 		B1ED9B4625EA40A8000A8C4D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B4525EA40A8000A8C4D /* CardView.swift */; };
 		B1ED9B4E25EA6E19000A8C4D /* CreatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B4D25EA6E19000A8C4D /* CreatCardView.swift */; };
 		D545115B25EA329500B19C66 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545115A25EA329500B19C66 /* ToastView.swift */; };
+		D545116D25EA6BA900B19C66 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545116C25EA6BA900B19C66 /* CreateRoomView.swift */; };
+		D545117225EA6BD700B19C66 /* SubTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545117125EA6BD700B19C66 /* SubTitleView.swift */; };
+		D545117725EA6E4900B19C66 /* RoomType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545117625EA6E4900B19C66 /* RoomType.swift */; };
+		D545117C25EA73E800B19C66 /* TextFieldFormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545117B25EA73E800B19C66 /* TextFieldFormItem.swift */; };
+		D545117F25EA78E300B19C66 /* RoomTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545117E25EA78E300B19C66 /* RoomTypeButton.swift */; };
+		D545118625EA7B5700B19C66 /* FocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545118525EA7B5700B19C66 /* FocusView.swift */; };
+		D545118A25EA87B700B19C66 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545118925EA87B700B19C66 /* Room.swift */; };
+		D545118E25EA8B8A00B19C66 /* CreateRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545118D25EA8B8A00B19C66 /* CreateRoomViewModel.swift */; };
+		D545119125EA8FC500B19C66 /* TextFieldFormItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545119025EA8FC500B19C66 /* TextFieldFormItemViewModel.swift */; };
+		D545119525EAC8A800B19C66 /* SelectRoomTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545119425EAC8A800B19C66 /* SelectRoomTypeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +84,16 @@
 		B1ED9B4D25EA6E19000A8C4D /* CreatCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatCardView.swift; sourceTree = "<group>"; };
 		C7BAEECD92407C39446BA28E /* Pods-TDTD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDTD.debug.xcconfig"; path = "Target Support Files/Pods-TDTD/Pods-TDTD.debug.xcconfig"; sourceTree = "<group>"; };
 		D545115A25EA329500B19C66 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		D545116C25EA6BA900B19C66 /* CreateRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomView.swift; sourceTree = "<group>"; };
+		D545117125EA6BD700B19C66 /* SubTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTitleView.swift; sourceTree = "<group>"; };
+		D545117625EA6E4900B19C66 /* RoomType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomType.swift; sourceTree = "<group>"; };
+		D545117B25EA73E800B19C66 /* TextFieldFormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldFormItem.swift; sourceTree = "<group>"; };
+		D545117E25EA78E300B19C66 /* RoomTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTypeButton.swift; sourceTree = "<group>"; };
+		D545118525EA7B5700B19C66 /* FocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusView.swift; sourceTree = "<group>"; };
+		D545118925EA87B700B19C66 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		D545118D25EA8B8A00B19C66 /* CreateRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomViewModel.swift; sourceTree = "<group>"; };
+		D545119025EA8FC500B19C66 /* TextFieldFormItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldFormItemViewModel.swift; sourceTree = "<group>"; };
+		D545119425EAC8A800B19C66 /* SelectRoomTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoomTypeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +156,12 @@
 			isa = PBXGroup;
 			children = (
 				B127E45A25EA2D1000F3B64D /* RoundButton */,
+				D545115A25EA329500B19C66 /* ToastView.swift */,
+				D545118525EA7B5700B19C66 /* FocusView.swift */,
+				0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */,
+				0637E43325EA4028008049F7 /* FocusTextView.swift */,
+				D545117B25EA73E800B19C66 /* TextFieldFormItem.swift */,
+				D545119025EA8FC500B19C66 /* TextFieldFormItemViewModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -173,12 +199,11 @@
 				B1375B3F25E0009D00503DE6 /* SceneDelegate.swift */,
 				B1375B4125E0009D00503DE6 /* ContentView.swift */,
 				B1ED9B4025EA3FE4000A8C4D /* Home */,
+				D545117525EA6E3900B19C66 /* Models */,
 				B127E45925EA2CF100F3B64D /* Components */,
-				D545115A25EA329500B19C66 /* ToastView.swift */,
 				0637E42825EA3368008049F7 /* RollingpaperWriteView.swift */,
 				0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */,
-				0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */,
-				0637E43325EA4028008049F7 /* FocusTextView.swift */,
+				D545116A25EA6B6B00B19C66 /* CreateRoom */,
 				B127E45025EA240500F3B64D /* SupportItems */,
 				0637E40C25E81859008049F7 /* Helper */,
 				0637E40725E80CBC008049F7 /* GlobalExtension */,
@@ -237,6 +262,35 @@
 				B1ED9B4D25EA6E19000A8C4D /* CreatCardView.swift */,
 			);
 			path = SupportViews;
+            sourceTree = "<group>";
+        };
+		D545116A25EA6B6B00B19C66 /* CreateRoom */ = {
+			isa = PBXGroup;
+			children = (
+				D545116C25EA6BA900B19C66 /* CreateRoomView.swift */,
+				D545118D25EA8B8A00B19C66 /* CreateRoomViewModel.swift */,
+				D545116B25EA6B7300B19C66 /* SupportViews */,
+			);
+			path = CreateRoom;
+			sourceTree = "<group>";
+		};
+		D545116B25EA6B7300B19C66 /* SupportViews */ = {
+			isa = PBXGroup;
+			children = (
+				D545119425EAC8A800B19C66 /* SelectRoomTypeView.swift */,
+				D545117125EA6BD700B19C66 /* SubTitleView.swift */,
+				D545117E25EA78E300B19C66 /* RoomTypeButton.swift */,
+			);
+			path = SupportViews;
+			sourceTree = "<group>";
+		};
+		D545117525EA6E3900B19C66 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D545117625EA6E4900B19C66 /* RoomType.swift */,
+				D545118925EA87B700B19C66 /* Room.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		CCECD54389AFC4D330992DC8 /* Pods */ = {
@@ -365,20 +419,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D545119125EA8FC500B19C66 /* TextFieldFormItemViewModel.swift in Sources */,
+				D545117C25EA73E800B19C66 /* TextFieldFormItem.swift in Sources */,
 				B127E45C25EA2D3300F3B64D /* RoundButtonStyle.swift in Sources */,
 				B1D97DED25EAC13D0099C9B8 /* APITargetType.swift in Sources */,
 				D545115B25EA329500B19C66 /* ToastView.swift in Sources */,
 				B1375B3E25E0009D00503DE6 /* AppDelegate.swift in Sources */,
 				0637E43125EA3FC6008049F7 /* FocusTextFieldView.swift in Sources */,
 				B1D97DE925EABFF50099C9B8 /* API.swift in Sources */,
+				D545118A25EA87B700B19C66 /* Room.swift in Sources */,
+				D545115B25EA329500B19C66 /* ToastView.swift in Sources */,
+				B1375B3E25E0009D00503DE6 /* AppDelegate.swift in Sources */,
+				0637E43125EA3FC6008049F7 /* FocusTextFieldView.swift in Sources */,
+				D545117225EA6BD700B19C66 /* SubTitleView.swift in Sources */,
+				D545117725EA6E4900B19C66 /* RoomType.swift in Sources */,
+				D545117F25EA78E300B19C66 /* RoomTypeButton.swift in Sources */,
+				D545118E25EA8B8A00B19C66 /* CreateRoomViewModel.swift in Sources */,
 				0637E3FD25E7FB77008049F7 /* TTSManager.swift in Sources */,
 				B1ED9B4225EA401B000A8C4D /* HomeView.swift in Sources */,
+				D545118625EA7B5700B19C66 /* FocusView.swift in Sources */,
+				D545119525EAC8A800B19C66 /* SelectRoomTypeView.swift in Sources */,
 				B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */,
 				B137F53425EAA15800F86D45 /* RoomSummary.swift in Sources */,
 				0637E42925EA3368008049F7 /* RollingpaperWriteView.swift in Sources */,
 				0637E43425EA4028008049F7 /* FocusTextView.swift in Sources */,
 				B137F53125EAA10B00F86D45 /* Home.swift in Sources */,
 				B1375B4025E0009D00503DE6 /* SceneDelegate.swift in Sources */,
+				D545116D25EA6BA900B19C66 /* CreateRoomView.swift in Sources */,
 				0637E40525E80CBA008049F7 /* Date+.swift in Sources */,
 				B137F52A25EA7F7600F86D45 /* CardSectionTitleView.swift in Sources */,
 				0637E40225E809A3008049F7 /* RecordManager.swift in Sources */,
