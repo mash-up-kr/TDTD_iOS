@@ -14,7 +14,6 @@ struct RollingpaperWriteView: View {
     @State private var isDisableComplete: Bool = true
     @State private var nickName: String = ""
     @State private var contentText: String = ""
-    @State private var isRecording: Bool = false
     
     var body: some View {
         VStack {
@@ -38,7 +37,7 @@ struct RollingpaperWriteView: View {
                         RoundedRectangle(cornerRadius: 16)
                             .fill(Color(UIColor(named: "beige_2")!))
                         ZStack {
-                            if !isHiddenResetButton(viewModel.recordStatus) {
+                            if viewModel.isExistRecord {
                                 HStack {
                                     VStack {
                                         ZStack {
@@ -124,8 +123,10 @@ struct RollingpaperWriteView: View {
         .padding(.horizontal, horizontalPadding)
     }
     
-    private func isHiddenResetButton(_ state: RecordStatus) -> Bool {
-        return state == .none || state == .record
+    private func checkComplete() {
+//        if viewModel.mode == .text
+//        if !nickName.isEmpty && viewModel.existRecord {
+//        isDisableComplete = true
     }
 }
 

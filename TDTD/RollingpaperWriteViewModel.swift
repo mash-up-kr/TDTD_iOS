@@ -50,6 +50,9 @@ class RollingpaperWriteViewModel: ObservableObject {
     }
     @Published var isEditing = false
     private var timerCancellable: AnyCancellable?
+    var isExistRecord: Bool {
+        !(recordStatus == .none || recordStatus == .record)
+    }
     
     init(mode: WriteMode = .text) {
         self.mode = mode
