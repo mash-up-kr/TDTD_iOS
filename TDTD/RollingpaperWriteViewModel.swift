@@ -5,18 +5,20 @@
 //  Created by 남수김 on 2021/02/27.
 //
 
-import Foundation
+import SwiftUI
+import Combine
+
+enum RecordStatus {
+    case none, record, end, play, pause
+}
 
 class RollingpaperWriteViewModel: ObservableObject {
     enum WriteMode {
         case text, voice
     }
-    enum RecordStatus {
-        case none, record, end, play, pause
-    }
     
     let mode: WriteMode
-    @Published private var recordStatus: RecordStatus = .none
+    @Published var recordStatus: RecordStatus = .none
     var recordDescription: String {
         switch recordStatus {
         case .none:
@@ -31,7 +33,23 @@ class RollingpaperWriteViewModel: ObservableObject {
             return "다시 재생하기"
         }
     }
+    
+    var recordImage: UIImage? {
+        switch recordStatus {
+        case .none:
+            return UIImage(named: "icon_record_default")
+        case .record:
+            return UIImage(named: "icon_record_active")
+        case .play:
+            return UIImage(named: "icon_record_stop")
+        case .end:
+            return UIImage(named: "icon_record_play")
+        case .pause:
+            return UIImage(named: "icon_record_play")
+        }
+    }
     @Published var isEditing = false
+    private var timerCancellable: AnyCancellable?
     
     init(mode: WriteMode = .text) {
         self.mode = mode
@@ -39,22 +57,34 @@ class RollingpaperWriteViewModel: ObservableObject {
     
     func record() {
         recordStatus = .record
+        try? RecordManager.shared.record()
+        timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { _ in
+                floor(RecordManager.shared.recordTime)
+            }
     }
     
     func stop() {
         recordStatus = .end
+        RecordManager.shared.stop()
+        timerCancellable?.cancel()
     }
     
     func play() {
         recordStatus = .play
+        try? PlayManager.shared.play(RecordManager.shared.recorderURL)
     }
     
     func reset() {
         recordStatus = .none
+        PlayManager.shared.stop()
+        RecordManager.shared.deleteAllFile()
     }
     
     func pause() {
         recordStatus = .pause
+        PlayManager.shared.pause()
     }
     
     func recordButtonClick() {

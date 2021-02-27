@@ -8,42 +8,124 @@
 import SwiftUI
 
 struct RollingpaperWriteView: View {
-    let viewModel: RollingpaperWriteViewModel
-    private let leadingPadding: CGFloat = 16
-    private let radius: CGFloat = 16
+    @ObservedObject var viewModel: RollingpaperWriteViewModel
+    private let horizontalPadding: CGFloat = 16
+    private let verticalPadding: CGFloat = 23
+    @State private var isDisableComplete: Bool = true
+    @State private var nickName: String = ""
+    @State private var contentText: String = ""
+    @State private var isRecording: Bool = false
     
     var body: some View {
         VStack {
-            HStack {
-                Text("닉네임")
-                Spacer()
-                Text("0/12")
-            }
-            FocusTextFieldView("닉네임 쓰는칸")
-            HStack {
-                Text("남기고 싶은 말을 속삭여주세요!")
-                Spacer()
-            }
-            if viewModel.mode == .text {
-                FocusTextView("텍스트뷰\n이빈다")
-            } else {
-                ZStack {
-                    RoundedRectangle(cornerRadius: radius)
-                        .fill(Color(UIColor(named: "beige_2")!))
-                    HStack {
-                        Image(systemName: "timer")
-                        VStack {
-                            
-                            Text("최대 1분")
-                            Image(systemName: "timer")
-                                .padding(8)
-                                .frame(width: 80, height: 80)
-                            Text("버튼을 눌러 녹음하기")
-                        }.layoutPriority(1)
+            VStack {
+                HStack {
+                    Text("닉네임")
+                    Spacer()
+                    Text("0/12")
+                }
+                FocusTextFieldView(text: $nickName)
+                    .environmentObject(viewModel)
+                HStack {
+                    Text("남기고 싶은 말을 속삭여주세요!")
+                    Spacer()
+                }
+                if viewModel.mode == .text {
+                    FocusTextView(text: $contentText)
+                        .environmentObject(viewModel)
+                } else {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color(UIColor(named: "beige_2")!))
+                        ZStack {
+                            if !isHiddenResetButton(viewModel.recordStatus) {
+                                HStack {
+                                    VStack {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 29)
+                                                .fill(Color(UIColor(named: "beige_3")!))
+                                                .frame(width: 48, height: 40)
+                                            Button(action: {
+                                                viewModel.reset()
+                                            }, label: {
+                                                Image(uiImage: UIImage(named: "ic_restart_24")!)
+                                            })
+                                        }
+                                        Text("다시녹음할래")
+                                            .font(Font.uhBeeCustom(16, weight: .bold))
+                                            .foregroundColor(Color(UIColor(named: "grayscale_3")!))
+                                    }
+                                    .padding(.leading, 47.5)
+                                    Spacer()
+                                }
+                            }
+                            HStack {
+                                Spacer()
+                                VStack {
+                                    Text("최대 1분")
+                                        .font(Font.uhBeeCustom(20, weight: .bold))
+                                        .foregroundColor(Color(UIColor(named: "grayscale_2")!))
+                                    Button(action: {
+                                        viewModel.recordButtonClick()
+                                    }, label: {
+                                        Image(uiImage: viewModel.recordImage!)
+                                            .padding(8)
+                                            .frame(width: 80, height: 80)
+                                    })
+                                    Text(viewModel.recordDescription)
+                                        .font(Font.uhBeeCustom(16, weight: .bold))
+                                        .foregroundColor(Color(UIColor(named: "grayscale_3")!))
+                                }
+                                Spacer()
+                            }
+                        }
                     }
+                    .frame(height: 184)
+                }
+                Spacer()
+            }
+            ZStack {
+                if !viewModel.isEditing {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(UIColor(named: "beige_2")!))
+                        .overlay(
+                            Image(uiImage: UIImage(named: "banner")!)
+                                .resizable()
+                        )
                 }
             }
-        }.padding(leadingPadding)
+            .frame(height: 129)
+            HStack {
+                Button(action: {
+                    
+                }, label: {
+                    Text("취소")
+                })
+                .buttonStyle(RoundButtonStyle(style: .light))
+                if isDisableComplete {
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("완료")
+                    })
+                    .buttonStyle(RoundButtonStyle(style: .dark))
+                    .opacity(0.5)
+                } else {
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("완료")
+                    })
+                    .buttonStyle(RoundButtonStyle(style: .dark))
+                }
+            }
+            .padding(.vertical, horizontalPadding)
+        }
+        .padding(.horizontal, horizontalPadding)
+    }
+    
+    private func isHiddenResetButton(_ state: RecordStatus) -> Bool {
+        return state == .none || state == .record
     }
 }
 
