@@ -23,8 +23,9 @@ struct RollingpaperWriteView: View {
                     Spacer()
                     Text("0/12")
                 }
-                FocusTextFieldView(text: $nickName)
-                    .environmentObject(viewModel)
+                // FIXME:- 나중에 제가 고치겠습니당 :)
+//                FocusTextFieldView(text: $nickName)
+//                    .environmentObject(viewModel)
                 HStack {
                     Text("남기고 싶은 말을 속삭여주세요!")
                     Spacer()
