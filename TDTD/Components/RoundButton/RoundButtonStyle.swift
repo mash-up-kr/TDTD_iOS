@@ -14,6 +14,7 @@ struct RoundButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
+            .frame(maxWidth: .infinity)
             .font(size.font)
             .foregroundColor(style.forgroundColor)
             .padding(.vertical, 12)
@@ -88,11 +89,16 @@ extension RoundButtonStyle {
 
 struct RoundButton_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            Button("방 나가기", action: {})
-                .buttonStyle(RoundButtonStyle(style: .light))
+        VStack(spacing: 16) {
+            HStack {
+                Button("방 나가기", action: {})
+                    .buttonStyle(RoundButtonStyle(style: .light))
+                Button("취소", action: {})
+                    .buttonStyle(RoundButtonStyle(style: .dark))
+            }
             Button("취소", action: {})
                 .buttonStyle(RoundButtonStyle(style: .dark, size: .small))
         }
+        .padding()
     }
 }
