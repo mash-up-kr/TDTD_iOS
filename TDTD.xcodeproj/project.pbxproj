@@ -14,7 +14,7 @@
 		0637E41C25E94DA2008049F7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0637E41B25E94DA2008049F7 /* Colors.xcassets */; };
 		B127E45525EA245900F3B64D /* UhBee ZIGLE Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */; };
 		B127E45625EA245900F3B64D /* UhBee ZIGLE.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */; };
-		B127E45C25EA2D3300F3B64D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127E45B25EA2D3300F3B64D /* RoundButton.swift */; };
+		B127E45C25EA2D3300F3B64D /* RoundButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127E45B25EA2D3300F3B64D /* RoundButtonStyle.swift */; };
 		B1375B3E25E0009D00503DE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1375B3D25E0009D00503DE6 /* AppDelegate.swift */; };
 		B1375B4025E0009D00503DE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1375B3F25E0009D00503DE6 /* SceneDelegate.swift */; };
 		B1375B4225E0009D00503DE6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1375B4125E0009D00503DE6 /* ContentView.swift */; };
@@ -31,7 +31,7 @@
 		0637E41B25E94DA2008049F7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee ZIGLE Bold.ttf"; sourceTree = "<group>"; };
 		B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee ZIGLE.ttf"; sourceTree = "<group>"; };
-		B127E45B25EA2D3300F3B64D /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		B127E45B25EA2D3300F3B64D /* RoundButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyle.swift; sourceTree = "<group>"; };
 		B1375B3A25E0009D00503DE6 /* TDTD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDTD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1375B3D25E0009D00503DE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1375B3F25E0009D00503DE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		B127E45A25EA2D1000F3B64D /* RoundButton */ = {
 			isa = PBXGroup;
 			children = (
-				B127E45B25EA2D3300F3B64D /* RoundButton.swift */,
+				B127E45B25EA2D3300F3B64D /* RoundButtonStyle.swift */,
 			);
 			path = RoundButton;
 			sourceTree = "<group>";
@@ -220,7 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B127E45C25EA2D3300F3B64D /* RoundButton.swift in Sources */,
+				B127E45C25EA2D3300F3B64D /* RoundButtonStyle.swift in Sources */,
 				B1375B3E25E0009D00503DE6 /* AppDelegate.swift in Sources */,
 				0637E3FD25E7FB77008049F7 /* TTSManager.swift in Sources */,
 				B1375B4025E0009D00503DE6 /* SceneDelegate.swift in Sources */,
