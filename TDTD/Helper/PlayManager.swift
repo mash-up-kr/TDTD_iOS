@@ -28,6 +28,14 @@ final class PlayManager {
         player.play()
     }
     
+    func pause() {
+        player.pause()
+    }
+    
+    func stop() {
+        player.stop()
+    }
+    
     private func playTime() -> String {
         let time = player.duration
         let sec = String(format: "%02d", Int(floor(time.truncatingRemainder(dividingBy: 60))))
