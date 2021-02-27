@@ -24,11 +24,11 @@ struct ToastView<Presenting>: View where Presenting: View {
                     VStack {
                         self.title
                             .foregroundColor(.white)
-                            .font(Font.custom("UhBee ZIGLE Bold", size: 16))
+                            .font(.uhBeeCustom(16.0, weight: .bold))
                             .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                             .background(RoundedRectangle(cornerRadius: 24.5, style: .continuous)
                                             .foregroundColor(Color("character_1")))
-                            .shadow(color: Color.black.opacity(0.3), radius: 10, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 6)
+                            .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 6)
                     }
                     .transition(.opacity)
                     .onAppear {
