@@ -29,7 +29,13 @@
 		B1D97DE925EABFF50099C9B8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D97DE825EABFF50099C9B8 /* API.swift */; };
 		B1D97DED25EAC13D0099C9B8 /* APITargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D97DEC25EAC13D0099C9B8 /* APITargetType.swift */; };
 		B1D97DF025EAC9150099C9B8 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D97DEF25EAC9150099C9B8 /* APIRequest.swift */; };
+		B137F52A25EA7F7600F86D45 /* CardSectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137F52925EA7F7600F86D45 /* CardSectionTitleView.swift */; };
+		B137F53125EAA10B00F86D45 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137F53025EAA10B00F86D45 /* Home.swift */; };
+		B137F53425EAA15800F86D45 /* RoomSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137F53325EAA15800F86D45 /* RoomSummary.swift */; };
 		B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */; };
+		B1ED9B4225EA401B000A8C4D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B4125EA401B000A8C4D /* HomeView.swift */; };
+		B1ED9B4625EA40A8000A8C4D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B4525EA40A8000A8C4D /* CardView.swift */; };
+		B1ED9B4E25EA6E19000A8C4D /* CreatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B4D25EA6E19000A8C4D /* CreatCardView.swift */; };
 		D545115B25EA329500B19C66 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545115A25EA329500B19C66 /* ToastView.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +67,13 @@
 		B1D97DEF25EAC9150099C9B8 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		C7BAEECD92407C39446BA28E /* Pods-TDTD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDTD.debug.xcconfig"; path = "Target Support Files/Pods-TDTD/Pods-TDTD.debug.xcconfig"; sourceTree = "<group>"; };
+		B137F52925EA7F7600F86D45 /* CardSectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSectionTitleView.swift; sourceTree = "<group>"; };
+		B137F53025EAA10B00F86D45 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		B137F53325EAA15800F86D45 /* RoomSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSummary.swift; sourceTree = "<group>"; };
+		B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		B1ED9B4125EA401B000A8C4D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B1ED9B4525EA40A8000A8C4D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B1ED9B4D25EA6E19000A8C4D /* CreatCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatCardView.swift; sourceTree = "<group>"; };
 		D545115A25EA329500B19C66 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +173,7 @@
 				B1375B3D25E0009D00503DE6 /* AppDelegate.swift */,
 				B1375B3F25E0009D00503DE6 /* SceneDelegate.swift */,
 				B1375B4125E0009D00503DE6 /* ContentView.swift */,
+				B1ED9B4025EA3FE4000A8C4D /* Home */,
 				B127E45925EA2CF100F3B64D /* Components */,
 				D545115A25EA329500B19C66 /* ToastView.swift */,
 				0637E42825EA3368008049F7 /* RollingpaperWriteView.swift */,
@@ -204,6 +218,35 @@
 				4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */,
 			);
 			path = Pods;
+            sourceTree = "<group>";
+        };
+		B137F52E25EA9FC700F86D45 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B137F53025EAA10B00F86D45 /* Home.swift */,
+				B137F53325EAA15800F86D45 /* RoomSummary.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B1ED9B4025EA3FE4000A8C4D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B1ED9B4125EA401B000A8C4D /* HomeView.swift */,
+				B137F52E25EA9FC700F86D45 /* Models */,
+				B1ED9B4425EA409F000A8C4D /* SupportViews */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B1ED9B4425EA409F000A8C4D /* SupportViews */ = {
+			isa = PBXGroup;
+			children = (
+				B1ED9B4525EA40A8000A8C4D /* CardView.swift */,
+				B137F52925EA7F7600F86D45 /* CardSectionTitleView.swift */,
+				B1ED9B4D25EA6E19000A8C4D /* CreatCardView.swift */,
+			);
+			path = SupportViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,14 +373,20 @@
 				0637E43125EA3FC6008049F7 /* FocusTextFieldView.swift in Sources */,
 				B1D97DE925EABFF50099C9B8 /* API.swift in Sources */,
 				0637E3FD25E7FB77008049F7 /* TTSManager.swift in Sources */,
+				B1ED9B4225EA401B000A8C4D /* HomeView.swift in Sources */,
 				B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */,
+				B137F53425EAA15800F86D45 /* RoomSummary.swift in Sources */,
 				0637E42925EA3368008049F7 /* RollingpaperWriteView.swift in Sources */,
 				0637E43425EA4028008049F7 /* FocusTextView.swift in Sources */,
+				B137F53125EAA10B00F86D45 /* Home.swift in Sources */,
 				B1375B4025E0009D00503DE6 /* SceneDelegate.swift in Sources */,
 				0637E40525E80CBA008049F7 /* Date+.swift in Sources */,
+				B137F52A25EA7F7600F86D45 /* CardSectionTitleView.swift in Sources */,
 				0637E40225E809A3008049F7 /* RecordManager.swift in Sources */,
 				0637E40A25E811BE008049F7 /* PlayManager.swift in Sources */,
 				B1D97DF025EAC9150099C9B8 /* APIRequest.swift in Sources */,
+				B1ED9B4625EA40A8000A8C4D /* CardView.swift in Sources */,
+				B1ED9B4E25EA6E19000A8C4D /* CreatCardView.swift in Sources */,
 				0637E43725EA6205008049F7 /* RollingpaperWriteViewModel.swift in Sources */,
 				B1375B4225E0009D00503DE6 /* ContentView.swift in Sources */,
 			);
