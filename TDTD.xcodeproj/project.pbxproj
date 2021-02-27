@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		0637E43125EA3FC6008049F7 /* FocusTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */; };
 		0637E43425EA4028008049F7 /* FocusTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43325EA4028008049F7 /* FocusTextView.swift */; };
 		0637E43725EA6205008049F7 /* RollingpaperWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */; };
+		87FA1E660712AB92440E13E2 /* Pods_TDTD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */; };
 		B127E45525EA245900F3B64D /* UhBee ZIGLE Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */; };
 		B127E45625EA245900F3B64D /* UhBee ZIGLE.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */; };
 		B127E45C25EA2D3300F3B64D /* RoundButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127E45B25EA2D3300F3B64D /* RoundButtonStyle.swift */; };
@@ -25,6 +26,9 @@
 		B1375B4425E0009E00503DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1375B4325E0009E00503DE6 /* Assets.xcassets */; };
 		B1375B4725E0009E00503DE6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1375B4625E0009E00503DE6 /* Preview Assets.xcassets */; };
 		B1375B4A25E0009E00503DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1375B4825E0009E00503DE6 /* LaunchScreen.storyboard */; };
+		B1D97DE925EABFF50099C9B8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D97DE825EABFF50099C9B8 /* API.swift */; };
+		B1D97DED25EAC13D0099C9B8 /* APITargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D97DEC25EAC13D0099C9B8 /* APITargetType.swift */; };
+		B1D97DF025EAC9150099C9B8 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D97DEF25EAC9150099C9B8 /* APIRequest.swift */; };
 		B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */; };
 		D545115B25EA329500B19C66 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545115A25EA329500B19C66 /* ToastView.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +43,8 @@
 		0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextFieldView.swift; sourceTree = "<group>"; };
 		0637E43325EA4028008049F7 /* FocusTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextView.swift; sourceTree = "<group>"; };
 		0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperWriteViewModel.swift; sourceTree = "<group>"; };
+		0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TDTD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDTD.release.xcconfig"; path = "Target Support Files/Pods-TDTD/Pods-TDTD.release.xcconfig"; sourceTree = "<group>"; };
 		B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee ZIGLE Bold.ttf"; sourceTree = "<group>"; };
 		B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee ZIGLE.ttf"; sourceTree = "<group>"; };
 		B127E45B25EA2D3300F3B64D /* RoundButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyle.swift; sourceTree = "<group>"; };
@@ -50,7 +56,11 @@
 		B1375B4625E0009E00503DE6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B1375B4925E0009E00503DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1375B4B25E0009E00503DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1D97DE825EABFF50099C9B8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		B1D97DEC25EAC13D0099C9B8 /* APITargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITargetType.swift; sourceTree = "<group>"; };
+		B1D97DEF25EAC9150099C9B8 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		C7BAEECD92407C39446BA28E /* Pods-TDTD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDTD.debug.xcconfig"; path = "Target Support Files/Pods-TDTD/Pods-TDTD.debug.xcconfig"; sourceTree = "<group>"; };
 		D545115A25EA329500B19C66 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87FA1E660712AB92440E13E2 /* Pods_TDTD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +93,14 @@
 				0637E40925E811BE008049F7 /* PlayManager.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		7DB5FB13E8C66D95541D3D69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B127E45025EA240500F3B64D /* SupportItems */ = {
@@ -122,6 +141,8 @@
 			children = (
 				B1375B3C25E0009D00503DE6 /* TDTD */,
 				B1375B3B25E0009D00503DE6 /* Products */,
+				CCECD54389AFC4D330992DC8 /* Pods */,
+				7DB5FB13E8C66D95541D3D69 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +169,7 @@
 				B127E45025EA240500F3B64D /* SupportItems */,
 				0637E40C25E81859008049F7 /* Helper */,
 				0637E40725E80CBC008049F7 /* GlobalExtension */,
+				B1D97DE725EABF4A0099C9B8 /* Network */,
 				0637E41B25E94DA2008049F7 /* Colors.xcassets */,
 				B1375B4325E0009E00503DE6 /* Assets.xcassets */,
 				B1375B4825E0009E00503DE6 /* LaunchScreen.storyboard */,
@@ -165,6 +187,25 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B1D97DE725EABF4A0099C9B8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B1D97DE825EABFF50099C9B8 /* API.swift */,
+				B1D97DEF25EAC9150099C9B8 /* APIRequest.swift */,
+				B1D97DEC25EAC13D0099C9B8 /* APITargetType.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CCECD54389AFC4D330992DC8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C7BAEECD92407C39446BA28E /* Pods-TDTD.debug.xcconfig */,
+				4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -172,9 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1375B4E25E0009E00503DE6 /* Build configuration list for PBXNativeTarget "TDTD" */;
 			buildPhases = (
+				9FF9CF285CB9FD44420E5D95 /* [CP] Check Pods Manifest.lock */,
 				B1375B3625E0009D00503DE6 /* Sources */,
 				B1375B3725E0009D00503DE6 /* Frameworks */,
 				B1375B3825E0009D00503DE6 /* Resources */,
+				1C54B3D47AD83379CFADA628 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,15 +276,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C54B3D47AD83379CFADA628 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TDTD/Pods-TDTD-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TDTD/Pods-TDTD-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TDTD/Pods-TDTD-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FF9CF285CB9FD44420E5D95 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TDTD-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B1375B3625E0009D00503DE6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B127E45C25EA2D3300F3B64D /* RoundButtonStyle.swift in Sources */,
+				B1D97DED25EAC13D0099C9B8 /* APITargetType.swift in Sources */,
 				D545115B25EA329500B19C66 /* ToastView.swift in Sources */,
 				B1375B3E25E0009D00503DE6 /* AppDelegate.swift in Sources */,
 				0637E43125EA3FC6008049F7 /* FocusTextFieldView.swift in Sources */,
+				B1D97DE925EABFF50099C9B8 /* API.swift in Sources */,
 				0637E3FD25E7FB77008049F7 /* TTSManager.swift in Sources */,
 				B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */,
 				0637E42925EA3368008049F7 /* RollingpaperWriteView.swift in Sources */,
@@ -250,6 +337,7 @@
 				0637E40525E80CBA008049F7 /* Date+.swift in Sources */,
 				0637E40225E809A3008049F7 /* RecordManager.swift in Sources */,
 				0637E40A25E811BE008049F7 /* PlayManager.swift in Sources */,
+				B1D97DF025EAC9150099C9B8 /* APIRequest.swift in Sources */,
 				0637E43725EA6205008049F7 /* RollingpaperWriteViewModel.swift in Sources */,
 				B1375B4225E0009D00503DE6 /* ContentView.swift in Sources */,
 			);
@@ -387,6 +475,7 @@
 		};
 		B1375B4F25E0009E00503DE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7BAEECD92407C39446BA28E /* Pods-TDTD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -411,6 +500,7 @@
 		};
 		B1375B5025E0009E00503DE6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
