@@ -12,6 +12,8 @@
 		0637E40525E80CBA008049F7 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E40425E80CBA008049F7 /* Date+.swift */; };
 		0637E40A25E811BE008049F7 /* PlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E40925E811BE008049F7 /* PlayManager.swift */; };
 		0637E41C25E94DA2008049F7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0637E41B25E94DA2008049F7 /* Colors.xcassets */; };
+		B127E45525EA245900F3B64D /* UhBee ZIGLE Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */; };
+		B127E45625EA245900F3B64D /* UhBee ZIGLE.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */; };
 		B1375B3E25E0009D00503DE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1375B3D25E0009D00503DE6 /* AppDelegate.swift */; };
 		B1375B4025E0009D00503DE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1375B3F25E0009D00503DE6 /* SceneDelegate.swift */; };
 		B1375B4225E0009D00503DE6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1375B4125E0009D00503DE6 /* ContentView.swift */; };
@@ -26,6 +28,8 @@
 		0637E40425E80CBA008049F7 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		0637E40925E811BE008049F7 /* PlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayManager.swift; sourceTree = "<group>"; };
 		0637E41B25E94DA2008049F7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee ZIGLE Bold.ttf"; sourceTree = "<group>"; };
+		B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee ZIGLE.ttf"; sourceTree = "<group>"; };
 		B1375B3A25E0009D00503DE6 /* TDTD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDTD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1375B3D25E0009D00503DE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1375B3F25E0009D00503DE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +69,23 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		B127E45025EA240500F3B64D /* SupportItems */ = {
+			isa = PBXGroup;
+			children = (
+				B127E45125EA241500F3B64D /* Font */,
+			);
+			path = SupportItems;
+			sourceTree = "<group>";
+		};
+		B127E45125EA241500F3B64D /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */,
+				B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		B1375B3125E0009D00503DE6 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +108,7 @@
 				B1375B3D25E0009D00503DE6 /* AppDelegate.swift */,
 				B1375B3F25E0009D00503DE6 /* SceneDelegate.swift */,
 				B1375B4125E0009D00503DE6 /* ContentView.swift */,
+				B127E45025EA240500F3B64D /* SupportItems */,
 				0637E40C25E81859008049F7 /* Helper */,
 				0637E40725E80CBC008049F7 /* GlobalExtension */,
 				0637E41B25E94DA2008049F7 /* Colors.xcassets */,
@@ -164,7 +186,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1375B4A25E0009E00503DE6 /* LaunchScreen.storyboard in Resources */,
+				B127E45525EA245900F3B64D /* UhBee ZIGLE Bold.ttf in Resources */,
 				0637E41C25E94DA2008049F7 /* Colors.xcassets in Resources */,
+				B127E45625EA245900F3B64D /* UhBee ZIGLE.ttf in Resources */,
 				B1375B4725E0009E00503DE6 /* Preview Assets.xcassets in Resources */,
 				B1375B4425E0009E00503DE6 /* Assets.xcassets in Resources */,
 			);
@@ -252,7 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -307,7 +331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

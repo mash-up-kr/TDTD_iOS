@@ -10,7 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         Text("hello\(Date().fileFormat)")
+            .font(Font.custom("UhBee ZIGLE", size: 16))
             .padding()
+        
     }
 }
 
