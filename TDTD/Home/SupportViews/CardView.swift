@@ -37,6 +37,7 @@ struct CardView: View {
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                     isFavorite ? Image("ic_favorties_on_16") : Image("ic_favorties_off_16")
                 }
+                .padding(.trailing, 4)
             }
         }
         .padding(16)
