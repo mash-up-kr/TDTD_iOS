@@ -11,15 +11,17 @@ struct CardView: View {
     @State private var isFavorite = true
     @State private var isHost = true
     
+    var roomSummary: RoomSummary
+    
     var body: some View {
         VStack(spacing: 40) {
             HStack() {
-                Text("이거슨 타이틀입니다아아아아아아아ㅏ아앙.")
+                Text(roomSummary.title ?? "")
                     .foregroundColor(.init("grayscale_1"))
                     .font(.uhBeeCustom(20, weight: .bold))
                     .lineLimit(2)
                 Spacer(minLength: 16)
-                if isHost {
+                if roomSummary.isHost {
                     Button(action: {}) {
                         Image("ic_crown_24")
                     }
@@ -34,8 +36,10 @@ struct CardView: View {
                     .foregroundColor(.init("grayscale_2"))
                     .font(.uhBeeCustom(14, weight: .bold))
                 Spacer()
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                    isFavorite ? Image("ic_favorties_on_16") : Image("ic_favorties_off_16")
+                Button(action: {
+//                    roomSummary.isBookmark.toggle()
+                }) {
+                    roomSummary.isBookmark ? Image("ic_favorties_on_16") : Image("ic_favorties_off_16")
                 }
                 .padding(.trailing, 4)
             }
@@ -52,7 +56,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView()
+        CardView(roomSummary: RoomSummary(isHost: true, title: "이거슨 타이틀입니다.", roomCode: "", isBookmark: true, createdAt: nil))
             .padding(.horizontal, 16)
     }
 }

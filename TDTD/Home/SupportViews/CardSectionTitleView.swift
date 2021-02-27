@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardSectionTitleView: View {
-    @State private var isFavorite = false
+    @Binding var isFavorite: Bool
     
     var body: some View {
         HStack {
@@ -17,7 +17,9 @@ struct CardSectionTitleView: View {
                 .foregroundColor(.init("grayscale_3"))
             Spacer()
             Button(action: {
-                isFavorite.toggle()
+                withAnimation {
+                    isFavorite.toggle()
+                }
             }, label: {
                 HStack(spacing: 8) {
                     isFavorite ? Image("ic_checkBox_on_16") : Image("ic_checkBox_off_16")
@@ -32,7 +34,7 @@ struct CardSectionTitleView: View {
 
 struct CardSectionTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        CardSectionTitleView()
+        CardSectionTitleView(isFavorite: .constant(false))
             .padding()
     }
 }

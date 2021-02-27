@@ -8,10 +8,10 @@
 import Foundation
 
 struct RoomSummary: Codable {
-    let isHost: Bool?
+    let isHost: Bool
     let title: String?
     let roomCode: String?
-    let isBookmark: Bool?
+    var isBookmark: Bool
     let createdAt: Date?
     
     enum CodingKeys: String, CodingKey {

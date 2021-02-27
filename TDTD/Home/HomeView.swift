@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var presentCreatRoom = false
+    @ObservedObject var viewModel: HomeViewModel
     
-    init() {
+    @State private var presentCreatRoom = false
+    @State private var showFavoritesOnly = false
+    
+    private var rooms: [RoomSummary] {
+        viewModel.rooms.filter { roomSummary in
+            (!showFavoritesOnly || roomSummary.isBookmark)
+        }
+    }
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
         setNavigationBar()
     }
     
@@ -29,18 +39,13 @@ struct HomeView: View {
                                 presentCreatRoom = true
                             })
                             Spacer().frame(height: 16)
-                            CardSectionTitleView()
+                            CardSectionTitleView(isFavorite: $showFavoritesOnly)
                         }
                         .padding(.horizontal, 16)
                         LazyVStack(spacing: 8) {
-                            CardView()
-                            CardView()
-                            CardView()
-                            CardView()
-                            CardView()
-                            CardView()
-                            CardView()
-                            CardView()
+                            ForEach(rooms, id: \.self.roomCode) { roomSummary in
+                                CardView(roomSummary: roomSummary)
+                            }
                         }
                         .padding(.horizontal, 16)
                     }
@@ -69,6 +74,6 @@ extension HomeView {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(viewModel: HomeViewModel())
     }
 }
