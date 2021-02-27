@@ -30,7 +30,7 @@ struct ToastView<Presenting>: View where Presenting: View {
                                             .foregroundColor(Color("character_1")))
                             .shadow(color: Color.black.opacity(0.3), radius: 10, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 6)
                     }
-                    .transition(.slide)
+                    .transition(.opacity)
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + self.hideAfter) {
                             withAnimation {
