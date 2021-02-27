@@ -39,11 +39,7 @@ struct FocusTextFieldView: View {
             }
             
             TextField("", text: $text) { isEditing in
-                if isEditing {
-                    self.isEditing = true
-                } else {
-                    self.isEditing = false
-                }
+                self.isEditing = isEditing
             }
             .padding(.vertical, verticalPadding)
             .padding(.horizontal, horizontalPadding)
