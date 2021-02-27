@@ -22,6 +22,7 @@
 		B1375B4725E0009E00503DE6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1375B4625E0009E00503DE6 /* Preview Assets.xcassets */; };
 		B1375B4A25E0009E00503DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1375B4825E0009E00503DE6 /* LaunchScreen.storyboard */; };
 		B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */; };
+		D545115B25EA329500B19C66 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545115A25EA329500B19C66 /* ToastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		B1375B4925E0009E00503DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1375B4B25E0009E00503DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		D545115A25EA329500B19C66 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				B1375B3F25E0009D00503DE6 /* SceneDelegate.swift */,
 				B1375B4125E0009D00503DE6 /* ContentView.swift */,
 				B127E45925EA2CF100F3B64D /* Components */,
+				D545115A25EA329500B19C66 /* ToastView.swift */,
 				B127E45025EA240500F3B64D /* SupportItems */,
 				0637E40C25E81859008049F7 /* Helper */,
 				0637E40725E80CBC008049F7 /* GlobalExtension */,
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B127E45C25EA2D3300F3B64D /* RoundButtonStyle.swift in Sources */,
+				D545115B25EA329500B19C66 /* ToastView.swift in Sources */,
 				B1375B3E25E0009D00503DE6 /* AppDelegate.swift in Sources */,
 				0637E3FD25E7FB77008049F7 /* TTSManager.swift in Sources */,
 				B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */,
