@@ -69,9 +69,9 @@ extension RoundButtonStyle {
         var font: Font {
             switch self {
             case .default:
-                return Font.custom("UhBee ZIGLE", fixedSize: 20)
+                return Font.uhBeeCustom(20, weight: .bold)
             case .small:
-                return Font.custom("UhBee ZIGLE Bold", fixedSize: 16)
+                return Font.uhBeeCustom(16, weight: .bold)
             }
         }
         
