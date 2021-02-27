@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CardView: View {
-    @State var isFavorite = true
-    @State var isHost = true
+    @State private var isFavorite = true
+    @State private var isHost = true
     
     var body: some View {
         VStack(spacing: 40) {

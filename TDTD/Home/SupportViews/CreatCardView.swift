@@ -10,11 +10,12 @@ import SwiftUI
 struct CreatCardView: View {
     var body: some View {
         ZStack {
-            
             ZStack {
                 VStack {
                     Spacer()
                     Image("ic_plus_40")
+                    Spacer()
+                        .frame(height: 10)
                     Spacer()
                 }
                 VStack {
@@ -26,14 +27,12 @@ struct CreatCardView: View {
                         .frame(height: 33)
                 }
             }
-
-            
-            
-
-            Image("")
+            Image("img_create_room")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
             
         }
-        .frame(width: 300, height: 160, alignment: .center)
+        .frame(height: 160, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .background(Color.init("beige_2"))
         .cornerRadius(16)
         .overlay(
@@ -45,6 +44,6 @@ struct CreatCardView: View {
 
 struct CreatCardView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatCardView().padding()
+        CreatCardView().padding(12)
     }
 }

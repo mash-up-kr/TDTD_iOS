@@ -9,7 +9,19 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        ScrollView {
+            LazyVStack(spacing: 8) {
+                CreatCardView()
+                CardSectionTitleView()
+                CardView()
+                CardView()
+                CardView()
+                CardView()
+                CardView()
+
+            }
+        }
         
     }
 }
