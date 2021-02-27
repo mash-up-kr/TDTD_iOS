@@ -11,14 +11,8 @@ struct FocusTextView: View {
     private let radius: CGFloat = 16
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 12
-    
-    @State private var text: String
+    @Binding var text: String
     @State private var isEditing: Bool = false
-    
-    init(_ text: String) {
-        _text = State(wrappedValue: text)
-        
-    }
     
     var body: some View {
         ZStack {
@@ -37,22 +31,21 @@ struct FocusTextView: View {
                         .stroke(Color(UIColor(named: "beige_3")!), lineWidth: 1)
                 }
             }
-            
             UITextViewWrapper(text: $text)
-                
         }.frame(maxHeight: 48)
     }
 }
 
 struct FocusTextView_Previews: PreviewProvider {
     static var previews: some View {
-        FocusTextView("hihihi")
+        FocusTextView(text: Binding.constant("hi"))
     }
 }
 
 struct UITextViewWrapper: UIViewRepresentable {
     private let radius: CGFloat = 16
     @Binding var text: String
+    @EnvironmentObject var viewmodel: RollingpaperWriteViewModel
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -65,6 +58,7 @@ struct UITextViewWrapper: UIViewRepresentable {
         textView.layer.cornerRadius = radius
         textView.layer.borderWidth = 1
         textView.layer.borderColor = UIColor(named: "beige_3")?.cgColor
+        textView.autocorrectionType = .no
         return textView
     }
     

@@ -10,8 +10,14 @@ import AVFoundation
 final class RecordManager: NSObject {
     private override init() {}
     static let shared: RecordManager = RecordManager()
-    
+
     private var recorder: AVAudioRecorder!
+    var recorderURL: URL {
+        recorder.url
+    }
+    var recordTime: TimeInterval {
+        recorder.currentTime
+    }
     
     private func setAudioSession() {
         try? AVAudioSession.sharedInstance().setCategory(.playAndRecord,
@@ -36,11 +42,6 @@ final class RecordManager: NSObject {
     func stop() {
         recorder.stop()
         try? AVAudioSession.sharedInstance().setActive(false)
-    }
-    
-    // TODO: 플레이어 기능구현후 구현하기
-    func play() {
-        try? PlayManager.shared.play(recorder.url)
     }
 }
 
@@ -67,6 +68,15 @@ extension RecordManager {
         if let urls = try? FileManager.default.subpathsOfDirectory(atPath: urlString) {
             for path in urls {
                 print("\(urlString)/\(path)")
+            }
+        }
+    }
+    
+    func deleteAllFile() {
+        let urlString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        if let urls = try? FileManager.default.subpathsOfDirectory(atPath: urlString) {
+            for path in urls {
+                try? FileManager.default.removeItem(atPath: "\(urlString)/\(path)")
             }
         }
     }

@@ -12,17 +12,12 @@ struct FocusTextFieldView: View {
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 12
     
-    @State private var text: String
-    @State private var isEditing: Bool = false
-    
-    init(_ text: String) {
-        _text = State(wrappedValue: text)
-        
-    }
+    @Binding var text: String
+    @EnvironmentObject var viewmodel: RollingpaperWriteViewModel
     
     var body: some View {
         ZStack {
-            if isEditing {
+            if viewmodel.isEditing {
                 ZStack {
                     RoundedRectangle(cornerRadius: radius)
                         .fill(Color(UIColor(named: "beige_2")!))
@@ -39,8 +34,9 @@ struct FocusTextFieldView: View {
             }
             
             TextField("", text: $text) { isEditing in
-                self.isEditing = isEditing
+                viewmodel.isEditing = isEditing
             }
+            .disableAutocorrection(true)
             .padding(.vertical, verticalPadding)
             .padding(.horizontal, horizontalPadding)
         }.frame(maxHeight: 48)
