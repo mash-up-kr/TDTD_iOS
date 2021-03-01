@@ -12,28 +12,11 @@ struct FocusTextView: View {
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 12
     @Binding var text: String
-    @State private var isEditing: Bool = false
     var onEditing: ((Bool) -> Void)?
     
     var body: some View {
-        ZStack {
-            if isEditing {
-                ZStack {
-                    RoundedRectangle(cornerRadius: radius)
-                        .fill(Color(UIColor(named: "beige_2")!))
-                    RoundedRectangle(cornerRadius: radius)
-                        .stroke(Color(UIColor(named: "grayscale_2")!), lineWidth: 2)
-                }
-            } else {
-                ZStack {
-                    RoundedRectangle(cornerRadius: radius)
-                        .fill(Color(UIColor(named: "beige_2")!))
-                    RoundedRectangle(cornerRadius: radius)
-                        .stroke(Color(UIColor(named: "beige_3")!), lineWidth: 1)
-                }
-            }
-            UITextViewWrapper(text: $text, onEditing: onEditing)
-        }.frame(maxHeight: 184)
+        UITextViewWrapper(text: $text, onEditing: onEditing)
+            .frame(height: 184)
     }
 }
 
@@ -60,6 +43,7 @@ struct UITextViewWrapper: UIViewRepresentable {
         textView.layer.borderWidth = 1
         textView.layer.borderColor = UIColor(named: "beige_3")?.cgColor
         textView.autocorrectionType = .no
+        textView.contentInset = .init(top: 12, left: 16, bottom: 12, right: 16)
         return textView
     }
     

@@ -28,23 +28,32 @@ struct RollingpaperWriteView: View {
                 // FIXME:- 나중에 제가 고치겠습니당 :)
 //                FocusTextFieldView(text: $nickName)
 //                    .environmentObject(viewModel)
-                TextField("", text: $nickName) { isEditing in
-                    viewModel.isEditing = isEditing
-                    if !isEditing {
-                        viewModel.model.nickName = nickName
+                TextField("", text: $nickName) { onEditing in
+                    viewModel.isEditing = onEditing
+                    if !onEditing {
+                        if nickName.isEmpty {
+                            viewModel.model.nickName = nil
+                        } else {
+                            viewModel.model.nickName = nickName
+                        }
                     }
                 }
+                .disableAutocorrection(true)
                 HStack {
                     Text("남기고 싶은 말을 속삭여주세요!")
                     Spacer()
                 }
                 if viewModel.model.mode == .text {
                     FocusTextView(text: $contentText) { onEditing in
+                        viewModel.isEditing = onEditing
                         if !onEditing {
-                            viewModel.model.message = contentText
+                            if contentText.isEmpty {
+                                viewModel.model.message = nil
+                            } else {
+                                viewModel.model.message = contentText
+                            }
                         }
                     }
-                    .environmentObject(viewModel)
                 } else {
                     ZStack {
                         RoundedRectangle(cornerRadius: 16)
