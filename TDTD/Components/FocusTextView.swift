@@ -13,6 +13,7 @@ struct FocusTextView: View {
     private let verticalPadding: CGFloat = 12
     @Binding var text: String
     @State private var isEditing: Bool = false
+    var onEditing: ((Bool) -> Void)?
     
     var body: some View {
         ZStack {
@@ -31,8 +32,8 @@ struct FocusTextView: View {
                         .stroke(Color(UIColor(named: "beige_3")!), lineWidth: 1)
                 }
             }
-            UITextViewWrapper(text: $text)
-        }.frame(maxHeight: 48)
+            UITextViewWrapper(text: $text, onEditing: onEditing)
+        }.frame(maxHeight: 184)
     }
 }
 
@@ -45,7 +46,7 @@ struct FocusTextView_Previews: PreviewProvider {
 struct UITextViewWrapper: UIViewRepresentable {
     private let radius: CGFloat = 16
     @Binding var text: String
-    @EnvironmentObject var viewmodel: RollingpaperWriteViewModel
+    var onEditing: ((Bool) -> Void)?
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -63,7 +64,7 @@ struct UITextViewWrapper: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.text = text
+     
     }
     
     class Coordinator : NSObject, UITextViewDelegate {
@@ -72,15 +73,21 @@ struct UITextViewWrapper: UIViewRepresentable {
         init(_ uiTextView: UITextViewWrapper) {
             self.parent = uiTextView
         }
+        
+        func textViewDidChange(_ textView: UITextView) {
+            parent.text = textView.text
+        }
 
         func textViewDidBeginEditing(_ textView: UITextView) {
             textView.layer.borderWidth = 2
             textView.layer.borderColor = UIColor(named: "grayscale_2")?.cgColor
+            parent.onEditing?(true)
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {
             textView.layer.borderWidth = 1
             textView.layer.borderColor = UIColor(named: "beige_3")?.cgColor
+            parent.onEditing?(false)
         }
     }
 }
