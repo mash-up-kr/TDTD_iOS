@@ -11,14 +11,13 @@ import Combine
 enum RecordStatus {
     case none, record, end, play, pause
 }
-
+enum WriteMode {
+    case text, voice
+}
 class RollingpaperWriteViewModel: ObservableObject {
-    enum WriteMode {
-        case text, voice
-    }
-    
-    let mode: WriteMode
+    @Published var model: RollingpaperWriteModel
     @Published var recordStatus: RecordStatus = .none
+    
     var recordDescription: String {
         switch recordStatus {
         case .none:
@@ -48,14 +47,20 @@ class RollingpaperWriteViewModel: ObservableObject {
             return UIImage(named: "icon_record_play")
         }
     }
-    @Published var isEditing = false
+    // 키보드 올라옴 유무
+    @Published var isEditing: Bool = false
     private var timerCancellable: AnyCancellable?
-    var isExistRecord: Bool {
-        !(recordStatus == .none || recordStatus == .record)
-    }
+    @Published var timerString: String = "최대 1분"
+    private var modelCancellable: AnyCancellable?
     
     init(mode: WriteMode = .text) {
-        self.mode = mode
+        model = RollingpaperWriteModel(mode: mode)
+        RecordManager.shared.delegate = self
+        
+        // FIXME: - 디버그용 추후 삭제 해야해용
+        modelCancellable = $model.sink {
+            print($0)
+        }
     }
     
     func record() {
@@ -64,7 +69,10 @@ class RollingpaperWriteViewModel: ObservableObject {
         timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
-                floor(RecordManager.shared.recordTime)
+                if RecordManager.shared.recordTime == 60 {
+                    self.stop()
+                }
+                self.timerString = String(format: "00:%02d", Int(floor(RecordManager.shared.recordTime)))
             }
     }
     
@@ -80,9 +88,11 @@ class RollingpaperWriteViewModel: ObservableObject {
     }
     
     func reset() {
+        timerString = "최대 1분"
         recordStatus = .none
         PlayManager.shared.stop()
         RecordManager.shared.deleteAllFile()
+        model.voice = nil
     }
     
     func pause() {
@@ -104,4 +114,14 @@ class RollingpaperWriteViewModel: ObservableObject {
             play()
         }
     }
+}
+
+extension RollingpaperWriteViewModel: RecordManagerDelegate {
+    func recordComplete(recordFile: Data?) {
+        model.voice = recordFile
+    }
+}
+
+protocol RecordManagerDelegate: class {
+    func recordComplete(recordFile: Data?)
 }

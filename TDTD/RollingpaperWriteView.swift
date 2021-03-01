@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct RollingpaperWriteView: View {
     @ObservedObject var viewModel: RollingpaperWriteViewModel
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 23
-    @State private var isDisableComplete: Bool = true
     @State private var nickName: String = ""
     @State private var contentText: String = ""
+    @State private var isShowToast: Bool = false
+    @State private var toastMessage: String = ""
     
     var body: some View {
         VStack {
@@ -26,19 +28,29 @@ struct RollingpaperWriteView: View {
                 // FIXME:- 나중에 제가 고치겠습니당 :)
 //                FocusTextFieldView(text: $nickName)
 //                    .environmentObject(viewModel)
+                TextField("", text: $nickName) { isEditing in
+                    viewModel.isEditing = isEditing
+                    if !isEditing {
+                        viewModel.model.nickName = nickName
+                    }
+                }
                 HStack {
                     Text("남기고 싶은 말을 속삭여주세요!")
                     Spacer()
                 }
-                if viewModel.mode == .text {
-                    FocusTextView(text: $contentText)
-                        .environmentObject(viewModel)
+                if viewModel.model.mode == .text {
+                    FocusTextView(text: $contentText) { onEditing in
+                        if !onEditing {
+                            viewModel.model.message = contentText
+                        }
+                    }
+                    .environmentObject(viewModel)
                 } else {
                     ZStack {
                         RoundedRectangle(cornerRadius: 16)
                             .fill(Color(UIColor(named: "beige_2")!))
                         ZStack {
-                            if viewModel.isExistRecord {
+                            if !viewModel.model.isEmptyData {
                                 HStack {
                                     VStack {
                                         ZStack {
@@ -62,7 +74,7 @@ struct RollingpaperWriteView: View {
                             HStack {
                                 Spacer()
                                 VStack {
-                                    Text("최대 1분")
+                                    Text(viewModel.timerString)
                                         .font(Font.uhBeeCustom(20, weight: .bold))
                                         .foregroundColor(Color(UIColor(named: "grayscale_2")!))
                                     Button(action: {
@@ -87,14 +99,13 @@ struct RollingpaperWriteView: View {
             ZStack {
                 if !viewModel.isEditing {
                     RoundedRectangle(cornerRadius: 16)
-                        .fill(Color(UIColor(named: "beige_2")!))
+                        .fill(Color(UIColor(named: "beige_3")!))
                         .overlay(
                             Image(uiImage: UIImage(named: "banner")!)
-                                .resizable()
                         )
                 }
             }
-            .frame(height: 129)
+            .frame(height: 96)
             HStack {
                 Button(action: {
                     
@@ -102,38 +113,36 @@ struct RollingpaperWriteView: View {
                     Text("취소")
                 })
                 .buttonStyle(RoundButtonStyle(style: .light))
-                if isDisableComplete {
-                    Button(action: {
+                Button(action: {
+                    if viewModel.model.nickName?.isEmpty ?? true {
+                        toastMessage = "닉네임을 입력해주세요!"
+                        isShowToast = true
+                    } else if viewModel.model.isEmptyData {
+                        if viewModel.model.mode == .text {
+                            toastMessage = "남기고 싶은 말을 써주세요!"
+                        } else {
+                            toastMessage = "남기고 싶은 말을 속삭여주세요!"
+                        }
+                        isShowToast = true
+                    } else {
                         
-                    }, label: {
-                        Text("완료")
-                    })
-                    .buttonStyle(RoundButtonStyle(style: .dark))
-                    .opacity(0.5)
-                } else {
-                    Button(action: {
+                    // TODO: - 완료후 화면으로 넘어가기
                         
-                    }, label: {
-                        Text("완료")
-                    })
-                    .buttonStyle(RoundButtonStyle(style: .dark))
-                }
+                    }
+                    
+                }, label: {
+                    Text("완료")
+                })
+                .buttonStyle(RoundButtonStyle(style: .dark))
             }
             .padding(.vertical, horizontalPadding)
         }
         .padding(.horizontal, horizontalPadding)
-    }
-    
-    private func checkComplete() {
-        if viewModel.mode == .text {
-            isDisableComplete = !nickName.isEmpty && !contentText.isEmpty
-        }
-        else {
-            isDisableComplete = !nickName.isEmpty && viewModel.isExistRecord
-        }
+        .toast(isShowing: $isShowToast, title: Text(toastMessage), hideAfter: 3)
+        .hideKeyboard()
     }
 }
-    
+
 struct RollingpagerWriteView_Previews: PreviewProvider {
     static var previews: some View {
         RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: .voice))
