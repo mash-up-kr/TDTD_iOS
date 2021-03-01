@@ -11,7 +11,7 @@ final class PlayManager {
     private init() {}
     static let shared: PlayManager = PlayManager()
     
-    private var player: AVAudioPlayer!
+    private var player: AVAudioPlayer?
     
     private func setAudioSession() {
         try? AVAudioSession.sharedInstance().setCategory(.playAndRecord,
@@ -25,22 +25,24 @@ final class PlayManager {
             player = try AVAudioPlayer(contentsOf: file as! URL)
         }
         
-        player.play()
+        player?.play()
     }
     
     func pause() {
-        player.pause()
+        player?.pause()
     }
     
     func stop() {
-        player.stop()
+        player?.stop()
     }
     
     private func playTime() -> String {
-        let time = player.duration
-        let sec = String(format: "%02d", Int(floor(time.truncatingRemainder(dividingBy: 60))))
-        let min = String(format: "%02d", Int(floor(time / 60)))
-        let hour = String(format: "%02d", Int(floor(time / 3600)))
-        return "\(hour):\(min):\(sec)"
+        if let time = player?.duration {
+            let sec = String(format: "%02d", Int(floor(time.truncatingRemainder(dividingBy: 60))))
+            let min = String(format: "%02d", Int(floor(time / 60)))
+            let hour = String(format: "%02d", Int(floor(time / 3600)))
+            return "\(hour):\(min):\(sec)"
+        }
+        return ""
     }
 }
