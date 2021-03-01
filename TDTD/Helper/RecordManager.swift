@@ -10,14 +10,16 @@ import AVFoundation
 final class RecordManager: NSObject {
     private override init() {}
     static let shared: RecordManager = RecordManager()
-
+    
     private var recorder: AVAudioRecorder!
+    private var fileName: String = ""
     var recorderURL: URL {
         recorder.url
     }
     var recordTime: TimeInterval {
         recorder.currentTime
     }
+    unowned var delegate: RecordManagerDelegate?
     
     private func setAudioSession() {
         try? AVAudioSession.sharedInstance().setCategory(.playAndRecord,
@@ -26,23 +28,26 @@ final class RecordManager: NSObject {
     
     private func setRecorder() throws {
         var fileURL = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        fileURL.append("/tdtd\(Date().fileFormat).wav")
+        fileName = "/tdtd\(Date().fileFormat).wav"
+        fileURL.append(fileName)
         
         recorder = try AVAudioRecorder(url: URL(string: fileURL)!, settings: [:])
         recorder.delegate = self
+        
     }
     
     func record() throws {
         setAudioSession()
         try setRecorder()
         try AVAudioSession.sharedInstance().setActive(true)
-        recorder.record()
+        recorder.record(forDuration: 60)
     }
     
     func stop() {
         recorder.stop()
         try? AVAudioSession.sharedInstance().setActive(false)
     }
+    
 }
 
 // MARK: - RecorderDelegate
@@ -52,6 +57,9 @@ extension RecordManager: AVAudioRecorderDelegate {
         if flag {
             print("녹음완료")
             print(recorder.url)
+            if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(fileName) {
+                delegate?.recordComplete(recordFile: try? Data(contentsOf: url))
+            }
         } else {
             print("녹음실패")
         }
