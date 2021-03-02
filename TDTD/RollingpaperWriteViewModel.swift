@@ -18,6 +18,15 @@ class RollingpaperWriteViewModel: ObservableObject {
     @Published var model: RollingpaperWriteModel
     @Published var recordStatus: RecordStatus = .none
     
+    var subTitle: String {
+        switch model.mode {
+        case .text:
+            return "남기고 싶은 말을 써주세요!"
+        case .voice:
+            return "남기고 싶은 말을 속삭여주세요!"
+        }
+    }
+    
     var recordDescription: String {
         switch recordStatus {
         case .none:
