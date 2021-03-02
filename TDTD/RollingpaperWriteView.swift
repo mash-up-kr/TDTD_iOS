@@ -99,24 +99,24 @@ struct RollingpaperWriteView: View {
         } else {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(UIColor(named: "beige_2")!))
+                    .fill(Color("beige_2"))
                 ZStack {
                     if !viewModel.model.isEmptyData {
                         HStack {
                             VStack {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 29)
-                                        .fill(Color(UIColor(named: "beige_3")!))
+                                        .fill(Color("beige_3"))
                                         .frame(width: 48, height: 40)
                                     Button(action: {
                                         viewModel.reset()
                                     }, label: {
-                                        Image(uiImage: UIImage(named: "ic_restart_24")!)
+                                        Image("ic_restart_24")
                                     })
                                 }
                                 Text("다시녹음할래")
                                     .font(Font.uhBeeCustom(16, weight: .bold))
-                                    .foregroundColor(Color(UIColor(named: "grayscale_3")!))
+                                    .foregroundColor(Color("grayscale_3"))
                             }
                             .padding(.leading, 47.5)
                             Spacer()
@@ -127,7 +127,7 @@ struct RollingpaperWriteView: View {
                         VStack {
                             Text(viewModel.timerString)
                                 .font(Font.uhBeeCustom(20, weight: .bold))
-                                .foregroundColor(Color(UIColor(named: "grayscale_2")!))
+                                .foregroundColor(Color("grayscale_2"))
                             Button(action: {
                                 viewModel.recordButtonClick()
                             }, label: {
@@ -137,7 +137,7 @@ struct RollingpaperWriteView: View {
                             })
                             Text(viewModel.recordDescription)
                                 .font(Font.uhBeeCustom(16, weight: .bold))
-                                .foregroundColor(Color(UIColor(named: "grayscale_3")!))
+                                .foregroundColor(Color( "grayscale_3"))
                         }
                         Spacer()
                     }
@@ -151,9 +151,9 @@ struct RollingpaperWriteView: View {
     private func bannerView() -> some View {
         if !viewModel.isEditing {
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(UIColor(named: "beige_3")!))
+                .fill(Color("beige_3"))
                 .overlay(
-                    Image(uiImage: UIImage(named: "banner")!)
+                    Image("banner")
                 )
                 .frame(height: 96)
         }
