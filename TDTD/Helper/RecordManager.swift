@@ -10,7 +10,7 @@ import AVFoundation
 final class RecordManager: NSObject {
     private override init() {}
     static let shared: RecordManager = RecordManager()
-    
+    var limitDuration: TimeInterval = 60
     private var recorder: AVAudioRecorder!
     private var fileName: String = ""
     var recorderURL: URL {
@@ -40,7 +40,7 @@ final class RecordManager: NSObject {
         setAudioSession()
         try setRecorder()
         try AVAudioSession.sharedInstance().setActive(true)
-        recorder.record(forDuration: 60)
+        recorder.record(forDuration: limitDuration)
     }
     
     func stop() {

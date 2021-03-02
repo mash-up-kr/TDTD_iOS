@@ -69,14 +69,15 @@ class RollingpaperWriteViewModel: ObservableObject {
         timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
-                if RecordManager.shared.recordTime == 60 {
-                    self.stop()
+                print(RecordManager.shared.recordTime)
+                if RecordManager.shared.recordTime >= RecordManager.shared.limitDuration {
+                    self.stopRecord()
                 }
                 self.timerString = String(format: "00:%02d", Int(floor(RecordManager.shared.recordTime)))
             }
     }
     
-    func stop() {
+    func stopRecord() {
         recordStatus = .end
         RecordManager.shared.stop()
         timerCancellable?.cancel()
@@ -84,7 +85,20 @@ class RollingpaperWriteViewModel: ObservableObject {
     
     func play() {
         recordStatus = .play
-        try? PlayManager.shared.play(RecordManager.shared.recorderURL)
+        do {
+            try PlayManager.shared.play(RecordManager.shared.recorderURL)
+            var timer: Double = 0.0
+            timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
+                .autoconnect()
+                .sink { _ in
+                    timer += 1
+                    if PlayManager.shared.playTime <= timer {
+                        self.playFinish()
+                    }
+                }
+        } catch {
+            print("player error")
+        }
     }
     
     func reset() {
@@ -105,7 +119,7 @@ class RollingpaperWriteViewModel: ObservableObject {
         case .none:
             record()
         case .record:
-            stop()
+            stopRecord()
         case .play:
             pause()
         case .end:
@@ -113,6 +127,12 @@ class RollingpaperWriteViewModel: ObservableObject {
         case .pause:
             play()
         }
+    }
+    
+    func playFinish() {
+        recordStatus = .end
+        PlayManager.shared.stop()
+        timerCancellable?.cancel()
     }
 }
 

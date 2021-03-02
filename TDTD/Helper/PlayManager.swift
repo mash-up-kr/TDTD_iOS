@@ -36,13 +36,7 @@ final class PlayManager {
         player?.stop()
     }
     
-    private func playTime() -> String {
-        if let time = player?.duration {
-            let sec = String(format: "%02d", Int(floor(time.truncatingRemainder(dividingBy: 60))))
-            let min = String(format: "%02d", Int(floor(time / 60)))
-            let hour = String(format: "%02d", Int(floor(time / 3600)))
-            return "\(hour):\(min):\(sec)"
-        }
-        return ""
+    var playTime: TimeInterval {
+        player?.duration ?? 0
     }
 }
