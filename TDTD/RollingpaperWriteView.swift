@@ -40,7 +40,7 @@ struct RollingpaperWriteView: View {
                 }
                 .disableAutocorrection(true)
                 HStack {
-                    SubTitle(text: "남기고 싶은 말을 속삭여주세요!")
+                    SubTitle(text: viewModel.subTitle)
                     Spacer()
                 }
                 writeBodyView(type: viewModel.model.mode)
@@ -86,7 +86,7 @@ struct RollingpaperWriteView: View {
     @ViewBuilder
     private func writeBodyView(type: WriteMode) -> some View {
         if type == .text {
-            FocusTextView(text: $contentText) { onEditing in
+            FocusTextView(text: $contentText, placeholder: "남기고 싶은 말을 써주세요!") { onEditing in
                 viewModel.isEditing = onEditing
                 if !onEditing {
                     if contentText.isEmpty {
@@ -162,6 +162,6 @@ struct RollingpaperWriteView: View {
 
 struct RollingpagerWriteView_Previews: PreviewProvider {
     static var previews: some View {
-        RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: .voice))
+        RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: .text))
     }
 }
