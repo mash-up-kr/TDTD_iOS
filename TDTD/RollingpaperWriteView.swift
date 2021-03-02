@@ -21,9 +21,9 @@ struct RollingpaperWriteView: View {
         VStack {
             VStack {
                 HStack {
-                    Text("닉네임")
+                    SubTitle(text: "닉네임")
                     Spacer()
-                    Text("0/12")
+                    SubTitle(text: "0/12")
                 }
                 // FIXME:- 나중에 제가 고치겠습니당 :)
 //                FocusTextFieldView(text: $nickName)
@@ -40,7 +40,7 @@ struct RollingpaperWriteView: View {
                 }
                 .disableAutocorrection(true)
                 HStack {
-                    Text("남기고 싶은 말을 속삭여주세요!")
+                    SubTitle(text: "남기고 싶은 말을 속삭여주세요!")
                     Spacer()
                 }
                 writeBodyView(type: viewModel.model.mode)
