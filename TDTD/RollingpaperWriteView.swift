@@ -43,78 +43,10 @@ struct RollingpaperWriteView: View {
                     Text("남기고 싶은 말을 속삭여주세요!")
                     Spacer()
                 }
-                if viewModel.model.mode == .text {
-                    FocusTextView(text: $contentText) { onEditing in
-                        viewModel.isEditing = onEditing
-                        if !onEditing {
-                            if contentText.isEmpty {
-                                viewModel.model.message = nil
-                            } else {
-                                viewModel.model.message = contentText
-                            }
-                        }
-                    }
-                } else {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color(UIColor(named: "beige_2")!))
-                        ZStack {
-                            if !viewModel.model.isEmptyData {
-                                HStack {
-                                    VStack {
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 29)
-                                                .fill(Color(UIColor(named: "beige_3")!))
-                                                .frame(width: 48, height: 40)
-                                            Button(action: {
-                                                viewModel.reset()
-                                            }, label: {
-                                                Image(uiImage: UIImage(named: "ic_restart_24")!)
-                                            })
-                                        }
-                                        Text("다시녹음할래")
-                                            .font(Font.uhBeeCustom(16, weight: .bold))
-                                            .foregroundColor(Color(UIColor(named: "grayscale_3")!))
-                                    }
-                                    .padding(.leading, 47.5)
-                                    Spacer()
-                                }
-                            }
-                            HStack {
-                                Spacer()
-                                VStack {
-                                    Text(viewModel.timerString)
-                                        .font(Font.uhBeeCustom(20, weight: .bold))
-                                        .foregroundColor(Color(UIColor(named: "grayscale_2")!))
-                                    Button(action: {
-                                        viewModel.recordButtonClick()
-                                    }, label: {
-                                        Image(uiImage: viewModel.recordImage!)
-                                            .padding(8)
-                                            .frame(width: 80, height: 80)
-                                    })
-                                    Text(viewModel.recordDescription)
-                                        .font(Font.uhBeeCustom(16, weight: .bold))
-                                        .foregroundColor(Color(UIColor(named: "grayscale_3")!))
-                                }
-                                Spacer()
-                            }
-                        }
-                    }
-                    .frame(height: 184)
-                }
-                Spacer()
+                writeBodyView(type: viewModel.model.mode)
             }
-            ZStack {
-                if !viewModel.isEditing {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color(UIColor(named: "beige_3")!))
-                        .overlay(
-                            Image(uiImage: UIImage(named: "banner")!)
-                        )
-                }
-            }
-            .frame(height: 96)
+            Spacer()
+            bannerView()
             HStack {
                 Button(action: {
                     
@@ -149,6 +81,82 @@ struct RollingpaperWriteView: View {
         .padding(.horizontal, horizontalPadding)
         .toast(isShowing: $isShowToast, title: Text(toastMessage), hideAfter: 3)
         .hideKeyboard()
+    }
+    
+    @ViewBuilder
+    private func writeBodyView(type: WriteMode) -> some View {
+        if type == .text {
+            FocusTextView(text: $contentText) { onEditing in
+                viewModel.isEditing = onEditing
+                if !onEditing {
+                    if contentText.isEmpty {
+                        viewModel.model.message = nil
+                    } else {
+                        viewModel.model.message = contentText
+                    }
+                }
+            }
+        } else {
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(UIColor(named: "beige_2")!))
+                ZStack {
+                    if !viewModel.model.isEmptyData {
+                        HStack {
+                            VStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 29)
+                                        .fill(Color(UIColor(named: "beige_3")!))
+                                        .frame(width: 48, height: 40)
+                                    Button(action: {
+                                        viewModel.reset()
+                                    }, label: {
+                                        Image(uiImage: UIImage(named: "ic_restart_24")!)
+                                    })
+                                }
+                                Text("다시녹음할래")
+                                    .font(Font.uhBeeCustom(16, weight: .bold))
+                                    .foregroundColor(Color(UIColor(named: "grayscale_3")!))
+                            }
+                            .padding(.leading, 47.5)
+                            Spacer()
+                        }
+                    }
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Text(viewModel.timerString)
+                                .font(Font.uhBeeCustom(20, weight: .bold))
+                                .foregroundColor(Color(UIColor(named: "grayscale_2")!))
+                            Button(action: {
+                                viewModel.recordButtonClick()
+                            }, label: {
+                                Image(uiImage: viewModel.recordImage!)
+                                    .padding(8)
+                                    .frame(width: 80, height: 80)
+                            })
+                            Text(viewModel.recordDescription)
+                                .font(Font.uhBeeCustom(16, weight: .bold))
+                                .foregroundColor(Color(UIColor(named: "grayscale_3")!))
+                        }
+                        Spacer()
+                    }
+                }
+            }
+            .frame(height: 184)
+        }
+    }
+    
+    @ViewBuilder
+    private func bannerView() -> some View {
+        if !viewModel.isEditing {
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(UIColor(named: "beige_3")!))
+                .overlay(
+                    Image(uiImage: UIImage(named: "banner")!)
+                )
+                .frame(height: 96)
+        }
     }
 }
 
