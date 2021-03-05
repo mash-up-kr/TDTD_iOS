@@ -16,6 +16,9 @@
 		0637E43125EA3FC6008049F7 /* FocusTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */; };
 		0637E43425EA4028008049F7 /* FocusTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43325EA4028008049F7 /* FocusTextView.swift */; };
 		0637E43725EA6205008049F7 /* RollingpaperWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */; };
+		068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */; };
+		068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FE25ECE5AE00484FBB /* View+.swift */; };
+		068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC20125EE145200484FBB /* PlaceholderView.swift */; };
 		87FA1E660712AB92440E13E2 /* Pods_TDTD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */; };
 		B127E45525EA245900F3B64D /* UhBee ZIGLE Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */; };
 		B127E45625EA245900F3B64D /* UhBee ZIGLE.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */; };
@@ -60,6 +63,9 @@
 		0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextFieldView.swift; sourceTree = "<group>"; };
 		0637E43325EA4028008049F7 /* FocusTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextView.swift; sourceTree = "<group>"; };
 		0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperWriteViewModel.swift; sourceTree = "<group>"; };
+		068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperWriteModel.swift; sourceTree = "<group>"; };
+		068EC1FE25ECE5AE00484FBB /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		068EC20125EE145200484FBB /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TDTD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDTD.release.xcconfig"; path = "Target Support Files/Pods-TDTD/Pods-TDTD.release.xcconfig"; sourceTree = "<group>"; };
 		B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee ZIGLE Bold.ttf"; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 			children = (
 				0637E40425E80CBA008049F7 /* Date+.swift */,
 				B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */,
+				068EC1FE25ECE5AE00484FBB /* View+.swift */,
 			);
 			path = GlobalExtension;
 			sourceTree = "<group>";
@@ -162,6 +169,7 @@
 				D545118525EA7B5700B19C66 /* FocusView.swift */,
 				0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */,
 				0637E43325EA4028008049F7 /* FocusTextView.swift */,
+				068EC20125EE145200484FBB /* PlaceholderView.swift */,
 				D545117B25EA73E800B19C66 /* TextFieldFormItem.swift */,
 				D545119025EA8FC500B19C66 /* TextFieldFormItemViewModel.swift */,
 			);
@@ -205,6 +213,7 @@
 				B127E45925EA2CF100F3B64D /* Components */,
 				0637E42825EA3368008049F7 /* RollingpaperWriteView.swift */,
 				0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */,
+				068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */,
 				D545116A25EA6B6B00B19C66 /* CreateRoom */,
 				B127E45025EA240500F3B64D /* SupportItems */,
 				0637E40C25E81859008049F7 /* Helper */,
@@ -439,7 +448,10 @@
 				B137F53425EAA15800F86D45 /* RoomSummary.swift in Sources */,
 				0637E42925EA3368008049F7 /* RollingpaperWriteView.swift in Sources */,
 				0637E43425EA4028008049F7 /* FocusTextView.swift in Sources */,
+				068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */,
 				B137F53125EAA10B00F86D45 /* Home.swift in Sources */,
+				068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */,
+				068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */,
 				B1375B4025E0009D00503DE6 /* SceneDelegate.swift in Sources */,
 				D545116D25EA6BA900B19C66 /* CreateRoomView.swift in Sources */,
 				0637E40525E80CBA008049F7 /* Date+.swift in Sources */,

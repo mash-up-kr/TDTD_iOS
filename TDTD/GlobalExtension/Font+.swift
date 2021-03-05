@@ -25,4 +25,8 @@ extension Font {
     static func uhBeeCustom(_ fixedSize: CGFloat, weight: CustomFontWeight = .regular) -> Font {
         return Font.custom(weight.name, fixedSize: fixedSize)
     }
+    
+    static func uhBeeCustom(_ fixedSize: CGFloat, weight: CustomFontWeight = .regular) -> UIFont {
+        return UIFont(name: weight.name, size: fixedSize)!
+    }
 }
