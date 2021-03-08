@@ -18,6 +18,7 @@
 		0637E43725EA6205008049F7 /* RollingpaperWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */; };
 		06837AF125F5FC11004EA12B /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837AF025F5FC11004EA12B /* PlayerView.swift */; };
 		06837AF425F605C2004EA12B /* RoundedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837AF325F605C2004EA12B /* RoundedViewModifier.swift */; };
+		06837AF725F6141B004EA12B /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837AF625F6141B004EA12B /* AlertView.swift */; };
 		068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */; };
 		068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FE25ECE5AE00484FBB /* View+.swift */; };
 		068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC20125EE145200484FBB /* PlaceholderView.swift */; };
@@ -68,6 +69,7 @@
 		0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperWriteViewModel.swift; sourceTree = "<group>"; };
 		06837AF025F5FC11004EA12B /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		06837AF325F605C2004EA12B /* RoundedViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedViewModifier.swift; sourceTree = "<group>"; };
+		06837AF625F6141B004EA12B /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperWriteModel.swift; sourceTree = "<group>"; };
 		068EC1FE25ECE5AE00484FBB /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		068EC20125EE145200484FBB /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				06FDBFE125F21417003DB1FC /* RollingpaperView.swift */,
 				06837AF025F5FC11004EA12B /* PlayerView.swift */,
 				06837AF325F605C2004EA12B /* RoundedViewModifier.swift */,
+				06837AF625F6141B004EA12B /* AlertView.swift */,
 				D545116A25EA6B6B00B19C66 /* CreateRoom */,
 				B127E45025EA240500F3B64D /* SupportItems */,
 				0637E40C25E81859008049F7 /* Helper */,
@@ -457,6 +460,7 @@
 				D545119525EAC8A800B19C66 /* SelectRoomTypeView.swift in Sources */,
 				B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */,
 				B137F53425EAA15800F86D45 /* RoomSummary.swift in Sources */,
+				06837AF725F6141B004EA12B /* AlertView.swift in Sources */,
 				0637E42925EA3368008049F7 /* RollingpaperWriteView.swift in Sources */,
 				0637E43425EA4028008049F7 /* FocusTextView.swift in Sources */,
 				068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */,

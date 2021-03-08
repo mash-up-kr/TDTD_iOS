@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlayerView: View {
-    @State private var processValue = 0.3
+    @State private var processValue: Float = 0.3
     let nickName: String
     let roomType: RoomType
     
@@ -58,6 +58,7 @@ struct PlayerView: View {
                             .scaleEffect(x: 1, y: 1.8, anchor: .center)
                         Spacer().frame(height: 8)
                         HStack {
+                            // FIXME:  추후 뷰모델과 연결후 플레이어 시간 넣어주기
                             Text("00:00").font(Font.uhBeeCustom(14, weight: .bold))
                                 .foregroundColor(Color("grayscale_3"))
                             Spacer()
@@ -89,6 +90,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(nickName: "하이루", roomType: .text)
+        PlayerView(nickName: "하이루", roomType: .voice)
     }
 }
