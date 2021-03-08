@@ -7,12 +7,29 @@
 
 import Foundation
 import Moya
+import Combine
 
 final class APIRequest {
     
     private init() { }
     
+    static let shared = APIRequest()
+    
     private let provider = MoyaProvider<API>.init(session: DefaultAlamofireSession.sharedSession)
+    
+    private func request(_ api: API) -> Future<Response, Error> {
+        Future<Response, Error> { [weak self] promise in
+            guard let self = self else { return }
+            self.provider.request(api) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
+            }
+        }
+    }
 }
 
 final class DefaultAlamofireSession: Session {
@@ -27,6 +44,8 @@ final class DefaultAlamofireSession: Session {
 }
 
 extension APIRequest {
-    
+    func requestRooms() -> Future<Response, Error> {
+        request(.requestRooms)
+    }
 }
 

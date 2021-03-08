@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 final class HomeViewModel: ObservableObject {
     @Published var rooms = [
@@ -17,4 +18,19 @@ final class HomeViewModel: ObservableObject {
         RoomSummary.init(isHost: true, title: "목 데이터 필요한데 귀찮드아!!!!!", roomCode: "6", isBookmark: false, createdAt: nil),
         RoomSummary.init(isHost: true, title: "아무나 드루와", roomCode: "7", isBookmark: true, createdAt: nil)
     ]
+    
+    private var bag = Set<AnyCancellable>()
+}
+
+extension HomeViewModel {
+    func requestRooms() {
+        APIRequest.shared.requestRooms()
+            .sink(receiveCompletion: { _ in }
+            , receiveValue: {
+                if let rooms = try? $0.map([RoomSummary].self) {
+                    self.rooms = rooms
+                }
+            })
+            .store(in: &bag)
+    }
 }

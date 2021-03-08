@@ -12,13 +12,13 @@ struct RoomSummary: Codable {
     let title: String?
     let roomCode: String?
     var isBookmark: Bool
-    let createdAt: Date?
+    let createdAt: String?
     
     enum CodingKeys: String, CodingKey {
         case title
-        case isHost = "is_host"
-        case roomCode = "room_code"
-        case isBookmark = "is_bookmark"
-        case createdAt = "created_at"
+        case isHost = "host"
+        case roomCode = "roomCode"
+        case isBookmark = "bookmark"
+        case createdAt = "createdAt"
     }
 }

@@ -55,6 +55,9 @@ struct HomeView: View {
             .navigationBarItems(leading: Image("logo"),
                                 trailing: Image("ic_settingButton_40")
             )
+            .onAppear {
+                viewModel.requestRooms()
+            }
         }
         .sheet(isPresented: $presentCreatRoom, content: {
             CreateRoomView(viewModel: CreateRoomViewModel())

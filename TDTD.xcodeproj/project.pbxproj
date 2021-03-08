@@ -19,6 +19,8 @@
 		068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */; };
 		068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FE25ECE5AE00484FBB /* View+.swift */; };
 		068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC20125EE145200484FBB /* PlaceholderView.swift */; };
+		57220E8425F6487600CDE9BC /* DebugManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57220E8325F6487600CDE9BC /* DebugManager.swift */; };
+		57220E8A25F64B6500CDE9BC /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57220E8925F64B6500CDE9BC /* NetworkLogger.swift */; };
 		87FA1E660712AB92440E13E2 /* Pods_TDTD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */; };
 		B127E45525EA245900F3B64D /* UhBee ZIGLE Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */; };
 		B127E45625EA245900F3B64D /* UhBee ZIGLE.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */; };
@@ -68,6 +70,8 @@
 		068EC20125EE145200484FBB /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TDTD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDTD.release.xcconfig"; path = "Target Support Files/Pods-TDTD/Pods-TDTD.release.xcconfig"; sourceTree = "<group>"; };
+		57220E8325F6487600CDE9BC /* DebugManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugManager.swift; sourceTree = "<group>"; };
+		57220E8925F64B6500CDE9BC /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee ZIGLE Bold.ttf"; sourceTree = "<group>"; };
 		B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee ZIGLE.ttf"; sourceTree = "<group>"; };
 		B127E45B25EA2D3300F3B64D /* RoundButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyle.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				0637E3FC25E7FB77008049F7 /* TTSManager.swift */,
+				57220E8325F6487600CDE9BC /* DebugManager.swift */,
 				0637E40125E809A3008049F7 /* RecordManager.swift */,
 				0637E40925E811BE008049F7 /* PlayManager.swift */,
 			);
@@ -242,6 +247,7 @@
 				B1D97DE825EABFF50099C9B8 /* API.swift */,
 				B1D97DEF25EAC9150099C9B8 /* APIRequest.swift */,
 				B1D97DEC25EAC13D0099C9B8 /* APITargetType.swift */,
+				57220E8925F64B6500CDE9BC /* NetworkLogger.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -440,6 +446,7 @@
 				D545117725EA6E4900B19C66 /* RoomType.swift in Sources */,
 				D545117F25EA78E300B19C66 /* RoomTypeButton.swift in Sources */,
 				D545118E25EA8B8A00B19C66 /* CreateRoomViewModel.swift in Sources */,
+				57220E8425F6487600CDE9BC /* DebugManager.swift in Sources */,
 				0637E3FD25E7FB77008049F7 /* TTSManager.swift in Sources */,
 				B1ED9B4225EA401B000A8C4D /* HomeView.swift in Sources */,
 				D545118625EA7B5700B19C66 /* FocusView.swift in Sources */,
@@ -452,6 +459,7 @@
 				B137F53125EAA10B00F86D45 /* Home.swift in Sources */,
 				068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */,
 				068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */,
+				57220E8A25F64B6500CDE9BC /* NetworkLogger.swift in Sources */,
 				B1375B4025E0009D00503DE6 /* SceneDelegate.swift in Sources */,
 				D545116D25EA6BA900B19C66 /* CreateRoomView.swift in Sources */,
 				0637E40525E80CBA008049F7 /* Date+.swift in Sources */,
