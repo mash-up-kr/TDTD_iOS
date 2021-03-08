@@ -16,9 +16,6 @@ struct RoundedRectangleCustomShape: Shape {
         let path = UIBezierPath(roundedRect: rect,
                      byRoundingCorners: cornerStyle,
                      cornerRadii: CGSize(width: radius, height: radius))
-        
-        
-            
         return Path(path.cgPath)
     }
 }
