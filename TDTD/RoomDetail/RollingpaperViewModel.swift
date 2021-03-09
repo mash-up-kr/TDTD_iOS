@@ -6,19 +6,28 @@
 //
 
 import SwiftUI
+import Combine
 
 final class RollingpaperViewModel: ObservableObject {
     @Published private(set) var models: [RollingpaperModel] = []
+    @Published var isRemoveRollingpaper: Bool = false
+    @Published var isReportRollingpaper: Bool = false
+    @Published var isPresentPlayer: Bool = false
+    
     var selectIndex: Int?
     var selectModel: RollingpaperModel {
         models[selectIndex!]
     }
-    
+    var cancellable: AnyCancellable?
     init() {
         testData()
+        cancellable = self.$isRemoveRollingpaper.sink {
+            print($0)
+        }
     }
-    
 }
+
+// MARK:: - Debug용 추후 삭제예정
 
 extension RollingpaperViewModel {
     func testData() {

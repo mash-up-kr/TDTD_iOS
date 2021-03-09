@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct RollingpaperView: View {
-    let viewModel: RollingpaperViewModel
-    @State private var isTap: Bool = false
+    @ObservedObject var viewModel: RollingpaperViewModel
     var randomHorizontalSpacing: CGFloat {
         CGFloat(Int.random(in: -15...16))
     }
@@ -28,71 +27,105 @@ struct RollingpaperView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                GeometryReader { geometry in
-                    ScrollView {
-                        let columns = [GridItem(.flexible()),
-                                       GridItem(.flexible()),
-                                       GridItem(.flexible())]
-                        LazyVGrid(columns: columns, spacing: 0) {
-                            ForEach(viewModel.models.indices, id: \.self) { index in
-                                randomImage(isSelect: false)
-                                    .onTapGesture {
-                                        if isTap {
-                                            viewModel.selectIndex = nil
-                                        } else {
-                                            viewModel.selectIndex = index
-                                        }
-                                        withAnimation {
-                                            isTap.toggle()
-                                        }
-                                    }
-                                    .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
-                                    .rotationEffect(Angle(degrees: randomRotate))
-                                    .frame(height: 146)
-                                
+        ZStack {
+            NavigationView {
+                ZStack {
+                    stickerView()
+                    playerView()
+                }
+                .background(Color("beige_1"))
+                .ignoresSafeArea(edges: /*@START_MENU_TOKEN@*/.bottom/*@END_MENU_TOKEN@*/)
+                .navigationBarItems(leading: Button(action: {
+                    
+                }, label: {
+                    NavigationItemView(name: "ic_arrow_left_24")
+                }),
+                trailing: Button(action: {
+                    
+                }, label: {
+                    NavigationItemView(name: "ic_leave_24")
+                }))
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("버튼 타이틀 간격 방제목").font(Font.uhBeeCustom(20, weight: .bold))
+                    }
+                }
+            }
+            .onAppear {
+                UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
+                UINavigationBar.appearance().shadowImage = UIImage()
+            }
+            alertView()
+        }
+    }
+    
+    @ViewBuilder
+    private func stickerView() -> some View {
+        ScrollView {
+            let columns = [GridItem(.flexible()),
+                           GridItem(.flexible()),
+                           GridItem(.flexible())]
+            LazyVGrid(columns: columns, spacing: 0) {
+                ForEach(viewModel.models.indices, id: \.self) { index in
+                    randomImage(isSelect: false)
+                        .onTapGesture {
+                            if !viewModel.isPresentPlayer {
+                                viewModel.selectIndex = index
+                            }
+                            withAnimation {
+                                viewModel.isPresentPlayer.toggle()
                             }
                         }
-                        .padding(16)
-                    }
-                    if isTap {
-                        VStack {
-                            Spacer()
-                            PlayerView(model: viewModel.selectModel)
-                        }
-                        .transition(AnyTransition.move(edge: .bottom))
-                    }
+                        .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
+                        .rotationEffect(Angle(degrees: randomRotate))
+                        .frame(height: 146)
                 }
             }
-            .background(Color("beige_1"))
-            .ignoresSafeArea(edges: /*@START_MENU_TOKEN@*/.bottom/*@END_MENU_TOKEN@*/)
-            .navigationBarItems(leading: Button(action: {
-                
-            }, label: {
-                RoundedRectangle(cornerRadius: 13)
-                    .fill(Color("beige_3"))
-                    .frame(width: 40, height: 40)
-                    .overlay(Image("ic_arrow_left_24"))
-            }),
-            trailing: Button(action: {
-                
-            }, label: {
-                RoundedRectangle(cornerRadius: 13)
-                    .fill(Color("beige_3"))
-                    .frame(width: 40, height: 40)
-                    .overlay(Image("ic_leave_24"))
-            }))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                        Text("버튼 타이틀 간격 방제목").font(Font.uhBeeCustom(20, weight: .bold))
-                }
-            }
+            .padding(16)
         }
-        .onAppear {
-            UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
-            UINavigationBar.appearance().shadowImage = UIImage()
+    }
+    
+    @ViewBuilder
+    private func playerView() -> some View {
+        if viewModel.isPresentPlayer {
+            VStack {
+                Spacer()
+                PlayerView()
+                    .environmentObject(viewModel)
+                
+            }
+            .transition(AnyTransition.move(edge: .bottom))
+        }
+    }
+    
+    @ViewBuilder
+    private func alertView() -> some View {
+        if viewModel.isReportRollingpaper {
+            AlertView(title: "답장 신고하기",
+                      msg: "정말 답장을 신고하시겠어요?🚨",
+                      leftTitle: "신고할래요",
+                      leftAction: {
+                        print("신고!")
+                        viewModel.isReportRollingpaper = false
+                      },
+                      rightTitle: "안할래요!",
+                      rightAction: {
+                        viewModel.isReportRollingpaper = false
+                      })
+        }
+        if viewModel.isRemoveRollingpaper {
+            AlertView(title: "답장 삭제하기",
+                      msg: "정말 답장을 삭제하시겠어요?😭",
+                      leftTitle: "삭제할래요",
+                      leftAction: {
+                        print("삭제!")
+                        viewModel.isRemoveRollingpaper = false
+                      },
+                      rightTitle: "안할래요!",
+                      rightAction: {
+                        viewModel.isRemoveRollingpaper = false
+                      })
         }
     }
 }

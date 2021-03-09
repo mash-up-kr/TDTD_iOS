@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlayerView: View {
-    let model: RollingpaperModel
+    @EnvironmentObject var viewModel: RollingpaperViewModel
     @State private var processValue: Float = 0.3
     @State private var isPlay: Bool = false
     
@@ -18,7 +18,7 @@ struct PlayerView: View {
                 .fill(Color.white)
             VStack {
                 HStack {
-                    Text(model.nickname)
+                    Text(viewModel.selectModel.nickname)
                         .font(Font.uhBeeCustom(14, weight: .bold))
                         .foregroundColor(Color("grayscale_1"))
                         .padding(8)
@@ -28,21 +28,43 @@ struct PlayerView: View {
                         )
                         .frame(height: 32)
                     Spacer()
-                    // FIXME: - 추후에 자신의 아이디와 비교해서 삭제 및 신고 아이콘 숨김처리하기
-                    Image("ic_report_24")
-                    Spacer().frame(width: 16)
-                    Image("ic_remove_24")
-                    Spacer().frame(width: 16)
-                    Image("ic_close_24")
+                    // TODO: - 추후 관리자인경우 모두 보이게 설정해야함
+                    if !viewModel.selectModel.isMine {
+                        Button(action: {
+                            withAnimation {
+                                viewModel.isReportRollingpaper = true
+                            }
+                        }, label: {
+                            Image("ic_report_24")
+                        })
+                        Spacer().frame(width: 16)
+                    }
+                    if viewModel.selectModel.isMine {
+                        Button(action: {
+                            withAnimation {
+                                viewModel.isRemoveRollingpaper = true
+                            }
+                        }, label: {
+                            Image("ic_remove_24")
+                        })
+                        Spacer().frame(width: 16)
+                    }
+                    Button(action: {
+                        withAnimation {
+                            viewModel.isPresentPlayer = false
+                        }
+                    }, label: {
+                        Image("ic_close_24")
+                    })
                 }
                 Spacer().frame(height: 20)
-                playerViewWithType(roomType: model.roomType)
+                playerViewWithType(roomType: viewModel.selectModel.roomType)
             }
             .padding(.top, 24)
             .padding(.bottom, 34)
             .padding(.horizontal, 24)
         }
-        .frame(height: model.roomType == .voice ? 202 : 290)
+        .frame(height: viewModel.selectModel.roomType == .voice ? 202 : 290)
         .cornerRadius(radius: 24, cornerStyle: [.topLeft, .topRight])
         .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 6)
     }
@@ -86,7 +108,7 @@ struct PlayerView: View {
                     .padding(.horizontal, 24)
                 } else {
                     ScrollView {
-                        Text(model.text ?? "")
+                        Text(viewModel.selectModel.text ?? "")
                             .font(Font.uhBeeCustom(16, weight: .bold))
                             .foregroundColor(Color("grayscale_1"))
                         
@@ -102,13 +124,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(model: RollingpaperModel(id: 1,
-                                            isMine: true,
-                                            nickname: "닉네임은 무엇인가",
-                                            text: "하이루반가워요\n두줄세줄\n테스트",
-                                            voiceURL: nil,
-                                            stickerColor: CharacterAsset.randomColor,
-                                            stickerAngle: 10,
-                                            createAt: Date()))
+        PlayerView()
     }
 }
