@@ -25,3 +25,11 @@ final class TTSManager: NSObject {
         speaker.speak(utterance)
     }
 }
+
+extension TTSManager: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
+        let rangeString = Range(characterRange, in: utterance.speechString)
+        print(rangeString)
+        // TODO: 재생중인 text 프로세스 비율 구현하기
+    }
+}
