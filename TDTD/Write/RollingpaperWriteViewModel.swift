@@ -14,7 +14,7 @@ enum RecordStatus {
 enum WriteMode {
     case text, voice
 }
-class RollingpaperWriteViewModel: ObservableObject {
+final class RollingpaperWriteViewModel: ObservableObject {
     @Published var model: RollingpaperWriteModel
     @Published var recordStatus: RecordStatus = .none
     

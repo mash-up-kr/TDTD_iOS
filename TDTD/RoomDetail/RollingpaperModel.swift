@@ -8,20 +8,16 @@
 import Foundation
 
 struct RollingpaperModel: Identifiable {
-    let id: String
+    let id: Int
+    let isMine: Bool
     let nickname: String
-    let duration: String?
-    let voice: Data?
     let text: String?
-    let roomType: RoomType
-    
-    init(id: String, nickname: String, duration: String? = nil, voice: Data? = nil, text: String? = nil) {
-        self.id = id
-        self.nickname = nickname
-        self.duration = duration
-        self.voice = voice
-        self.text = text
-        roomType = voice == nil ? .text : .voice
+    let voiceURL: String?
+    let stickerColor: CharacterAsset.Color
+    let stickerAngle: Int
+    let createAt: Date
+    var roomType: RoomType {
+        voiceURL == nil ? .text : .voice
     }
 }
 
@@ -33,5 +29,5 @@ struct RollingpaperModel: Identifiable {
  "voice_file_url" : string,        // optional, 음성 파일 url
  "sticker_color"  : enum,          // required, 스티커 색상
  "sticker_angle"  : int,           // required, 스티커 회전 각도
- "created_at"
+ "created_at": localdatetime, // required, 코멘트 생성 일자
  */

@@ -167,9 +167,9 @@
 			isa = PBXGroup;
 			children = (
 				06FDBFE125F21417003DB1FC /* RollingpaperView.swift */,
+				06837B0225F75D11004EA12B /* RollingpaperViewModel.swift */,
 				06837B0525F75D22004EA12B /* RollingpaperModel.swift */,
 				06837AF025F5FC11004EA12B /* PlayerView.swift */,
-				06837B0225F75D11004EA12B /* RollingpaperViewModel.swift */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";

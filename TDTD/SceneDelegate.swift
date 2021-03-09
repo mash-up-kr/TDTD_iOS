@@ -23,9 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NetworkLogger.shared.startLogging()
         
 //        let contentView = HomeView(viewModel: HomeViewModel())
-        let contentView = RollingpaperView(model: RollingpaperModel(id: "1",
-                                                                    nickname: "tts",
-                                                                    text: "가나다"))
+        let contentView = RollingpaperView(viewModel: RollingpaperViewModel())
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
