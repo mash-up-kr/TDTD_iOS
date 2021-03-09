@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlayerView: View {
     @State private var processValue: Float = 0.3
+    @State private var isPlay: Bool = false
     let nickName: String
     let roomType: RoomType
     
@@ -21,21 +22,24 @@ struct PlayerView: View {
                     Text(nickName)
                         .font(Font.uhBeeCustom(14, weight: .bold))
                         .foregroundColor(Color("grayscale_1"))
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 5)
+                        .padding(8)
                         .background(
                             Capsule(style: .circular)
                                 .fill(Color("beige_3"))
                         )
-                        .frame(height: 24)
+                        .frame(height: 32)
                     Spacer()
-                    Image("ic_speak_play_32")
-                    Image("ic_speak_play_32")
-                    Image("ic_speak_play_32")
+                    // FIXME: - 추후에 자신의 아이디와 비교해서 삭제 및 신고 아이콘 숨김처리하기
+                    Image("ic_report_24")
+                    Spacer().frame(width: 16)
+                    Image("ic_remove_24")
+                    Spacer().frame(width: 16)
+                    Image("ic_close_24")
                 }
                 Spacer().frame(height: 20)
                 playerViewWithType(roomType: roomType)
             }
+            .padding(.top, 24)
             .padding(.bottom, 34)
             .padding(.horizontal, 24)
         }
@@ -68,9 +72,15 @@ struct PlayerView: View {
                     }
                     .padding(.bottom, 24)
                     Spacer().frame(width: 16)
-                    Image("ic_speak_play_32")
-                        .resizable()
-                        .frame(width: 40, height: 40)
+                    if isPlay {
+                        Image("ic_speak_stop_32")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                    } else {
+                        Image("ic_speak_play_32")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                    }
                 }
                 .frame(height: 96)
                 .padding(.horizontal, 24)
@@ -90,6 +100,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(nickName: "하이루", roomType: .voice)
+        PlayerView(nickName: "닉네임최대열두자입니다요", roomType: .voice)
     }
 }
