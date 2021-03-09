@@ -43,7 +43,7 @@ struct RollingpaperView: View {
                         .rotationEffect(Angle(degrees: randomRotate))
                         .frame(height: 146)
                     if isTap {
-                        PlayerView(nickName: model.nickName, roomType: model.roomType)
+                        PlayerView(nickname: model.nickname, roomType: model.roomType)
                     }
                 }
             }
@@ -55,28 +55,10 @@ struct RollingpaperView: View {
 struct RollingpaperView_Previews: PreviewProvider {
     static var previews: some View {
         RollingpaperView(model: RollingpaperModel(id: "1",
-                                                  nickName: "tts",
+                                                  nickname: "tts",
                                                   duration: nil,
                                                   voice: nil,
                                                   text: "가나다라마바사"))
-    }
-}
-
-struct RollingpaperModel: Identifiable {
-    let id: String
-    let nickName: String
-    let duration: String?
-    let voice: Data?
-    let text: String?
-    let roomType: RoomType
-    
-    init(id: String, nickName: String, duration: String? = nil, voice: Data? = nil, text: String? = nil) {
-        self.id = id
-        self.nickName = nickName
-        self.duration = duration
-        self.voice = voice
-        self.text = text
-        roomType = voice == nil ? .text : .voice
     }
 }
 

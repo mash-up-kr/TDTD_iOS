@@ -10,7 +10,7 @@ import SwiftUI
 struct PlayerView: View {
     @State private var processValue: Float = 0.3
     @State private var isPlay: Bool = false
-    let nickName: String
+    let nickname: String
     let roomType: RoomType
     
     var body: some View {
@@ -19,7 +19,7 @@ struct PlayerView: View {
                 .fill(Color.white)
             VStack {
                 HStack {
-                    Text(nickName)
+                    Text(nickname)
                         .font(Font.uhBeeCustom(14, weight: .bold))
                         .foregroundColor(Color("grayscale_1"))
                         .padding(8)
@@ -100,6 +100,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(nickName: "닉네임최대열두자입니다요", roomType: .voice)
+        PlayerView(nickname: "닉네임최대열두자입니다요", roomType: .voice)
     }
 }

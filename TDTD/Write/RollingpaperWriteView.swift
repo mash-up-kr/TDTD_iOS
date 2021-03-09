@@ -12,7 +12,7 @@ struct RollingpaperWriteView: View {
     @ObservedObject var viewModel: RollingpaperWriteViewModel
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 23
-    @State private var nickName: String = ""
+    @State private var nickname: String = ""
     @State private var contentText: String = ""
     @State private var isShowToast: Bool = false
     @State private var toastMessage: String = ""
@@ -26,15 +26,15 @@ struct RollingpaperWriteView: View {
                     SubTitle(text: "0/12")
                 }
                 // FIXME:- 나중에 제가 고치겠습니당 :)
-//                FocusTextFieldView(text: $nickName)
+//                FocusTextFieldView(text: $nickname)
 //                    .environmentObject(viewModel)
-                TextField("", text: $nickName) { onEditing in
+                TextField("", text: $nickname) { onEditing in
                     viewModel.isEditing = onEditing
                     if !onEditing {
-                        if nickName.isEmpty {
-                            viewModel.model.nickName = nil
+                        if nickname.isEmpty {
+                            viewModel.model.nickname = nil
                         } else {
-                            viewModel.model.nickName = nickName
+                            viewModel.model.nickname = nickname
                         }
                     }
                 }
@@ -55,7 +55,7 @@ struct RollingpaperWriteView: View {
                 })
                 .buttonStyle(RoundButtonStyle(style: .light))
                 Button(action: {
-                    if viewModel.model.nickName?.isEmpty ?? true {
+                    if viewModel.model.nickname?.isEmpty ?? true {
                         toastMessage = "닉네임을 입력해주세요!"
                         isShowToast = true
                     } else if viewModel.model.isEmptyData {

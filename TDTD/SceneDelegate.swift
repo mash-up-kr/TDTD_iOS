@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 //        let contentView = HomeView(viewModel: HomeViewModel())
         let contentView = RollingpaperView(model: RollingpaperModel(id: "1",
-                                                                    nickName: "tts",
+                                                                    nickname: "tts",
                                                                     text: "가나다"))
 
         // Use a UIHostingController as window root view controller.
