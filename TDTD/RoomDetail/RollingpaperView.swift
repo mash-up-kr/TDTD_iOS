@@ -30,36 +30,38 @@ struct RollingpaperView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                ScrollView {
-                    let columns = [GridItem(.flexible()),
-                                   GridItem(.flexible()),
-                                   GridItem(.flexible())]
-                    LazyVGrid(columns: columns, spacing: 0) {
-                        ForEach(viewModel.models.indices, id: \.self) { index in
-                            randomImage(isSelect: false)
-                                .onTapGesture {
-                                    if viewModel.selectIndex == index {
-                                        viewModel.selectIndex = nil
-                                        isTap = false
-                                    } else {
-                                        viewModel.selectIndex = index
-                                        isTap = true
+                GeometryReader { geometry in
+                    ScrollView {
+                        let columns = [GridItem(.flexible()),
+                                       GridItem(.flexible()),
+                                       GridItem(.flexible())]
+                        LazyVGrid(columns: columns, spacing: 0) {
+                            ForEach(viewModel.models.indices, id: \.self) { index in
+                                randomImage(isSelect: false)
+                                    .onTapGesture {
+                                        if isTap {
+                                            viewModel.selectIndex = nil
+                                        } else {
+                                            viewModel.selectIndex = index
+                                        }
+                                        withAnimation {
+                                            isTap.toggle()
+                                        }
                                     }
-                                }
-                                .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
-                                .rotationEffect(Angle(degrees: randomRotate))
-                                .frame(height: 146)
-                            
+                                    .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
+                                    .rotationEffect(Angle(degrees: randomRotate))
+                                    .frame(height: 146)
+                                
+                            }
                         }
+                        .padding(16)
                     }
-                    .padding(16)
-                }
-                if isTap {
-                    VStack{
-                        Spacer()
-                        PlayerView(model: viewModel.selectModel)
-                            
-                            .transition(.slide)
+                    if isTap {
+                        VStack {
+                            Spacer()
+                            PlayerView(model: viewModel.selectModel)
+                        }
+                        .transition(AnyTransition.move(edge: .bottom))
                     }
                 }
             }
