@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RollingpaperView: View {
-    let model: RollingpaperModel
+    let viewModel: RollingpaperViewModel
     @State private var isTap: Bool = false
     var randomHorizontalSpacing: CGFloat {
         CGFloat(Int.random(in: -15...16))
@@ -19,7 +19,6 @@ struct RollingpaperView: View {
     var randomRotate: Double {
         Double(Int.random(in: -10...10))
     }
-    
     func randomImage(isSelect: Bool) -> Image {
         if isSelect {
             return CharacterAsset.select(color: CharacterAsset.randomColor).image
@@ -29,36 +28,76 @@ struct RollingpaperView: View {
     }
     
     var body: some View {
-        ScrollView {
-            let columns = [GridItem(.flexible()),
-                           GridItem(.flexible()),
-                           GridItem(.flexible())]
-            LazyVGrid(columns: columns, spacing: 0) {
-                ForEach(0..<16, id: \.self) { _ in
-                    randomImage(isSelect: false)
-                        .onTapGesture {
-                            isTap.toggle()
+        NavigationView {
+            ZStack {
+                ScrollView {
+                    let columns = [GridItem(.flexible()),
+                                   GridItem(.flexible()),
+                                   GridItem(.flexible())]
+                    LazyVGrid(columns: columns, spacing: 0) {
+                        ForEach(viewModel.models.indices, id: \.self) { index in
+                            randomImage(isSelect: false)
+                                .onTapGesture {
+                                    if viewModel.selectIndex == index {
+                                        viewModel.selectIndex = nil
+                                        isTap = false
+                                    } else {
+                                        viewModel.selectIndex = index
+                                        isTap = true
+                                    }
+                                }
+                                .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
+                                .rotationEffect(Angle(degrees: randomRotate))
+                                .frame(height: 146)
+                            
                         }
-                        .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
-                        .rotationEffect(Angle(degrees: randomRotate))
-                        .frame(height: 146)
-                    if isTap {
-                        PlayerView(nickname: model.nickname, roomType: model.roomType)
+                    }
+                    .padding(16)
+                }
+                if isTap {
+                    VStack{
+                        Spacer()
+                        PlayerView(model: viewModel.selectModel)
+                            
+                            .transition(.slide)
                     }
                 }
             }
-            .padding(16)
+            .background(Color("beige_1"))
+            .ignoresSafeArea(edges: /*@START_MENU_TOKEN@*/.bottom/*@END_MENU_TOKEN@*/)
+            .navigationBarItems(leading: Button(action: {
+                
+            }, label: {
+                RoundedRectangle(cornerRadius: 13)
+                    .fill(Color("beige_3"))
+                    .frame(width: 40, height: 40)
+                    .overlay(Image("ic_arrow_left_24"))
+            }),
+            trailing: Button(action: {
+                
+            }, label: {
+                RoundedRectangle(cornerRadius: 13)
+                    .fill(Color("beige_3"))
+                    .frame(width: 40, height: 40)
+                    .overlay(Image("ic_leave_24"))
+            }))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                        Text("버튼 타이틀 간격 방제목").font(Font.uhBeeCustom(20, weight: .bold))
+                }
+            }
+        }
+        .onAppear {
+            UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
+            UINavigationBar.appearance().shadowImage = UIImage()
         }
     }
 }
 
 struct RollingpaperView_Previews: PreviewProvider {
     static var previews: some View {
-        RollingpaperView(model: RollingpaperModel(id: "1",
-                                                  nickname: "tts",
-                                                  duration: nil,
-                                                  voice: nil,
-                                                  text: "가나다라마바사"))
+        RollingpaperView(viewModel: RollingpaperViewModel())
     }
 }
 
