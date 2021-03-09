@@ -22,9 +22,9 @@
 		068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */; };
 		068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FE25ECE5AE00484FBB /* View+.swift */; };
 		068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC20125EE145200484FBB /* PlaceholderView.swift */; };
+		06FDBFE225F21417003DB1FC /* RollingpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FDBFE125F21417003DB1FC /* RollingpaperView.swift */; };
 		57220E8425F6487600CDE9BC /* DebugManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57220E8325F6487600CDE9BC /* DebugManager.swift */; };
 		57220E8A25F64B6500CDE9BC /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57220E8925F64B6500CDE9BC /* NetworkLogger.swift */; };
-		06FDBFE225F21417003DB1FC /* RollingpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FDBFE125F21417003DB1FC /* RollingpaperView.swift */; };
 		87FA1E660712AB92440E13E2 /* Pods_TDTD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */; };
 		B127E45525EA245900F3B64D /* UhBee ZIGLE Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45325EA245800F3B64D /* UhBee ZIGLE Bold.ttf */; };
 		B127E45625EA245900F3B64D /* UhBee ZIGLE.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B127E45425EA245900F3B64D /* UhBee ZIGLE.ttf */; };
@@ -149,6 +149,25 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		06837AFB25F74747004EA12B /* Write */ = {
+			isa = PBXGroup;
+			children = (
+				0637E42825EA3368008049F7 /* RollingpaperWriteView.swift */,
+				0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */,
+				068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */,
+			);
+			path = Write;
+			sourceTree = "<group>";
+		};
+		06837AFD25F747C6004EA12B /* RoomDetail */ = {
+			isa = PBXGroup;
+			children = (
+				06FDBFE125F21417003DB1FC /* RollingpaperView.swift */,
+				06837AF025F5FC11004EA12B /* PlayerView.swift */,
+			);
+			path = RoomDetail;
+			sourceTree = "<group>";
+		};
 		7DB5FB13E8C66D95541D3D69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +204,8 @@
 				068EC20125EE145200484FBB /* PlaceholderView.swift */,
 				D545117B25EA73E800B19C66 /* TextFieldFormItem.swift */,
 				D545119025EA8FC500B19C66 /* TextFieldFormItemViewModel.swift */,
+				06837AF625F6141B004EA12B /* AlertView.swift */,
+				06837AF325F605C2004EA12B /* RoundedViewModifier.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -224,13 +245,8 @@
 				B1ED9B4025EA3FE4000A8C4D /* Home */,
 				D545117525EA6E3900B19C66 /* Models */,
 				B127E45925EA2CF100F3B64D /* Components */,
-				0637E42825EA3368008049F7 /* RollingpaperWriteView.swift */,
-				0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */,
-				068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */,
-				06FDBFE125F21417003DB1FC /* RollingpaperView.swift */,
-				06837AF025F5FC11004EA12B /* PlayerView.swift */,
-				06837AF325F605C2004EA12B /* RoundedViewModifier.swift */,
-				06837AF625F6141B004EA12B /* AlertView.swift */,
+				06837AFB25F74747004EA12B /* Write */,
+				06837AFD25F747C6004EA12B /* RoomDetail */,
 				D545116A25EA6B6B00B19C66 /* CreateRoom */,
 				B127E45025EA240500F3B64D /* SupportItems */,
 				0637E40C25E81859008049F7 /* Helper */,
