@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RollingpaperView: View {
     @ObservedObject var viewModel: RollingpaperViewModel
+    @State private var isPresentWriteView: Bool = false
     var randomHorizontalSpacing: CGFloat {
         CGFloat(Int.random(in: -15...16))
     }
@@ -32,16 +33,17 @@ struct RollingpaperView: View {
                 ZStack {
                     stickerView()
                     playerView()
+                    bottomTrailingOptionButtonView()
                 }
                 .background(Color("beige_1"))
-                .ignoresSafeArea(edges: /*@START_MENU_TOKEN@*/.bottom/*@END_MENU_TOKEN@*/)
+                .ignoresSafeArea(edges: .bottom)
                 .navigationBarItems(leading: Button(action: {
-                    
+                    print("이전 화면으로!")
                 }, label: {
                     NavigationItemView(name: "ic_arrow_left_24")
                 }),
                 trailing: Button(action: {
-                    
+                    print("방 나가기!")
                 }, label: {
                     NavigationItemView(name: "ic_leave_24")
                 }))
@@ -52,6 +54,9 @@ struct RollingpaperView: View {
                     }
                 }
             }
+            .sheet(isPresented: $isPresentWriteView, content: {
+                RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: viewModel.mode))
+            })
             .onAppear {
                 UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
                 UINavigationBar.appearance().shadowImage = UIImage()
@@ -128,11 +133,45 @@ struct RollingpaperView: View {
                       })
         }
     }
+    
+    @ViewBuilder
+    private func bottomTrailingOptionButtonView() -> some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                VStack {
+                    Button(action: {
+                        print("즐겨찾기!")
+                    }, label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 18)
+                                .fill(Color("beige_2"))
+                            RoundedRectangle(cornerRadius: 18)
+                                .stroke(Color("beige_3"), lineWidth: 1)
+                            Image("icfavorties_off_32")
+                        }.frame(width: 56, height: 56)
+                    })
+                    Spacer().frame(height: 24)
+                    Button(action: {
+                        isPresentWriteView = true
+                    }, label: {
+                        RoundedRectangle(cornerRadius: 18)
+                            .fill(Color("grayscale_1"))
+                            .frame(width: 56, height: 56)
+                            .overlay(Image("ic_write_32"))
+                    })
+                }
+            }
+            .padding(.trailing, 16)
+        }
+        .padding(.bottom, 58)
+    }
 }
 
 struct RollingpaperView_Previews: PreviewProvider {
     static var previews: some View {
-        RollingpaperView(viewModel: RollingpaperViewModel())
+        RollingpaperView(viewModel: RollingpaperViewModel(mode: .text))
     }
 }
 

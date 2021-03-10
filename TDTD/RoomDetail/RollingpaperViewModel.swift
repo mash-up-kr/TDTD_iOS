@@ -19,7 +19,10 @@ final class RollingpaperViewModel: ObservableObject {
         models[selectIndex!]
     }
     var cancellable: AnyCancellable?
-    init() {
+    var mode: WriteMode
+    
+    init(mode: WriteMode) {
+        self.mode = mode
         testData()
         cancellable = self.$isRemoveRollingpaper.sink {
             print($0)
