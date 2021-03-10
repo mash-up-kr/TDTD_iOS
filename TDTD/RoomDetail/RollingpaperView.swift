@@ -31,12 +31,11 @@ struct RollingpaperView: View {
         ZStack {
             NavigationView {
                 ZStack {
-                    stickerView()
-                    playerView()
+                    Color("beige_1").ignoresSafeArea()
                     bottomTrailingOptionButtonView()
+                    stickerView()
+                    playerView().ignoresSafeArea()
                 }
-                .background(Color("beige_1"))
-                .ignoresSafeArea(edges: .bottom)
                 .navigationBarItems(leading: Button(action: {
                     print("이전 화면으로!")
                 }, label: {
@@ -54,9 +53,10 @@ struct RollingpaperView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isPresentWriteView, content: {
-                RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: viewModel.mode))
-            })
+            .sheet(isPresented: $isPresentWriteView,
+                   content: {
+                    RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: viewModel.mode))
+                   })
             .onAppear {
                 UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
                 UINavigationBar.appearance().shadowImage = UIImage()
@@ -165,7 +165,7 @@ struct RollingpaperView: View {
             }
             .padding(.trailing, 16)
         }
-        .padding(.bottom, 58)
+        .padding(.bottom, 24)
     }
 }
 
