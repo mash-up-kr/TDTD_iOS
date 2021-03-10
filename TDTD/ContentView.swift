@@ -9,20 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var showingCreateRoom = false
+//    @State private var showingCreateRoom = false
     
     var body: some View {
         Text("hello\(Date().fileFormat)")
             .font(Font.custom("UhBee ZIGLE", size: 16))
             .padding()
-        Button(action: {
-            self.showingCreateRoom.toggle()
-        }, label: {
-            Text("방만들기")
-        })
-        .sheet(isPresented: $showingCreateRoom, content: {
-            CreateRoomView(viewModel: CreateRoomViewModel())
-        })
+//        Button(action: {
+//            self.showingCreateRoom.toggle()
+//        }, label: {
+//            Text("방만들기")
+//        })
+//        .sheet(isPresented: $showingCreateRoom, content: {
+//            CreateRoomView(viewModel: CreateRoomViewModel())
+//        })
     }
 }
 

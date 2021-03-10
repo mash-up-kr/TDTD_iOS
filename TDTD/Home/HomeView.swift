@@ -60,7 +60,8 @@ struct HomeView: View {
             }
         }
         .sheet(isPresented: $presentCreatRoom, content: {
-            CreateRoomView(viewModel: CreateRoomViewModel())
+            let viewModel = CreateRoomViewModel(isPresented: $presentCreatRoom)
+            CreateRoomView(viewModel: viewModel)
         })
     }
 }
