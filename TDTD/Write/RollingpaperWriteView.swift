@@ -63,12 +63,10 @@ struct RollingpaperWriteView: View {
         if type == .text {
             FocusTextView(text: $contentText, placeholder: "남기고 싶은 말을 써주세요!") { onEditing in
                 viewModel.isEditing = onEditing
-                if !onEditing {
-                    if contentText.isEmpty {
-                        viewModel.model.message = nil
-                    } else {
-                        viewModel.model.message = contentText
-                    }
+                if contentText.isEmpty {
+                    viewModel.model.message = nil
+                } else {
+                    viewModel.model.message = contentText
                 }
             }
         } else {

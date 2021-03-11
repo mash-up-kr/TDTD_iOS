@@ -71,6 +71,7 @@ struct UITextViewWrapper: UIViewRepresentable {
         
         func textViewDidChange(_ textView: UITextView) {
             parent.text = textView.text
+            parent.onEditing?(true)
         }
 
         func textViewDidBeginEditing(_ textView: UITextView) {

@@ -65,7 +65,8 @@ final class RollingpaperWriteViewModel: ObservableObject {
     @Published var timerString: String = "최대 1분"
     private var cancelBag = Set<AnyCancellable>()
     
-    init(roomCode: String, mode: WriteMode = .text) {
+    // MARK: - 방생성 직후 룸접근
+    init(roomCode: String, mode: WriteMode) {
         self.roomCode = roomCode
         model = RollingpaperWriteModel(mode: mode)
         RecordManager.shared.delegate = self
@@ -77,6 +78,8 @@ final class RollingpaperWriteViewModel: ObservableObject {
         .store(in: &cancelBag)
     }
     
+    // TODO:  방리스트에서 룸접근 생성자
+   
     func record() {
         recordStatus = .record
         try? RecordManager.shared.record()
