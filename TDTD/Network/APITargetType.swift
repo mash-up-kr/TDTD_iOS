@@ -15,7 +15,7 @@ extension TargetType {
     }
 
     var headers: [String: String]? {
-        return ["Device-Id": "test-device"]
+        return ["Device-Id": "device-1"]
     }
 
     var sampleData: Data {

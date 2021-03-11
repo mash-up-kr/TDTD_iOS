@@ -7,16 +7,19 @@
 
 import SwiftUI
 import Combine
+import Moya
 
 enum RecordStatus {
     case none, record, end, play, pause
 }
-enum WriteMode {
-    case text, voice
+enum WriteMode: String {
+    case text = "TEXT"
+    case voice = "VOICE"
 }
 final class RollingpaperWriteViewModel: ObservableObject {
     @Published var model: RollingpaperWriteModel
     @Published var recordStatus: RecordStatus = .none
+    private let roomCode: String
     
     var subTitle: String {
         switch model.mode {
@@ -60,16 +63,18 @@ final class RollingpaperWriteViewModel: ObservableObject {
     @Published var isEditing: Bool = false
     private var timerCancellable: AnyCancellable?
     @Published var timerString: String = "최대 1분"
-    private var modelCancellable: AnyCancellable?
+    private var cancelBag = Set<AnyCancellable>()
     
-    init(mode: WriteMode = .text) {
+    init(roomCode: String, mode: WriteMode = .text) {
+        self.roomCode = roomCode
         model = RollingpaperWriteModel(mode: mode)
         RecordManager.shared.delegate = self
         
         // FIXME: - 디버그용 추후 삭제 해야해용
-        modelCancellable = $model.sink {
+        $model.sink {
             print($0)
         }
+        .store(in: &cancelBag)
     }
     
     func record() {
@@ -153,4 +158,15 @@ extension RollingpaperWriteViewModel: RecordManagerDelegate {
 
 protocol RecordManagerDelegate: class {
     func recordComplete(recordFile: Data?)
+}
+
+extension RollingpaperWriteViewModel {
+    func requestWriteComment() {
+        APIRequest.shared.requestWriteComment(roomCode: roomCode, data: model.multipartData)
+            .replaceError(with: Response(statusCode: -1, data: Data()))
+            .sink {
+                print($0)
+            }
+            .store(in: &cancelBag)
+    }
 }

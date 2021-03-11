@@ -71,7 +71,7 @@ struct RollingpaperView: View {
                 }
             }
             .sheet(isPresented: $isPresentWriteView) {
-                RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: viewModel.mode))
+                RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode, mode: viewModel.mode))
             }
             .onAppear {
                 UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
@@ -295,7 +295,7 @@ struct RollingpaperView: View {
 
 struct RollingpaperView_Previews: PreviewProvider {
     static var previews: some View {
-        RollingpaperView(viewModel: RollingpaperViewModel(mode: .text))
+        RollingpaperView(viewModel: RollingpaperViewModel(roomCode: "1", mode: .text))
     }
 }
 

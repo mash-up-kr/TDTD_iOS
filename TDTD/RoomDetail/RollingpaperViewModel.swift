@@ -20,8 +20,10 @@ final class RollingpaperViewModel: ObservableObject {
     }
     var cancellable: AnyCancellable?
     var mode: WriteMode
+    let roomCode: String
     
-    init(mode: WriteMode) {
+    init(roomCode: String, mode: WriteMode) {
+        self.roomCode = roomCode
         self.mode = mode
 //        testData()
         cancellable = self.$isRemoveRollingpaper.sink {

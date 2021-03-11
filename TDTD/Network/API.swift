@@ -11,6 +11,7 @@ import Moya
 enum API {
     case requestRooms
     case requestJoinRoom(roomCode: String)
+    case requestWriteComment(roomCode: String, data: [MultipartFormData])
 }
 
 extension API: TargetType {
@@ -20,6 +21,8 @@ extension API: TargetType {
             return "api/v1/rooms"
         case let .requestJoinRoom(roomCode):
             return "api/v1/users/\(roomCode)"
+        case let .requestWriteComment(roomCode, _):
+            return "api/v1/comments/\(roomCode)"
         }
     }
     
@@ -28,6 +31,8 @@ extension API: TargetType {
         case .requestRooms:
             return .get
         case .requestJoinRoom:
+            return .post
+        case .requestWriteComment:
             return .post
         }
     }
@@ -38,7 +43,8 @@ extension API: TargetType {
             return .requestPlain
         case .requestJoinRoom:
             return .requestPlain
+        case let .requestWriteComment(_, data):
+            return .uploadMultipart(data)
         }
     }
-    
 }

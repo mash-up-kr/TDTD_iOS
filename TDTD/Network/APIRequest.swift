@@ -47,5 +47,9 @@ extension APIRequest {
     func requestRooms() -> Future<Response, Error> {
         request(.requestRooms)
     }
+    
+    func requestWriteComment(roomCode: String, data: [MultipartFormData]) -> Future<Response, Error> {
+        request(.requestWriteComment(roomCode: roomCode, data: data))
+    }
 }
 
