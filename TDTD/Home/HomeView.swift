@@ -44,7 +44,7 @@ struct HomeView: View {
                         .padding(.horizontal, 16)
                         LazyVStack(spacing: 8) {
                             ForEach(rooms, id: \.self.roomCode) { roomSummary in
-                                let view = RollingpaperView(viewModel: RollingpaperViewModel.init(roomCode: roomSummary.roomCode ?? "", mode: .text))
+                                let view = RollingpaperView(viewModel: RollingpaperViewModel(roomCode: roomSummary.roomCode ?? "", mode: .text))
                                 NavigationLink(destination: view) {
                                     CardView(roomSummary: roomSummary)
                                 }
@@ -73,7 +73,6 @@ struct HomeView: View {
 
 extension HomeView {
     private func setNavigationBar() {
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().tintColor = .clear
