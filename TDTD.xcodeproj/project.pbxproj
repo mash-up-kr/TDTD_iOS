@@ -24,7 +24,6 @@
 		06837B0A25F783EB004EA12B /* NavigationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B0925F783EB004EA12B /* NavigationItemView.swift */; };
 		06837B1525F9F72B004EA12B /* UhBeeZigleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B1425F9F72B004EA12B /* UhBeeZigleText.swift */; };
 		06837B1825F9F7B0004EA12B /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B1725F9F7B0004EA12B /* ColorPallete.swift */; };
-		06837B2225FA540D004EA12B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06837B2125FA540C004EA12B /* GoogleService-Info.plist */; };
 		068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */; };
 		068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FE25ECE5AE00484FBB /* View+.swift */; };
 		068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC20125EE145200484FBB /* PlaceholderView.swift */; };
@@ -52,7 +51,7 @@
 		B1ED9B4225EA401B000A8C4D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B4125EA401B000A8C4D /* HomeView.swift */; };
 		B1ED9B4625EA40A8000A8C4D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B4525EA40A8000A8C4D /* CardView.swift */; };
 		B1ED9B4E25EA6E19000A8C4D /* CreatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B4D25EA6E19000A8C4D /* CreatCardView.swift */; };
-		D542495B25FA520C0040E209 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D542495A25FA520C0040E209 /* GoogleService-Info.plist */; };
+		D542497725FA59DC0040E209 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D542496325FA595F0040E209 /* GoogleService-Info.plist */; };
 		D545115B25EA329500B19C66 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545115A25EA329500B19C66 /* ToastView.swift */; };
 		D545116D25EA6BA900B19C66 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545116C25EA6BA900B19C66 /* CreateRoomView.swift */; };
 		D545117225EA6BD700B19C66 /* SubTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D545117125EA6BD700B19C66 /* SubTitleView.swift */; };
@@ -118,6 +117,7 @@
 		B1ED9B4D25EA6E19000A8C4D /* CreatCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatCardView.swift; sourceTree = "<group>"; };
 		C7BAEECD92407C39446BA28E /* Pods-TDTD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDTD.debug.xcconfig"; path = "Target Support Files/Pods-TDTD/Pods-TDTD.debug.xcconfig"; sourceTree = "<group>"; };
 		D542495A25FA520C0040E209 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D542496325FA595F0040E209 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D545115A25EA329500B19C66 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D545116C25EA6BA900B19C66 /* CreateRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomView.swift; sourceTree = "<group>"; };
 		D545117125EA6BD700B19C66 /* SubTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTitleView.swift; sourceTree = "<group>"; };
@@ -245,6 +245,7 @@
 				B1375B3B25E0009D00503DE6 /* Products */,
 				CCECD54389AFC4D330992DC8 /* Pods */,
 				7DB5FB13E8C66D95541D3D69 /* Frameworks */,
+				D542496125FA58F00040E209 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -277,6 +278,7 @@
 				B1375B4325E0009E00503DE6 /* Assets.xcassets */,
 				B1375B4825E0009E00503DE6 /* LaunchScreen.storyboard */,
 				B1375B4B25E0009E00503DE6 /* Info.plist */,
+				D542496325FA595F0040E209 /* GoogleService-Info.plist */,
 				B1375B4525E0009E00503DE6 /* Preview Content */,
 			);
 			path = TDTD;
@@ -328,6 +330,15 @@
 				4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D542496125FA58F00040E209 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D542495A25FA520C0040E209 /* GoogleService-Info.plist */,
+				06837B2125FA540C004EA12B /* GoogleService-Info.plist */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		D545116A25EA6B6B00B19C66 /* CreateRoom */ = {
@@ -421,13 +432,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1375B4A25E0009E00503DE6 /* LaunchScreen.storyboard in Resources */,
-				D542495B25FA520C0040E209 /* GoogleService-Info.plist in Resources */,
 				B127E45525EA245900F3B64D /* UhBee ZIGLE Bold.ttf in Resources */,
 				0637E41C25E94DA2008049F7 /* Colors.xcassets in Resources */,
 				B127E45625EA245900F3B64D /* UhBee ZIGLE.ttf in Resources */,
 				B1375B4725E0009E00503DE6 /* Preview Assets.xcassets in Resources */,
 				B1375B4425E0009E00503DE6 /* Assets.xcassets in Resources */,
-				06837B2225FA540D004EA12B /* GoogleService-Info.plist in Resources */,
+				D542497725FA59DC0040E209 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
