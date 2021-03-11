@@ -21,6 +21,7 @@ class CreateRoomViewModel: ObservableObject {
         didSet {
             print("[caution] new title \(title)")
         }
+    }
     @Binding var isPresented: Bool
     
     var isRoomCreated: ((String) -> Void)?

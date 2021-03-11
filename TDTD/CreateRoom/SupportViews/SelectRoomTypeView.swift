@@ -25,6 +25,6 @@ struct SelectRoomTypeView: View {
 struct SelectRoomTypeView_Previews: PreviewProvider {
     static var previews: some View {
         SelectRoomTypeView()
-            .environmentObject(CreateRoomViewModel())
+            .environmentObject(CreateRoomViewModel(isPresented: .constant(false)))
     }
 }
