@@ -37,10 +37,10 @@ struct RollingpaperView: View {
             NavigationView {
                 ZStack {
                     Color("beige_1").ignoresSafeArea()
-                    bottomTrailingOptionButtonView()
-                    stickerGridView()
                     playerView().ignoresSafeArea()
                     hostOptionBottomSheetView().ignoresSafeArea()
+                    stickerGridView()
+                    bottomTrailingOptionButtonView()
                 }
                 .navigationBarItems(leading: Button(action: {
                     print("이전 화면으로!")
@@ -50,7 +50,7 @@ struct RollingpaperView: View {
                 trailing: Button(action: {
                     print("방 나가기!")
                     if isHost {
-                        withAnimation {
+                        withAnimation(.spring()) {
                             isPresentHostOptionView = true
                         }
                     } else {
@@ -98,7 +98,7 @@ struct RollingpaperView: View {
                                 if !viewModel.isPresentPlayer {
                                     viewModel.selectIndex = index
                                 }
-                                withAnimation {
+                                withAnimation(.spring()) {
                                     viewModel.isPresentPlayer.toggle()
                                 }
                             }
@@ -143,10 +143,8 @@ struct RollingpaperView: View {
                 Spacer()
                 PlayerView()
                     .environmentObject(viewModel)
-                
             }
             .transition(.move(edge: .bottom))
-            .animation(.spring())
             .zIndex(1)
         }
     }
@@ -201,7 +199,7 @@ struct RollingpaperView: View {
                     })
                     Spacer().frame(height: 24)
                     Button(action: {
-                        withAnimation {
+                        withAnimation(.spring()) {
                             isPresentWriteView = true
                         }
                     }, label: {
@@ -273,7 +271,7 @@ struct RollingpaperView: View {
                             Spacer().frame(height: 16)
                             Button(action: {
                                 print("닫기")
-                                withAnimation {
+                                withAnimation(.spring()) {
                                     isPresentHostOptionView = false
                                 }
                             }, label: {
@@ -290,7 +288,6 @@ struct RollingpaperView: View {
                 .cornerRadius(radius: 24, cornerStyle: [.topLeft, .topRight])
             }
             .transition(.move(edge: .bottom))
-            .animation(.spring())
             .zIndex(1)
         }
     }
