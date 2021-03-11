@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+
+struct ChangeableSubTitle: View {
+    
+    @Binding var text: String
+
+    var body: some View {
+        Text(self.text)
+            .font(.uhBeeCustom(20, weight: .bold))
+            .foregroundColor(Color("grayscale_1"))
+    }
+
+}
+
+
 struct SubTitle: View {
     
     @State var text: String
