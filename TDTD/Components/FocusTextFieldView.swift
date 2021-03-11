@@ -9,27 +9,21 @@ import SwiftUI
 
 struct FocusTextFieldView: View {
     
-    @ObservedObject var viewModel: FocusTextFieldViewModel
+    @Binding var text: String
+    @State var isFocused: Bool = false
+    let title: String
+    let max: Int
+    let placeholder: String
     
     private let radius: CGFloat = 16
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 12
     
-    @State var isFocused: Bool = false
-    
-    init(viewModel: FocusTextFieldViewModel) {
-        self.viewModel = viewModel
-    }
-    
     var body: some View {
         ZStack {
-            FocusView(isFocused: self.$isFocused)
-            TextField(self.viewModel.placeholder, text: Binding<String>(
-                get: { self.viewModel.text },
-                set: {
-                    self.viewModel.text = $0
-                }
-            ), onEditingChanged: { isEditing in
+            FocusView(isFocused: $isFocused)
+            TextField(self.placeholder, text: self.$text
+                      , onEditingChanged: { isEditing in
                 self.isFocused = isEditing
             })
             .padding(.vertical, verticalPadding)

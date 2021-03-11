@@ -31,10 +31,10 @@ struct FocusView: View {
     
 }
 
-struct FocusView_Previews: PreviewProvider {
-    
-    @State static var isFocused = true
-    static var previews: some View {
-        FocusView(isFocused: $isFocused)
-    }
-}
+//struct FocusView_Previews: PreviewProvider {
+//    
+//    @State static var isFocused = true
+//    static var previews: some View {
+//        FocusView(isFocused: isFocused)
+//    }
+//}

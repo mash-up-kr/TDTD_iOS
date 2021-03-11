@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SubTitle: View {
     
-    let text: String
+    @State var text: String
 
     var body: some View {
         Text(self.text)

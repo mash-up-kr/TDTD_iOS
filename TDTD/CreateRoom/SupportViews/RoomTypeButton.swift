@@ -10,16 +10,18 @@ import SwiftUI
 struct RoomTypeButton: View {
     
     let type: RoomType
-    @Binding var isSelected: Bool
-    var action: () -> Void
+    @Binding var selectedType: RoomType
     
     var body: some View {
         Button(action: {
-            self.isSelected = true
-            action()
+            self.selectedType = self.type
         }, label: {
             ZStack(alignment: .bottom) {
-                FocusView(isFocused: self.$isSelected)
+                FocusView(isFocused: Binding(get: {
+                    return self.selectedType == type
+                }, set: {_,_ in
+                    self.selectedType = .none
+                }))
                 VStack {
                     Text(type.title)
                         .font(.uhBeeCustom(20))
@@ -43,8 +45,6 @@ struct RoomTypeButton: View {
 
 struct RoomTypeButton_Previews: PreviewProvider {
     static var previews: some View {
-        RoomTypeButton(type: .voice, isSelected: .constant(true)) {
-            
-        }
+        RoomTypeButton(type: .voice, selectedType: .constant(.voice))
     }
 }

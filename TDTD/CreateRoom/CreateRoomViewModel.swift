@@ -11,15 +11,24 @@ import SwiftUI
 
 class CreateRoomViewModel: ObservableObject {
     
-    @Published private(set) var room: Room = Room()
+    @Published var type: RoomType = .none {
+        didSet {
+            print("[caution] new type \(type.title)")
+        }
+    }
+    @Published var title: String = "" {
+        didSet {
+            print("[caution] new title \(title)")
+        }
+    }
     
     
     func updateRoom(type: RoomType) {
-        self.room.type = type
+        self.type = type
     }
     
     func isRoom(type: RoomType) -> Bool {
-        return self.room.type == type
+        return self.type == type
     }
     
     func createRoom() {
