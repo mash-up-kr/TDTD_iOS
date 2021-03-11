@@ -14,6 +14,7 @@ struct RollingpaperView: View {
     @State private var isHost: Bool = true
     // FIXME: - 추후 방만들기 직후 변수위치 수정가능
     @State private var isMakeRoom: Bool = false
+    @State private var isPresentHostOptionView: Bool = false
     var randomHorizontalSpacing: CGFloat {
         CGFloat(Int.random(in: -15...16))
     }
@@ -39,6 +40,7 @@ struct RollingpaperView: View {
                     bottomTrailingOptionButtonView()
                     stickerGridView()
                     playerView().ignoresSafeArea()
+                    hostOptionBottomSheetView().ignoresSafeArea()
                 }
                 .navigationBarItems(leading: Button(action: {
                     print("이전 화면으로!")
@@ -47,8 +49,19 @@ struct RollingpaperView: View {
                 }),
                 trailing: Button(action: {
                     print("방 나가기!")
+                    if isHost {
+                        withAnimation {
+                            isPresentHostOptionView = true
+                        }
+                    } else {
+                        
+                    }
                 }, label: {
-                    NavigationItemView(name: "ic_leave_24")
+                    if isHost {
+                        NavigationItemView(name: "ic_more_24")
+                    } else {
+                        NavigationItemView(name: "ic_leave_24")
+                    }
                 }))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -57,10 +70,9 @@ struct RollingpaperView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isPresentWriteView,
-                   content: {
-                    RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: viewModel.mode))
-                   })
+            .sheet(isPresented: $isPresentWriteView) {
+                RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: viewModel.mode))
+            }
             .onAppear {
                 UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
                 UINavigationBar.appearance().shadowImage = UIImage()
@@ -133,7 +145,9 @@ struct RollingpaperView: View {
                     .environmentObject(viewModel)
                 
             }
-            .transition(AnyTransition.move(edge: .bottom))
+            .transition(.move(edge: .bottom))
+            .animation(.spring())
+            .zIndex(1)
         }
     }
     
@@ -187,7 +201,9 @@ struct RollingpaperView: View {
                     })
                     Spacer().frame(height: 24)
                     Button(action: {
-                        isPresentWriteView = true
+                        withAnimation {
+                            isPresentWriteView = true
+                        }
                     }, label: {
                         RoundedRectangle(cornerRadius: 18)
                             .fill(Color("grayscale_1"))
@@ -199,6 +215,84 @@ struct RollingpaperView: View {
             .padding(.trailing, 16)
         }
         .padding(.bottom, 24)
+    }
+    
+    @ViewBuilder
+    private func hostOptionBottomSheetView() -> some View {
+        if isPresentHostOptionView {
+            VStack {
+                Spacer()
+                ZStack {
+                    ColorPallete.beige(3).color
+                    VStack {
+                        HStack(spacing: 0) {
+                            UhBeeZigleText("이 롤링페이퍼 방은",
+                                           size: 16,
+                                           weight: .bold,
+                                           pallete: .grayscale(3))
+                            UhBeeZigleText("2021년 01월 02일",
+                                           size: 16,
+                                           weight: .bold,
+                                           pallete: .grayscale(2))
+                            UhBeeZigleText("에 만들어졌어요!",
+                                           size: 16,
+                                           weight: .bold,
+                                           pallete: .grayscale(3))
+                        }
+                        Spacer().frame(height: 16)
+                        VStack(alignment: .leading) {
+                            Button(action: {
+                                print("초대링크 공유")
+                            }, label: {
+                                HStack(spacing: 8) {
+                                    Image("ic_share_32")
+                                    UhBeeZigleText("작성자 초대 링크 공유하기",
+                                                   size: 20,
+                                                   weight: .bold,
+                                                   pallete: .grayscale(1))
+                                        .layoutPriority(1)
+                                    Spacer()
+                                }
+                            })
+                            .frame(height: 48)
+                            Spacer().frame(height: 8)
+                            Button(action: {
+                                print("방 삭제")
+                            }, label: {
+                                HStack(spacing: 8) {
+                                    Image("ic_trash_32")
+                                    UhBeeZigleText("방 삭제하기",
+                                                   size: 20,
+                                                   weight: .bold,
+                                                   pallete: .grayscale(1))
+                                        .layoutPriority(1)
+                                    Spacer()
+                                }
+                            })
+                            .frame(height: 48)
+                            Spacer().frame(height: 16)
+                            Button(action: {
+                                print("닫기")
+                                withAnimation {
+                                    isPresentHostOptionView = false
+                                }
+                            }, label: {
+                                Text("아무것도 안할래요")
+                            })
+                            .buttonStyle(RoundButtonStyle(style: .dark))
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 24)
+                    .padding(.bottom, 38)
+                }
+                .frame(height: 254)
+                .cornerRadius(radius: 24, cornerStyle: [.topLeft, .topRight])
+            }
+            .transition(.move(edge: .bottom))
+            .animation(.spring())
+            .zIndex(1)
+        }
     }
 }
 

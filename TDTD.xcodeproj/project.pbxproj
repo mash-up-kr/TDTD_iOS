@@ -22,6 +22,8 @@
 		06837B0325F75D11004EA12B /* RollingpaperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B0225F75D11004EA12B /* RollingpaperViewModel.swift */; };
 		06837B0625F75D22004EA12B /* RollingpaperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B0525F75D22004EA12B /* RollingpaperModel.swift */; };
 		06837B0A25F783EB004EA12B /* NavigationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B0925F783EB004EA12B /* NavigationItemView.swift */; };
+		06837B1525F9F72B004EA12B /* UhBeeZigleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B1425F9F72B004EA12B /* UhBeeZigleText.swift */; };
+		06837B1825F9F7B0004EA12B /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B1725F9F7B0004EA12B /* ColorPallete.swift */; };
 		068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */; };
 		068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FE25ECE5AE00484FBB /* View+.swift */; };
 		068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC20125EE145200484FBB /* PlaceholderView.swift */; };
@@ -78,6 +80,8 @@
 		06837B0225F75D11004EA12B /* RollingpaperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperViewModel.swift; sourceTree = "<group>"; };
 		06837B0525F75D22004EA12B /* RollingpaperModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperModel.swift; sourceTree = "<group>"; };
 		06837B0925F783EB004EA12B /* NavigationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItemView.swift; sourceTree = "<group>"; };
+		06837B1425F9F72B004EA12B /* UhBeeZigleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UhBeeZigleText.swift; sourceTree = "<group>"; };
+		06837B1725F9F7B0004EA12B /* ColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPallete.swift; sourceTree = "<group>"; };
 		068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperWriteModel.swift; sourceTree = "<group>"; };
 		068EC1FE25ECE5AE00484FBB /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		068EC20125EE145200484FBB /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 				57220E8325F6487600CDE9BC /* DebugManager.swift */,
 				0637E40125E809A3008049F7 /* RecordManager.swift */,
 				0637E40925E811BE008049F7 /* PlayManager.swift */,
+				06837B1725F9F7B0004EA12B /* ColorPallete.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				06837AF625F6141B004EA12B /* AlertView.swift */,
 				06837AF325F605C2004EA12B /* RoundedViewModifier.swift */,
 				06837B0925F783EB004EA12B /* NavigationItemView.swift */,
+				06837B1425F9F72B004EA12B /* UhBeeZigleText.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -466,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06837B1525F9F72B004EA12B /* UhBeeZigleText.swift in Sources */,
 				D545119125EA8FC500B19C66 /* TextFieldFormItemViewModel.swift in Sources */,
 				06837AF425F605C2004EA12B /* RoundedViewModifier.swift in Sources */,
 				D545117C25EA73E800B19C66 /* TextFieldFormItem.swift in Sources */,
@@ -501,6 +508,7 @@
 				B137F53125EAA10B00F86D45 /* Home.swift in Sources */,
 				068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */,
 				068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */,
+				06837B1825F9F7B0004EA12B /* ColorPallete.swift in Sources */,
 				06837B0625F75D22004EA12B /* RollingpaperModel.swift in Sources */,
 				57220E8A25F64B6500CDE9BC /* NetworkLogger.swift in Sources */,
 				B1375B4025E0009D00503DE6 /* SceneDelegate.swift in Sources */,
