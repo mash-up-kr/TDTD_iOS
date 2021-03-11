@@ -16,9 +16,9 @@ struct RoomSummary: Codable {
     
     enum CodingKeys: String, CodingKey {
         case title
-        case isHost = "host"
-        case roomCode = "roomCode"
-        case isBookmark = "bookmark"
-        case createdAt = "createdAt"
+        case isHost = "is_host"
+        case roomCode = "room_code"
+        case isBookmark = "is_bookmark"
+        case createdAt = "created_at"
     }
 }

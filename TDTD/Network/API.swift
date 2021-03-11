@@ -11,6 +11,7 @@ import Moya
 enum API {
     case requestRooms
     case requestJoinRoom(roomCode: String)
+    case requestMakeRoom(title: String, type: RoomType)
 }
 
 extension API: TargetType {
@@ -20,6 +21,8 @@ extension API: TargetType {
             return "api/v1/rooms"
         case let .requestJoinRoom(roomCode):
             return "api/v1/users/\(roomCode)"
+        case .requestMakeRoom:
+            return "/api/v1/rooms"
         }
     }
     
@@ -27,7 +30,9 @@ extension API: TargetType {
         switch self {
         case .requestRooms:
             return .get
-        case .requestJoinRoom:
+            
+        case .requestJoinRoom,
+             .requestMakeRoom:
             return .post
         }
     }
@@ -36,9 +41,17 @@ extension API: TargetType {
         switch self {
         case .requestRooms:
             return .requestPlain
+            
         case .requestJoinRoom:
             return .requestPlain
+            
+        case let .requestMakeRoom(title, type):
+            let parameters: [String: Any] = [
+                "title": title,
+                "type": type.rawValue
+            ]
+            
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
-    
 }

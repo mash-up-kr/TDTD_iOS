@@ -8,11 +8,11 @@
 import UIKit
 
 
-enum RoomType {
+enum RoomType: String {
     
-    case none
-    case voice
-    case text
+    case none = "NONE"
+    case voice = "VOICE"
+    case text = "TEXT"
     
     var title: String {
         switch self {

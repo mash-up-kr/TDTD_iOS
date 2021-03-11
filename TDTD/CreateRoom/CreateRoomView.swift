@@ -37,9 +37,9 @@ struct CreateRoomView: View {
     }
     
 }
-
-struct CreateRoomView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateRoomView(viewModel: CreateRoomViewModel())
-    }
-}
+//
+//struct CreateRoomView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateRoomView(viewModel: CreateRoomViewModel(isPresented: .constant(true)))
+//    }
+//}

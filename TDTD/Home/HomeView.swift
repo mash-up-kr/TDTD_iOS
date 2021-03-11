@@ -44,7 +44,9 @@ struct HomeView: View {
                         .padding(.horizontal, 16)
                         LazyVStack(spacing: 8) {
                             ForEach(rooms, id: \.self.roomCode) { roomSummary in
-                                CardView(roomSummary: roomSummary)
+//                                NavigationLink(destination: RollingpaperView(viewModel: RollingpaperViewModel.init(mode: .text))) {
+                                    CardView(roomSummary: roomSummary)
+//                                }
                             }
                         }
                         .padding(.horizontal, 16)
@@ -60,7 +62,10 @@ struct HomeView: View {
             }
         }
         .sheet(isPresented: $presentCreatRoom, content: {
-            CreateRoomView(viewModel: CreateRoomViewModel())
+            let viewModel = CreateRoomViewModel(isPresented: $presentCreatRoom) {
+                self.viewModel.roomCode = $0
+            }
+            CreateRoomView(viewModel: viewModel)
         })
     }
 }

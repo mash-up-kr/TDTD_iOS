@@ -47,5 +47,9 @@ extension APIRequest {
     func requestRooms() -> Future<Response, Error> {
         request(.requestRooms)
     }
+    
+    func requestMakeRoom(title: String, type: RoomType) -> Future<Response, Error> {
+        request(.requestMakeRoom(title: title, type: type))
+    }
 }
 

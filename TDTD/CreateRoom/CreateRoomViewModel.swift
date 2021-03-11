@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 
 class CreateRoomViewModel: ObservableObject {
@@ -20,6 +21,15 @@ class CreateRoomViewModel: ObservableObject {
         didSet {
             print("[caution] new title \(title)")
         }
+    @Binding var isPresented: Bool
+    
+    var isRoomCreated: ((String) -> Void)?
+    
+    private var bag = Set<AnyCancellable>()
+    
+    init(isPresented: Binding<Bool>, isRoomCreated: ((String) -> Void)? = nil) {
+        self._isPresented = isPresented
+        self.isRoomCreated = isRoomCreated
     }
     
     
@@ -33,6 +43,24 @@ class CreateRoomViewModel: ObservableObject {
     
     func createRoom() {
         //TODO:- Create Room
+        requestMakeRoom()
     }
     
+    
+    
+}
+
+
+extension CreateRoomViewModel {
+    private func requestMakeRoom() {
+        APIRequest.shared.requestMakeRoom(title: title, type: type)
+            .sink(receiveCompletion: { _ in }
+                  , receiveValue: { [weak self] in
+                    if let roomCode = try? $0.map(String.self, atKeyPath: "room_code") {
+                        self?.isPresented = false
+                        self?.isRoomCreated?(roomCode)
+                    }
+                  })
+            .store(in: &bag)
+    }
 }
