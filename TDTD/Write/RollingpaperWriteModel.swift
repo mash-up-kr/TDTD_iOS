@@ -8,7 +8,7 @@
 import Foundation
 
 struct RollingpaperWriteModel {
-    var nickName: String?
+    var nickname: String?
     var mode: WriteMode
     var message: String?
     var voice: Data?

@@ -11,76 +11,51 @@ import UIKit
 struct RollingpaperWriteView: View {
     @ObservedObject var viewModel: RollingpaperWriteViewModel
     private let horizontalPadding: CGFloat = 16
-    private let verticalPadding: CGFloat = 23
-    @State private var nickName: String = ""
+    private let verticalPadding: CGFloat = 24
+    @State private var nickname: String = ""
     @State private var contentText: String = ""
     @State private var isShowToast: Bool = false
     @State private var toastMessage: String = ""
     
     var body: some View {
-        VStack {
+        ZStack {
+            Color("beige_1").ignoresSafeArea()
             VStack {
-                HStack {
-                    SubTitle(text: "닉네임")
-                    Spacer()
-                    SubTitle(text: "0/12")
-                }
-                // FIXME:- 나중에 제가 고치겠습니당 :)
-//                FocusTextFieldView(text: $nickName)
-//                    .environmentObject(viewModel)
-                TextField("", text: $nickName) { onEditing in
-                    viewModel.isEditing = onEditing
-                    if !onEditing {
-                        if nickName.isEmpty {
-                            viewModel.model.nickName = nil
-                        } else {
-                            viewModel.model.nickName = nickName
+                VStack {
+                    HStack {
+                        SubTitle(text: "닉네임")
+                        Spacer()
+                        SubTitle(text: "0/12")
+                    }
+                    // FIXME:- 나중에 제가 고치겠습니당 :)
+                    //                FocusTextFieldView(text: $nickname)
+                    //                    .environmentObject(viewModel)
+                    TextField("", text: $nickname) { onEditing in
+                        viewModel.isEditing = onEditing
+                        if !onEditing {
+                            if nickname.isEmpty {
+                                viewModel.model.nickname = nil
+                            } else {
+                                viewModel.model.nickname = nickname
+                            }
                         }
                     }
-                }
-                .disableAutocorrection(true)
-                HStack {
-                    SubTitle(text: viewModel.subTitle)
-                    Spacer()
-                }
-                writeBodyView(type: viewModel.model.mode)
-            }
-            Spacer()
-            bannerView()
-            HStack {
-                Button(action: {
-                    
-                }, label: {
-                    Text("취소")
-                })
-                .buttonStyle(RoundButtonStyle(style: .light))
-                Button(action: {
-                    if viewModel.model.nickName?.isEmpty ?? true {
-                        toastMessage = "닉네임을 입력해주세요!"
-                        isShowToast = true
-                    } else if viewModel.model.isEmptyData {
-                        if viewModel.model.mode == .text {
-                            toastMessage = "남기고 싶은 말을 써주세요!"
-                        } else {
-                            toastMessage = "남기고 싶은 말을 속삭여주세요!"
-                        }
-                        isShowToast = true
-                    } else {
-                        
-                    // TODO: - 완료후 화면으로 넘어가기
-                        
+                    .disableAutocorrection(true)
+                    HStack {
+                        SubTitle(text: viewModel.subTitle)
+                        Spacer()
                     }
-                    
-                }, label: {
-                    Text("완료")
-                })
-                .buttonStyle(RoundButtonStyle(style: .dark))
+                    writeBodyView(type: viewModel.model.mode)
+                }
+                Spacer()
+                bannerView()
+                bottomButtonView()
             }
-            .padding(.vertical, horizontalPadding)
+            .padding(.horizontal, horizontalPadding)
+            .padding(.vertical, verticalPadding)
+            .toast(isShowing: $isShowToast, title: Text(toastMessage), hideAfter: 3)
+            .hideKeyboard()
         }
-        .padding(.horizontal, horizontalPadding)
-        .toast(isShowing: $isShowToast, title: Text(toastMessage), hideAfter: 3)
-        .hideKeyboard()
     }
     
     @ViewBuilder
@@ -157,6 +132,39 @@ struct RollingpaperWriteView: View {
                 )
                 .frame(height: 96)
         }
+    }
+    
+    @ViewBuilder
+    private func bottomButtonView() -> some View {
+        HStack {
+            Button(action: {
+                
+            }, label: {
+                Text("취소")
+            })
+            .buttonStyle(RoundButtonStyle(style: .light))
+            Button(action: {
+                if viewModel.model.nickname?.isEmpty ?? true {
+                    toastMessage = "닉네임을 입력해주세요!"
+                    isShowToast = true
+                } else if viewModel.model.isEmptyData {
+                    if viewModel.model.mode == .text {
+                        toastMessage = "남기고 싶은 말을 써주세요!"
+                    } else {
+                        toastMessage = "남기고 싶은 말을 속삭여주세요!"
+                    }
+                    isShowToast = true
+                } else {
+                    
+                    // TODO: - 완료후 화면으로 넘어가기
+                    
+                }
+            }, label: {
+                Text("완료")
+            })
+            .buttonStyle(RoundButtonStyle(style: .dark))
+        }
+        .padding(.top, horizontalPadding)
     }
 }
 

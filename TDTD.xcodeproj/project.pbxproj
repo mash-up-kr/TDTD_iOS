@@ -16,9 +16,18 @@
 		0637E43125EA3FC6008049F7 /* FocusTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */; };
 		0637E43425EA4028008049F7 /* FocusTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43325EA4028008049F7 /* FocusTextView.swift */; };
 		0637E43725EA6205008049F7 /* RollingpaperWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */; };
+		06837AF125F5FC11004EA12B /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837AF025F5FC11004EA12B /* PlayerView.swift */; };
+		06837AF425F605C2004EA12B /* RoundedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837AF325F605C2004EA12B /* RoundedViewModifier.swift */; };
+		06837AF725F6141B004EA12B /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837AF625F6141B004EA12B /* AlertView.swift */; };
+		06837B0325F75D11004EA12B /* RollingpaperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B0225F75D11004EA12B /* RollingpaperViewModel.swift */; };
+		06837B0625F75D22004EA12B /* RollingpaperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B0525F75D22004EA12B /* RollingpaperModel.swift */; };
+		06837B0A25F783EB004EA12B /* NavigationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B0925F783EB004EA12B /* NavigationItemView.swift */; };
+		06837B1525F9F72B004EA12B /* UhBeeZigleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B1425F9F72B004EA12B /* UhBeeZigleText.swift */; };
+		06837B1825F9F7B0004EA12B /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837B1725F9F7B0004EA12B /* ColorPallete.swift */; };
 		068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */; };
 		068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FE25ECE5AE00484FBB /* View+.swift */; };
 		068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC20125EE145200484FBB /* PlaceholderView.swift */; };
+		06FDBFE225F21417003DB1FC /* RollingpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FDBFE125F21417003DB1FC /* RollingpaperView.swift */; };
 		57220E8425F6487600CDE9BC /* DebugManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57220E8325F6487600CDE9BC /* DebugManager.swift */; };
 		57220E8A25F64B6500CDE9BC /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57220E8925F64B6500CDE9BC /* NetworkLogger.swift */; };
 		87FA1E660712AB92440E13E2 /* Pods_TDTD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */; };
@@ -65,9 +74,18 @@
 		0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextFieldView.swift; sourceTree = "<group>"; };
 		0637E43325EA4028008049F7 /* FocusTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextView.swift; sourceTree = "<group>"; };
 		0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperWriteViewModel.swift; sourceTree = "<group>"; };
+		06837AF025F5FC11004EA12B /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		06837AF325F605C2004EA12B /* RoundedViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedViewModifier.swift; sourceTree = "<group>"; };
+		06837AF625F6141B004EA12B /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		06837B0225F75D11004EA12B /* RollingpaperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperViewModel.swift; sourceTree = "<group>"; };
+		06837B0525F75D22004EA12B /* RollingpaperModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperModel.swift; sourceTree = "<group>"; };
+		06837B0925F783EB004EA12B /* NavigationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItemView.swift; sourceTree = "<group>"; };
+		06837B1425F9F72B004EA12B /* UhBeeZigleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UhBeeZigleText.swift; sourceTree = "<group>"; };
+		06837B1725F9F7B0004EA12B /* ColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPallete.swift; sourceTree = "<group>"; };
 		068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperWriteModel.swift; sourceTree = "<group>"; };
 		068EC1FE25ECE5AE00484FBB /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		068EC20125EE145200484FBB /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		06FDBFE125F21417003DB1FC /* RollingpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperView.swift; sourceTree = "<group>"; };
 		0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TDTD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDTD.release.xcconfig"; path = "Target Support Files/Pods-TDTD/Pods-TDTD.release.xcconfig"; sourceTree = "<group>"; };
 		57220E8325F6487600CDE9BC /* DebugManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugManager.swift; sourceTree = "<group>"; };
@@ -137,8 +155,30 @@
 				57220E8325F6487600CDE9BC /* DebugManager.swift */,
 				0637E40125E809A3008049F7 /* RecordManager.swift */,
 				0637E40925E811BE008049F7 /* PlayManager.swift */,
+				06837B1725F9F7B0004EA12B /* ColorPallete.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		06837AFB25F74747004EA12B /* Write */ = {
+			isa = PBXGroup;
+			children = (
+				0637E42825EA3368008049F7 /* RollingpaperWriteView.swift */,
+				0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */,
+				068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */,
+			);
+			path = Write;
+			sourceTree = "<group>";
+		};
+		06837AFD25F747C6004EA12B /* RoomDetail */ = {
+			isa = PBXGroup;
+			children = (
+				06FDBFE125F21417003DB1FC /* RollingpaperView.swift */,
+				06837B0225F75D11004EA12B /* RollingpaperViewModel.swift */,
+				06837B0525F75D22004EA12B /* RollingpaperModel.swift */,
+				06837AF025F5FC11004EA12B /* PlayerView.swift */,
+			);
+			path = RoomDetail;
 			sourceTree = "<group>";
 		};
 		7DB5FB13E8C66D95541D3D69 /* Frameworks */ = {
@@ -177,6 +217,10 @@
 				068EC20125EE145200484FBB /* PlaceholderView.swift */,
 				D545117B25EA73E800B19C66 /* TextFieldFormItem.swift */,
 				D545119025EA8FC500B19C66 /* TextFieldFormItemViewModel.swift */,
+				06837AF625F6141B004EA12B /* AlertView.swift */,
+				06837AF325F605C2004EA12B /* RoundedViewModifier.swift */,
+				06837B0925F783EB004EA12B /* NavigationItemView.swift */,
+				06837B1425F9F72B004EA12B /* UhBeeZigleText.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -216,9 +260,8 @@
 				B1ED9B4025EA3FE4000A8C4D /* Home */,
 				D545117525EA6E3900B19C66 /* Models */,
 				B127E45925EA2CF100F3B64D /* Components */,
-				0637E42825EA3368008049F7 /* RollingpaperWriteView.swift */,
-				0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */,
-				068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */,
+				06837AFB25F74747004EA12B /* Write */,
+				06837AFD25F747C6004EA12B /* RoomDetail */,
 				D545116A25EA6B6B00B19C66 /* CreateRoom */,
 				B127E45025EA240500F3B64D /* SupportItems */,
 				0637E40C25E81859008049F7 /* Helper */,
@@ -429,20 +472,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06837B1525F9F72B004EA12B /* UhBeeZigleText.swift in Sources */,
 				D545119125EA8FC500B19C66 /* TextFieldFormItemViewModel.swift in Sources */,
+				06837AF425F605C2004EA12B /* RoundedViewModifier.swift in Sources */,
 				D545117C25EA73E800B19C66 /* TextFieldFormItem.swift in Sources */,
 				B127E45C25EA2D3300F3B64D /* RoundButtonStyle.swift in Sources */,
 				B1D97DED25EAC13D0099C9B8 /* APITargetType.swift in Sources */,
+				06837B0A25F783EB004EA12B /* NavigationItemView.swift in Sources */,
 				D545115B25EA329500B19C66 /* ToastView.swift in Sources */,
 				B1375B3E25E0009D00503DE6 /* AppDelegate.swift in Sources */,
 				0637E43125EA3FC6008049F7 /* FocusTextFieldView.swift in Sources */,
 				B1D97DE925EABFF50099C9B8 /* API.swift in Sources */,
 				D545118A25EA87B700B19C66 /* Room.swift in Sources */,
+				06837AF125F5FC11004EA12B /* PlayerView.swift in Sources */,
 				D545115B25EA329500B19C66 /* ToastView.swift in Sources */,
 				B190492825EAF9B700D23832 /* HomeViewModel.swift in Sources */,
 				B1375B3E25E0009D00503DE6 /* AppDelegate.swift in Sources */,
 				0637E43125EA3FC6008049F7 /* FocusTextFieldView.swift in Sources */,
 				D545117225EA6BD700B19C66 /* SubTitleView.swift in Sources */,
+				06837B0325F75D11004EA12B /* RollingpaperViewModel.swift in Sources */,
 				D545117725EA6E4900B19C66 /* RoomType.swift in Sources */,
 				D545117F25EA78E300B19C66 /* RoomTypeButton.swift in Sources */,
 				D545118E25EA8B8A00B19C66 /* CreateRoomViewModel.swift in Sources */,
@@ -453,18 +501,22 @@
 				D545119525EAC8A800B19C66 /* SelectRoomTypeView.swift in Sources */,
 				B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */,
 				B137F53425EAA15800F86D45 /* RoomSummary.swift in Sources */,
+				06837AF725F6141B004EA12B /* AlertView.swift in Sources */,
 				0637E42925EA3368008049F7 /* RollingpaperWriteView.swift in Sources */,
 				0637E43425EA4028008049F7 /* FocusTextView.swift in Sources */,
 				068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */,
 				B137F53125EAA10B00F86D45 /* Home.swift in Sources */,
 				068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */,
 				068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */,
+				06837B1825F9F7B0004EA12B /* ColorPallete.swift in Sources */,
+				06837B0625F75D22004EA12B /* RollingpaperModel.swift in Sources */,
 				57220E8A25F64B6500CDE9BC /* NetworkLogger.swift in Sources */,
 				B1375B4025E0009D00503DE6 /* SceneDelegate.swift in Sources */,
 				D545116D25EA6BA900B19C66 /* CreateRoomView.swift in Sources */,
 				0637E40525E80CBA008049F7 /* Date+.swift in Sources */,
 				B137F52A25EA7F7600F86D45 /* CardSectionTitleView.swift in Sources */,
 				0637E40225E809A3008049F7 /* RecordManager.swift in Sources */,
+				06FDBFE225F21417003DB1FC /* RollingpaperView.swift in Sources */,
 				0637E40A25E811BE008049F7 /* PlayManager.swift in Sources */,
 				B1D97DF025EAC9150099C9B8 /* APIRequest.swift in Sources */,
 				B1ED9B4625EA40A8000A8C4D /* CardView.swift in Sources */,
