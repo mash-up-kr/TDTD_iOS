@@ -16,7 +16,7 @@ struct HomeView: View {
     private var rooms: [RoomSummary] {
         Array(Set(viewModel.rooms.filter { roomSummary in
             (!showFavoritesOnly || roomSummary.isBookmark)
-        }))
+        })).sorted { $0.createdAt ?? "" > $1.createdAt ?? "" }
     }
     
     init(viewModel: HomeViewModel) {
