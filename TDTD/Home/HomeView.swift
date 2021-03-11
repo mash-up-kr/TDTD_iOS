@@ -14,9 +14,9 @@ struct HomeView: View {
     @State private var showFavoritesOnly = false
     
     private var rooms: [RoomSummary] {
-        viewModel.rooms.filter { roomSummary in
+        Array(Set(viewModel.rooms.filter { roomSummary in
             (!showFavoritesOnly || roomSummary.isBookmark)
-        }
+        }))
     }
     
     init(viewModel: HomeViewModel) {
