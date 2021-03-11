@@ -157,7 +157,7 @@ struct RollingpaperWriteView: View {
                 } else {
                     
                     // TODO: - 완료후 화면으로 넘어가기
-                    
+                    viewModel.requestWriteComment()
                 }
             }, label: {
                 Text("완료")
@@ -170,6 +170,6 @@ struct RollingpaperWriteView: View {
 
 struct RollingpagerWriteView_Previews: PreviewProvider {
     static var previews: some View {
-        RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(mode: .text))
+        RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: "1", mode: .text))
     }
 }
