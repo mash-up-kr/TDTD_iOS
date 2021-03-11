@@ -34,40 +34,38 @@ struct RollingpaperView: View {
     
     var body: some View {
         ZStack {
-            NavigationView {
-                ZStack {
-                    Color("beige_1").ignoresSafeArea()
-                    playerView().ignoresSafeArea()
-                    hostOptionBottomSheetView().ignoresSafeArea()
-                    stickerGridView()
-                    bottomTrailingOptionButtonView()
+            ZStack {
+                Color("beige_1").ignoresSafeArea()
+                playerView().ignoresSafeArea()
+                hostOptionBottomSheetView().ignoresSafeArea()
+                stickerGridView()
+                bottomTrailingOptionButtonView()
+            }
+            .navigationBarItems(leading: Button(action: {
+                print("이전 화면으로!")
+            }, label: {
+                NavigationItemView(name: "ic_arrow_left_24")
+            }),
+            trailing: Button(action: {
+                print("방 나가기!")
+                if isHost {
+                    withAnimation(.spring()) {
+                        isPresentHostOptionView = true
+                    }
+                } else {
+                    
                 }
-                .navigationBarItems(leading: Button(action: {
-                    print("이전 화면으로!")
-                }, label: {
-                    NavigationItemView(name: "ic_arrow_left_24")
-                }),
-                trailing: Button(action: {
-                    print("방 나가기!")
-                    if isHost {
-                        withAnimation(.spring()) {
-                            isPresentHostOptionView = true
-                        }
-                    } else {
-                        
-                    }
-                }, label: {
-                    if isHost {
-                        NavigationItemView(name: "ic_more_24")
-                    } else {
-                        NavigationItemView(name: "ic_leave_24")
-                    }
-                }))
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("버튼 타이틀 간격 방제목").font(Font.uhBeeCustom(20, weight: .bold))
-                    }
+            }, label: {
+                if isHost {
+                    NavigationItemView(name: "ic_more_24")
+                } else {
+                    NavigationItemView(name: "ic_leave_24")
+                }
+            }))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("버튼 타이틀 간격 방제목").font(Font.uhBeeCustom(20, weight: .bold))
                 }
             }
             .sheet(isPresented: $isPresentWriteView) {

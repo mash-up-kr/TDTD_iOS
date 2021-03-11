@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RoomSummary: Codable {
+struct RoomSummary: Codable, Equatable, Hashable {
     let isHost: Bool
     let title: String?
     let roomCode: String?

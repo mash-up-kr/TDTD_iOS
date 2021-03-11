@@ -12,16 +12,8 @@ import Combine
 
 class CreateRoomViewModel: ObservableObject {
     
-    @Published var type: RoomType = .none {
-        didSet {
-            print("[caution] new type \(type.title)")
-        }
-    }
-    @Published var title: String = "" {
-        didSet {
-            print("[caution] new title \(title)")
-        }
-    }
+    @Published var type: RoomType = .none
+    @Published var title: String = ""
     @Binding var isPresented: Bool
     
     var isRoomCreated: ((String) -> Void)?

@@ -22,24 +22,11 @@ struct RollingpaperWriteView: View {
             Color("beige_1").ignoresSafeArea()
             VStack {
                 VStack {
-                    HStack {
-                        SubTitle(text: "닉네임")
-                        Spacer()
-                        SubTitle(text: "0/12")
-                    }
-                    // FIXME:- 나중에 제가 고치겠습니당 :)
-                    //                FocusTextFieldView(text: $nickname)
-                    //                    .environmentObject(viewModel)
-                    TextField("", text: $nickname) { onEditing in
-                        viewModel.isEditing = onEditing
-                        if !onEditing {
-                            if nickname.isEmpty {
-                                viewModel.model.nickname = nil
-                            } else {
-                                viewModel.model.nickname = nickname
-                            }
-                        }
-                    }
+                    TextFieldFormItem(text: Binding(get: {
+                        (viewModel.model.nickname ?? "")
+                    }, set: {
+                        viewModel.model.nickname = $0
+                    }), title: "닉네임", max: 12, placeholder: "닉네임을 입력해주세요")
                     .disableAutocorrection(true)
                     HStack {
                         SubTitle(text: viewModel.subTitle)
@@ -69,6 +56,11 @@ struct RollingpaperWriteView: View {
                     viewModel.model.message = contentText
                 }
             }
+            FocusTextView(text: Binding(get: {
+                (viewModel.model.message ?? "")
+            }, set: {
+                viewModel.model.message = $0
+            }), placeholder: "남기고 싶은 말을 써주세요!")
         } else {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
