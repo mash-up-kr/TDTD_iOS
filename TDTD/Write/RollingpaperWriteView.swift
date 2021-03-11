@@ -12,8 +12,6 @@ struct RollingpaperWriteView: View {
     @ObservedObject var viewModel: RollingpaperWriteViewModel
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 24
-    @State private var nickname: String = ""
-    @State private var contentText: String = ""
     @State private var isShowToast: Bool = false
     @State private var toastMessage: String = ""
     
@@ -22,12 +20,12 @@ struct RollingpaperWriteView: View {
             Color("beige_1").ignoresSafeArea()
             VStack {
                 VStack {
-                    TextFieldFormItem(text: Binding(get: {
-                        (viewModel.model.nickname ?? "")
-                    }, set: {
-                        viewModel.model.nickname = $0
-                    }), title: "닉네임", max: 12, placeholder: "닉네임을 입력해주세요")
-                    .disableAutocorrection(true)
+                    TextFieldFormItem(text: Binding(get: { (viewModel.model.nickname ?? "") },
+                                                    set: { viewModel.model.nickname = $0 }),
+                                      title: "닉네임",
+                                      max: 12,
+                                      placeholder: "닉네임을 입력해주세요")
+                        .disableAutocorrection(true)
                     HStack {
                         SubTitle(text: viewModel.subTitle)
                         Spacer()
@@ -42,25 +40,15 @@ struct RollingpaperWriteView: View {
             .padding(.vertical, verticalPadding)
             .toast(isShowing: $isShowToast, title: Text(toastMessage), hideAfter: 3)
             .hideKeyboard()
-        }
+        }.environmentObject(viewModel)
     }
     
     @ViewBuilder
     private func writeBodyView(type: WriteMode) -> some View {
         if type == .text {
-            FocusTextView(text: $contentText, placeholder: "남기고 싶은 말을 써주세요!") { onEditing in
-                viewModel.isEditing = onEditing
-                if contentText.isEmpty {
-                    viewModel.model.message = nil
-                } else {
-                    viewModel.model.message = contentText
-                }
-            }
-            FocusTextView(text: Binding(get: {
-                (viewModel.model.message ?? "")
-            }, set: {
-                viewModel.model.message = $0
-            }), placeholder: "남기고 싶은 말을 써주세요!")
+            FocusTextView(text: Binding(get: { (viewModel.model.message ?? "") },
+                                        set: { viewModel.model.message = $0 }),
+                          placeholder: "남기고 싶은 말을 써주세요!")
         } else {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)

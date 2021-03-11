@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FocusTextFieldView: View {
-    
+    @EnvironmentObject var viewModel: RollingpaperWriteViewModel
     @Binding var text: String
     @State var isFocused: Bool = false
     let title: String
@@ -24,12 +24,13 @@ struct FocusTextFieldView: View {
             FocusView(isFocused: $isFocused)
             TextField(self.placeholder, text: self.$text
                       , onEditingChanged: { isEditing in
-                self.isFocused = isEditing
+                        self.isFocused = isEditing
+                        viewModel.isEditing = isEditing
             })
-            .padding(.vertical, verticalPadding)
-            .padding(.horizontal, horizontalPadding)
-            .font(.uhBeeCustom(20))
-            .foregroundColor(Color("grayscale_1"))
+                .padding(.vertical, verticalPadding)
+                .padding(.horizontal, horizontalPadding)
+                .font(.uhBeeCustom(20, weight: .bold))
+                .foregroundColor(Color("grayscale_1"))
         }.frame(maxHeight: 48)
     }
 

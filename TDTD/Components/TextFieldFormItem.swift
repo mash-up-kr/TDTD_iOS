@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TextFieldFormItem: View {
-    
     @Binding var text: String
     @State var textCount: Int = 0
     let title: String
