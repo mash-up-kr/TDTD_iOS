@@ -10,6 +10,10 @@ import SwiftUI
 struct RollingpaperView: View {
     @ObservedObject var viewModel: RollingpaperViewModel
     @State private var isPresentWriteView: Bool = false
+    // FIXME: - 추후 통신후 호스트 변수위치 수정가능
+    @State private var isHost: Bool = true
+    // FIXME: - 추후 방만들기 직후 변수위치 수정가능
+    @State private var isMakeRoom: Bool = false
     var randomHorizontalSpacing: CGFloat {
         CGFloat(Int.random(in: -15...16))
     }
@@ -33,7 +37,7 @@ struct RollingpaperView: View {
                 ZStack {
                     Color("beige_1").ignoresSafeArea()
                     bottomTrailingOptionButtonView()
-                    stickerView()
+                    stickerGridView()
                     playerView().ignoresSafeArea()
                 }
                 .navigationBarItems(leading: Button(action: {
@@ -66,28 +70,57 @@ struct RollingpaperView: View {
     }
     
     @ViewBuilder
-    private func stickerView() -> some View {
-        ScrollView {
-            let columns = [GridItem(.flexible()),
-                           GridItem(.flexible()),
-                           GridItem(.flexible())]
-            LazyVGrid(columns: columns, spacing: 0) {
-                ForEach(viewModel.models.indices, id: \.self) { index in
-                    randomImage(isSelect: false)
-                        .onTapGesture {
-                            if !viewModel.isPresentPlayer {
-                                viewModel.selectIndex = index
+    private func stickerGridView() -> some View {
+        if viewModel.models.isEmpty {
+            emptyView()
+                .offset(x: 0, y: -30)
+        } else {
+            ScrollView {
+                let columns = [GridItem(.flexible()),
+                               GridItem(.flexible()),
+                               GridItem(.flexible())]
+                LazyVGrid(columns: columns, spacing: 0) {
+                    ForEach(viewModel.models.indices, id: \.self) { index in
+                        randomImage(isSelect: false)
+                            .onTapGesture {
+                                if !viewModel.isPresentPlayer {
+                                    viewModel.selectIndex = index
+                                }
+                                withAnimation {
+                                    viewModel.isPresentPlayer.toggle()
+                                }
                             }
-                            withAnimation {
-                                viewModel.isPresentPlayer.toggle()
-                            }
-                        }
-                        .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
-                        .rotationEffect(Angle(degrees: randomRotate))
-                        .frame(height: 146)
+                            .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
+                            .rotationEffect(Angle(degrees: randomRotate))
+                            .frame(height: 146)
+                    }
                 }
+                .padding(16)
             }
-            .padding(16)
+        }
+    }
+    
+    @ViewBuilder
+    private func emptyView() -> some View {
+        if isHost {
+            if isMakeRoom {
+                VStack(spacing: 24) {
+                    PlaceholderView(text: "오른쪽 상단 더보기 버튼을 눌러서\n초대링크를 보낼수있어요!")
+                        .multilineTextAlignment(.center)
+                    Button(action: {
+                        print("초대링크 보내기!")
+                    }, label: {
+                        Text("초대링크 보내기")
+                    })
+                    .buttonStyle(RoundButtonStyle(style: .dark))
+                    .frame(width: 148)
+                }
+            } else {
+                PlaceholderView(text: "아직 아무도 답장을 하지 않았어요\n다른 사람에게도 초대링크를 보내보세요!")
+                    .multilineTextAlignment(.center)
+            }
+        } else {
+            PlaceholderView(text: "친구에게 마음을 속삭여보세요!")
         }
     }
     
