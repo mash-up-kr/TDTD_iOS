@@ -54,5 +54,4 @@ extension API: TargetType {
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
-    
 }
