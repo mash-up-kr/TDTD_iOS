@@ -47,6 +47,7 @@
 		B1D97DE925EABFF50099C9B8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D97DE825EABFF50099C9B8 /* API.swift */; };
 		B1D97DED25EAC13D0099C9B8 /* APITargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D97DEC25EAC13D0099C9B8 /* APITargetType.swift */; };
 		B1D97DF025EAC9150099C9B8 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D97DEF25EAC9150099C9B8 /* APIRequest.swift */; };
+		B1DFBBBF25F66B9900CD29D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1DFBBBE25F66B9900CD29D7 /* GoogleService-Info.plist */; };
 		B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */; };
 		B1ED9B4225EA401B000A8C4D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B4125EA401B000A8C4D /* HomeView.swift */; };
 		B1ED9B4625EA40A8000A8C4D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED9B4525EA40A8000A8C4D /* CardView.swift */; };
@@ -108,6 +109,8 @@
 		B1D97DE825EABFF50099C9B8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B1D97DEC25EAC13D0099C9B8 /* APITargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITargetType.swift; sourceTree = "<group>"; };
 		B1D97DEF25EAC9150099C9B8 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		B1DFBBBE25F66B9900CD29D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B1DFBC0525F66FDC00CD29D7 /* TDTD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TDTD.entitlements; sourceTree = "<group>"; };
 		B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		B1ED9B4125EA401B000A8C4D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B1ED9B4525EA40A8000A8C4D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -254,6 +257,7 @@
 		B1375B3C25E0009D00503DE6 /* TDTD */ = {
 			isa = PBXGroup;
 			children = (
+				B1DFBC0525F66FDC00CD29D7 /* TDTD.entitlements */,
 				B1375B3D25E0009D00503DE6 /* AppDelegate.swift */,
 				B1375B3F25E0009D00503DE6 /* SceneDelegate.swift */,
 				B1375B4125E0009D00503DE6 /* ContentView.swift */,
@@ -271,6 +275,7 @@
 				B1375B4325E0009E00503DE6 /* Assets.xcassets */,
 				B1375B4825E0009E00503DE6 /* LaunchScreen.storyboard */,
 				B1375B4B25E0009E00503DE6 /* Info.plist */,
+				B1DFBBBE25F66B9900CD29D7 /* GoogleService-Info.plist */,
 				B1375B4525E0009E00503DE6 /* Preview Content */,
 			);
 			path = TDTD;
@@ -420,6 +425,7 @@
 				B127E45625EA245900F3B64D /* UhBee ZIGLE.ttf in Resources */,
 				B1375B4725E0009E00503DE6 /* Preview Assets.xcassets in Resources */,
 				B1375B4425E0009E00503DE6 /* Assets.xcassets in Resources */,
+				B1DFBBBF25F66B9900CD29D7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +668,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TDTD/TDTD.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"TDTD/Preview Content\"";
@@ -687,6 +694,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TDTD/TDTD.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"TDTD/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
