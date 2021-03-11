@@ -18,7 +18,7 @@ class FocusTextFieldViewModel: ObservableObject, TextFieldViewModel {
     }
     
     //FIXME :- 방법 선택 시 초기화 되는 이슈 수정
-    @Published var text: String = ""
+    @State var text: String
     let title: String
     let max: Int
     let placeholder: String

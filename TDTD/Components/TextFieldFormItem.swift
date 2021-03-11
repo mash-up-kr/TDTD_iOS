@@ -9,25 +9,33 @@ import SwiftUI
 
 struct TextFieldFormItem: View {
     
-    @ObservedObject var viewModel: FocusTextFieldViewModel
+    @Binding var text: String
+    @State var textCount: Int = 0
+    let title: String
+    let max: Int
+    let placeholder: String
 
     var body: some View {
         VStack {
             HStack {
-                SubTitle(text: self.viewModel.title)
+                SubTitle(text: self.title)
                 Spacer()
-                SubTitle(text: "\(self.viewModel.text.count)/\(self.viewModel.max)")
+                SubTitle(text: "\(self.convertToCount())/\(self.max)")
             }
-            FocusTextFieldView(viewModel: self.viewModel)
+            FocusTextFieldView(text: self.$text, title: title, max: max, placeholder: placeholder)
         }
     }
-}
-
-
-struct TextFieldFormItem_Previews: PreviewProvider {
-
-    static var previews: some View {
-        TextFieldFormItem(viewModel: FocusTextFieldViewModel(title: "타이틀", text: "", placeholder: "타이틀을 작성하세요", max: 35))
+    
+    func convertToCount() -> Int {
+        return self.text.count
     }
-
 }
+
+
+//struct TextFieldFormItem_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        TextFieldFormItem(title: "타이틀", text: "", placeholder: "타이틀을 작성하세요", max: 35)
+//    }
+//
+//}

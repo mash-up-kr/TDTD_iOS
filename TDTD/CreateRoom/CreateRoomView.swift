@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CreateRoomView: View {
 
-    @ObservedObject var viewModel: CreateRoomViewModel
+    @StateObject var viewModel: CreateRoomViewModel
     
     var body: some View {
         ZStack {
@@ -18,15 +18,13 @@ struct CreateRoomView: View {
                 .foregroundColor(Color("beige_1"))
                 .ignoresSafeArea()
             VStack(alignment: .leading) {
-                TextFieldFormItem(viewModel: FocusTextFieldViewModel(title: "롤링페이퍼 방 이름", text: self.viewModel.room.title, placeholder: "방 이름을 적어주세요", max: 35))
+                TextFieldFormItem(text: Binding(get: {
+                    self.viewModel.title
+                }, set: {
+                    self.viewModel.title = $0
+                }), title: "롤링페이퍼 방 이름", max: 35, placeholder: "방 이름을 적어주세요")
                     .padding(.bottom, 32)
-                SelectRoomTypeView(selectedType: Binding<RoomType>(
-                    get: {
-                        self.viewModel.room.type
-                    }, set: {
-                        self.viewModel.updateRoom(type: $0)
-                    }
-                ))
+                SelectRoomTypeView()
                 Spacer()
                 Button("방 만들기", action: {
                     self.viewModel.createRoom()
@@ -35,6 +33,7 @@ struct CreateRoomView: View {
             }
             .padding(16)
         }
+        .environmentObject(viewModel)
     }
     
 }
