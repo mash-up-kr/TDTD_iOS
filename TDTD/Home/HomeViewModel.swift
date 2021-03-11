@@ -19,6 +19,7 @@ final class HomeViewModel: ObservableObject {
         RoomSummary.init(isHost: true, title: "아무나 드루와", roomCode: "7", isBookmark: true, createdAt: nil)
     ]
     
+    @Published var roomCode: String? = ""
     private var bag = Set<AnyCancellable>()
 }
 

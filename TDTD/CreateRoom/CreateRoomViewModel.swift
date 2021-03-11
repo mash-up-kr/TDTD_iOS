@@ -14,12 +14,14 @@ class CreateRoomViewModel: ObservableObject {
     
     @Published private(set) var room: Room = Room()
     @Binding var isPresented: Bool
-    @Published var roomCode: String?
+    
+    var isRoomCreated: ((String) -> Void)?
     
     private var bag = Set<AnyCancellable>()
     
-    init(isPresented: Binding<Bool>) {
+    init(isPresented: Binding<Bool>, isRoomCreated: ((String) -> Void)? = nil) {
         self._isPresented = isPresented
+        self.isRoomCreated = isRoomCreated
     }
     
     
@@ -45,10 +47,10 @@ extension CreateRoomViewModel {
     private func requestMakeRoom() {
         APIRequest.shared.requestMakeRoom(title: "testRoom", type: room.type)
             .sink(receiveCompletion: { _ in }
-                  , receiveValue: {
-                    if let roomCode = try? $0.map(String.self) {
-                        self.isPresented = false
-                        self.roomCode = roomCode
+                  , receiveValue: { [weak self] in
+                    if let roomCode = try? $0.map(String.self, atKeyPath: "room_code") {
+                        self?.isPresented = false
+                        self?.isRoomCreated?(roomCode)
                     }
                   })
             .store(in: &bag)
