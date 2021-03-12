@@ -73,7 +73,7 @@ extension NetworkLogger {
         }
         
         if let httpBody = request.httpBody, let httpBodyString = String(data: httpBody, encoding: .utf8) {
-            print(httpBodyString)
+            Log(httpBodyString)
         }
     }
 
