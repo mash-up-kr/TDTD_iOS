@@ -24,6 +24,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let contentView = HomeView(viewModel: HomeViewModel())
 
+        // MARK: - 네비게이션 설정
+        
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor(ColorPallete.grayscale(1).color),
+            NSAttributedString.Key.font: UIFont(name: Font.CustomFontWeight.bold.name, size: 20)!
+        ]
+        UINavigationBar.appearance().titleTextAttributes = attrs
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
+//        UINavigationBar.appearance().isTranslucent = false
+//        UINavigationBar.appearance().shadowImage = UIImage()
+
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

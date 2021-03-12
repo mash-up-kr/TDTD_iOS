@@ -25,7 +25,7 @@ final class RollingpaperViewModel: ObservableObject {
     init(roomCode: String, mode: WriteMode) {
         self.roomCode = roomCode
         self.mode = mode
-//        testData()
+        testData()
         cancellable = self.$isRemoveRollingpaper.sink {
             print($0)
         }

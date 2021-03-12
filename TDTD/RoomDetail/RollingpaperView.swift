@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RollingpaperView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel: RollingpaperViewModel
     @State private var isPresentWriteView: Bool = false
     // FIXME: - 추후 통신후 호스트 변수위치 수정가능
@@ -42,7 +43,7 @@ struct RollingpaperView: View {
                 bottomTrailingOptionButtonView()
             }
             .navigationBarItems(leading: Button(action: {
-                print("이전 화면으로!")
+                presentationMode.wrappedValue.dismiss()
             }, label: {
                 NavigationItemView(name: "ic_arrow_left_24")
             }),
@@ -62,20 +63,14 @@ struct RollingpaperView: View {
                     NavigationItemView(name: "ic_leave_24")
                 }
             }))
+            .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("버튼 타이틀 간격 방제목").font(Font.uhBeeCustom(20, weight: .bold))
-                }
-            }
+            .navigationTitle("버튼 타이틀 간격 방제목")
             .sheet(isPresented: $isPresentWriteView) {
                 RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode, mode: viewModel.mode))
             }
-            .onAppear {
-                UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
-                UINavigationBar.appearance().shadowImage = UIImage()
-            }
             alertView()
+//            .navigationBarHidden(viewModel.isReportRollingpaper || viewModel.isRemoveRollingpaper)
         }
     }
     
@@ -96,7 +91,7 @@ struct RollingpaperView: View {
                                 if !viewModel.isPresentPlayer {
                                     viewModel.selectIndex = index
                                 }
-                                withAnimation(.spring()) {
+                                withAnimation {
                                     viewModel.isPresentPlayer.toggle()
                                 }
                             }

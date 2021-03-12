@@ -54,7 +54,7 @@ struct HomeView: View {
                     }
                 }
             }
-            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: Image("logo"),
                                 trailing: Image("ic_settingButton_40")
             )
