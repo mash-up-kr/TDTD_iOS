@@ -21,7 +21,6 @@ struct HomeView: View {
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
-        setNavigationBar()
     }
     
     var body: some View {
@@ -68,15 +67,6 @@ struct HomeView: View {
             }
             CreateRoomView(viewModel: viewModel)
         })
-    }
-}
-
-extension HomeView {
-    private func setNavigationBar() {
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().isTranslucent = true
-        UINavigationBar.appearance().tintColor = .clear
-        UINavigationBar.appearance().backgroundColor = .init(Color("beige_1"))
     }
 }
 

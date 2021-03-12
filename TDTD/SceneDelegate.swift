@@ -31,10 +31,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             NSAttributedString.Key.font: UIFont(name: Font.CustomFontWeight.bold.name, size: 20)!
         ]
         UINavigationBar.appearance().titleTextAttributes = attrs
-//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//        UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
-//        UINavigationBar.appearance().isTranslucent = false
-//        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().barTintColor =  UIColor(named: "beige_1")
+        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().tintColor = .clear
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

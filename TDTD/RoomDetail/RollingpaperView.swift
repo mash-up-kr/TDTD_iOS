@@ -70,7 +70,7 @@ struct RollingpaperView: View {
                 RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode, mode: viewModel.mode))
             }
             alertView()
-//            .navigationBarHidden(viewModel.isReportRollingpaper || viewModel.isRemoveRollingpaper)
+            .navigationBarHidden(viewModel.isReportRollingpaper || viewModel.isRemoveRollingpaper)
         }
     }
     
