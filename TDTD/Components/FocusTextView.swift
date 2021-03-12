@@ -13,22 +13,16 @@ struct FocusTextView: View {
     private let verticalPadding: CGFloat = 12
     @Binding var text: String
     @Binding var isWrite: Bool
-    
+    @State private var isFocused: Bool = false
     let placeholder: String
     
     var body: some View {
-        UITextViewWrapper(text: $text, isWrite: $isWrite)
-            .frame(height: 184)
-            .overlay(
-                ZStack {
-                    if text.isEmpty {
-                        PlaceholderView(text: placeholder)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 12)
-                    }
-                }
-                ,
-                alignment: .topLeading)
+        ZStack {
+            FocusView(isFocused: $isFocused)
+            UITextViewWrapper(text: $text, isWrite: $isWrite, isFocused: $isFocused, placeholder: placeholder)
+                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
+        }
     }
 }
 
@@ -42,6 +36,8 @@ struct UITextViewWrapper: UIViewRepresentable {
     private let radius: CGFloat = 16
     @Binding var text: String
     @Binding var isWrite: Bool
+    @Binding var isFocused: Bool
+    let placeholder: String
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -49,15 +45,12 @@ struct UITextViewWrapper: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
-        textView.textColor = UIColor(named: "grayscale_1")
+        textView.text = placeholder
+        textView.textColor = UIColor(named: "grayscale_4")
         textView.font = Font.uhBeeCustom(20, weight: .bold)
         textView.delegate = context.coordinator
-        textView.backgroundColor = UIColor(named: "beige_2")
-        textView.layer.cornerRadius = radius
-        textView.layer.borderWidth = 1
-        textView.layer.borderColor = UIColor(named: "beige_3")?.cgColor
+        textView.backgroundColor = .clear
         textView.autocorrectionType = .no
-        textView.contentInset = .init(top: 12, left: 16, bottom: 12, right: 16)
         return textView
     }
     
@@ -77,15 +70,21 @@ struct UITextViewWrapper: UIViewRepresentable {
         }
 
         func textViewDidBeginEditing(_ textView: UITextView) {
-            textView.layer.borderWidth = 2
-            textView.layer.borderColor = UIColor(named: "grayscale_2")?.cgColor
+            if textView.text == parent.placeholder {
+                textView.text = ""
+                textView.textColor = UIColor(named: "grayscale_1")
+            }
             parent.isWrite = true
+            parent.isFocused = true
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {
-            textView.layer.borderWidth = 1
-            textView.layer.borderColor = UIColor(named: "beige_3")?.cgColor
+            if textView.text == "" {
+                textView.textColor = UIColor(named: "grayscale_4")
+                textView.text = parent.placeholder
+            }
             parent.isWrite = false
+            parent.isFocused = false
         }
     }
 }

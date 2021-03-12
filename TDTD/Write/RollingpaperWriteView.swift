@@ -48,10 +48,12 @@ struct RollingpaperWriteView: View {
     @ViewBuilder
     private func writeBodyView(type: WriteMode) -> some View {
         if type == .text {
-            FocusTextView(text: Binding(get: { (viewModel.model.message ?? "") },
-                                        set: { viewModel.model.message = $0 }),
-                          isWrite: $isWrite,
-                          placeholder: "남기고 싶은 말을 써주세요!")
+            ZStack {
+                FocusTextView(text: Binding(get: { (viewModel.model.message ?? "") },
+                                            set: { viewModel.model.message = $0 }),
+                              isWrite: $isWrite,
+                              placeholder: "남기고 싶은 말을 써주세요!")
+            }.frame(height: 184)
         } else {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)

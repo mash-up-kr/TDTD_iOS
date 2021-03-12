@@ -73,7 +73,7 @@ final class RollingpaperWriteViewModel: ObservableObject {
         
         // FIXME: - 디버그용 추후 삭제 해야해용
         $model.sink {
-            print($0)
+            Log($0)
         }
         .store(in: &cancelBag)
     }
@@ -168,7 +168,7 @@ extension RollingpaperWriteViewModel {
         APIRequest.shared.requestWriteComment(roomCode: roomCode, data: model.multipartData)
             .replaceError(with: Response(statusCode: -1, data: Data()))
             .sink {
-                print($0)
+                Log($0)
             }
             .store(in: &cancelBag)
     }
