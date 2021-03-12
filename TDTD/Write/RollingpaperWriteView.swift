@@ -14,6 +14,7 @@ struct RollingpaperWriteView: View {
     private let verticalPadding: CGFloat = 24
     @State private var isShowToast: Bool = false
     @State private var toastMessage: String = ""
+    @State private var isWrite: Bool = false
     
     var body: some View {
         ZStack {
@@ -22,6 +23,7 @@ struct RollingpaperWriteView: View {
                 VStack {
                     TextFieldFormItem(text: Binding(get: { (viewModel.model.nickname ?? "") },
                                                     set: { viewModel.model.nickname = $0 }),
+                                      isWrite: $isWrite,
                                       title: "닉네임",
                                       max: 12,
                                       placeholder: "닉네임을 입력해주세요")
@@ -40,7 +42,7 @@ struct RollingpaperWriteView: View {
             .padding(.vertical, verticalPadding)
             .toast(isShowing: $isShowToast, title: Text(toastMessage), hideAfter: 3)
             .hideKeyboard()
-        }.environmentObject(viewModel)
+        }
     }
     
     @ViewBuilder
@@ -48,6 +50,7 @@ struct RollingpaperWriteView: View {
         if type == .text {
             FocusTextView(text: Binding(get: { (viewModel.model.message ?? "") },
                                         set: { viewModel.model.message = $0 }),
+                          isWrite: $isWrite,
                           placeholder: "남기고 싶은 말을 써주세요!")
         } else {
             ZStack {
@@ -102,7 +105,7 @@ struct RollingpaperWriteView: View {
     
     @ViewBuilder
     private func bannerView() -> some View {
-        if !viewModel.isEditing {
+        if !isWrite {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color("beige_3"))
                 .overlay(

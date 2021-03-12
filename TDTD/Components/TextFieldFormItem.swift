@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TextFieldFormItem: View {
     @Binding var text: String
-    @State var textCount: Int = 0
+    @Binding var isWrite: Bool
+    @State private var textCount: Int = 0
     let title: String
     let max: Int
     let placeholder: String
@@ -24,7 +25,7 @@ struct TextFieldFormItem: View {
                 }, set: { _ in
                 }))
             }
-            FocusTextFieldView(text: self.$text, title: title, max: max, placeholder: placeholder)
+            FocusTextFieldView(text: self.$text, isWrite: $isWrite, title: title, max: max, placeholder: placeholder)
         }.onChange(of: self.text, perform: { value in
             self.textCount = value.count
             if value.count > self.max {

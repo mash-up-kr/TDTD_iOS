@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct FocusTextFieldView: View {
-    @EnvironmentObject var viewModel: RollingpaperWriteViewModel
     @Binding var text: String
-    @State var isFocused: Bool = false
+    @State private var isFocused: Bool = false
+    @Binding var isWrite: Bool
     let title: String
     let max: Int
     let placeholder: String
@@ -25,7 +25,7 @@ struct FocusTextFieldView: View {
             TextField(self.placeholder, text: self.$text
                       , onEditingChanged: { isEditing in
                         self.isFocused = isEditing
-                        viewModel.isEditing = isEditing
+                        self.isWrite = isEditing
             })
                 .padding(.vertical, verticalPadding)
                 .padding(.horizontal, horizontalPadding)

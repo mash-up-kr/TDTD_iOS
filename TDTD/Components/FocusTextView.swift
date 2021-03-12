@@ -12,10 +12,12 @@ struct FocusTextView: View {
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 12
     @Binding var text: String
+    @Binding var isWrite: Bool
+    
     let placeholder: String
     
     var body: some View {
-        UITextViewWrapper(text: $text)
+        UITextViewWrapper(text: $text, isWrite: $isWrite)
             .frame(height: 184)
             .overlay(
                 ZStack {
@@ -32,14 +34,14 @@ struct FocusTextView: View {
 
 struct FocusTextView_Previews: PreviewProvider {
     static var previews: some View {
-        FocusTextView(text: Binding.constant(""), placeholder: "남기고 싶은 말을 써주세요!")
+        FocusTextView(text: Binding.constant(""), isWrite: Binding.constant(true), placeholder: "남기고 싶은 말을 써주세요!")
     }
 }
 
 struct UITextViewWrapper: UIViewRepresentable {
-    @EnvironmentObject var viewModel: RollingpaperWriteViewModel
     private let radius: CGFloat = 16
     @Binding var text: String
+    @Binding var isWrite: Bool
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -77,13 +79,13 @@ struct UITextViewWrapper: UIViewRepresentable {
         func textViewDidBeginEditing(_ textView: UITextView) {
             textView.layer.borderWidth = 2
             textView.layer.borderColor = UIColor(named: "grayscale_2")?.cgColor
-            parent.viewModel.isEditing = true
+            parent.isWrite = true
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {
             textView.layer.borderWidth = 1
             textView.layer.borderColor = UIColor(named: "beige_3")?.cgColor
-            parent.viewModel.isEditing = false
+            parent.isWrite = false
         }
     }
 }

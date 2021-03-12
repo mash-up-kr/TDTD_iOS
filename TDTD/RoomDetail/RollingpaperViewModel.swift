@@ -18,7 +18,6 @@ final class RollingpaperViewModel: ObservableObject {
     var selectModel: RollingpaperModel {
         models[selectIndex!]
     }
-    var cancellable: AnyCancellable?
     var mode: WriteMode
     let roomCode: String
     
@@ -26,9 +25,6 @@ final class RollingpaperViewModel: ObservableObject {
         self.roomCode = roomCode
         self.mode = mode
         testData()
-        cancellable = self.$isRemoveRollingpaper.sink {
-            print($0)
-        }
     }
 }
 

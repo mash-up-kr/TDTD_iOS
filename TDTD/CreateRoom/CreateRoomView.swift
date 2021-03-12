@@ -11,6 +11,7 @@ import SwiftUI
 struct CreateRoomView: View {
 
     @StateObject var viewModel: CreateRoomViewModel
+    @State private var isWrite: Bool = false
     
     var body: some View {
         ZStack {
@@ -22,7 +23,9 @@ struct CreateRoomView: View {
                     self.viewModel.title
                 }, set: {
                     self.viewModel.title = $0
-                }), title: "롤링페이퍼 방 이름", max: 35, placeholder: "방 이름을 적어주세요")
+                }),
+                isWrite: $isWrite,
+                title: "롤링페이퍼 방 이름", max: 35, placeholder: "방 이름을 적어주세요")
                     .padding(.bottom, 32)
                 SelectRoomTypeView()
                 Spacer()
