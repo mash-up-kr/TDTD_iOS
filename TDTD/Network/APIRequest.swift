@@ -59,5 +59,9 @@ extension APIRequest {
     func requestBookmark(roomCode: String, delete: Bool) -> Future<Response, Error> {
         request(.requestBookmark(roomCode: roomCode, delete: delete))
     }
+    
+    func requestRoomDetail(roomCode: String) -> Future<Response, Error> {
+        request(.requestRoomDetail(roomCode: roomCode))
+    }
 }
 
