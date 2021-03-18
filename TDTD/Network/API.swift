@@ -13,6 +13,7 @@ enum API {
     case requestJoinRoom(roomCode: String)
     case requestMakeRoom(title: String, type: RoomType)
     case requestWriteComment(roomCode: String, data: [MultipartFormData])
+    case requestBookmark(roomCode: String, delete: Bool)
 }
 
 extension API: TargetType {
@@ -25,7 +26,9 @@ extension API: TargetType {
         case .requestMakeRoom:
             return "/api/v1/rooms"
         case let .requestWriteComment(roomCode, _):
-            return "api/v1/comments/\(roomCode)"
+            return "/api/v1/comments/\(roomCode)"
+        case let .requestBookmark(roomCode, _):
+            return "/api/v1/bookmarks/\(roomCode)"
         }
     }
     
@@ -39,6 +42,8 @@ extension API: TargetType {
             return .post
         case .requestWriteComment:
             return .post
+        case let .requestBookmark(_, delete):
+            return delete ? .delete : .post
         }
     }
     
@@ -60,6 +65,9 @@ extension API: TargetType {
             
         case let .requestWriteComment(_, data):
             return .uploadMultipart(data)
+            
+        case .requestBookmark:
+            return .requestPlain
         }
     }
 }

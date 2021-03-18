@@ -55,5 +55,9 @@ extension APIRequest {
     func requestWriteComment(roomCode: String, data: [MultipartFormData]) -> Future<Response, Error> {
         request(.requestWriteComment(roomCode: roomCode, data: data))
     }
+    
+    func requestBookmark(roomCode: String, delete: Bool) -> Future<Response, Error> {
+        request(.requestBookmark(roomCode: roomCode, delete: delete))
+    }
 }
 

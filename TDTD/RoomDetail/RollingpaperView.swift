@@ -180,25 +180,20 @@ struct RollingpaperView: View {
                 Spacer()
                 VStack {
                     Button(action: {
-                        print("즐겨찾기!")
+                        viewModel.requestBookmark(delete: viewModel.isBookmark)
                     }, label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 18)
-                                .fill(Color("beige_2"))
-                            RoundedRectangle(cornerRadius: 18)
-                                .stroke(Color("beige_3"), lineWidth: 1)
-                            Image("icfavorties_off_32")
-                        }.frame(width: 56, height: 56)
+                        viewModel.isBookmark ? Image("img_favorite_active") : Image("img_favorite_default")
                     })
+                    .frame(width: 56, height: 56)
                     Spacer().frame(height: 24)
                     Button(action: {
                         isPresentWriteView = true
                     }, label: {
                         RoundedRectangle(cornerRadius: 18)
                             .fill(Color("grayscale_1"))
-                            .frame(width: 56, height: 56)
                             .overlay(Image("ic_write_32"))
                     })
+                    .frame(width: 56, height: 56)
                 }
             }
             .padding(.trailing, 16)

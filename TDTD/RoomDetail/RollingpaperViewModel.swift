@@ -13,18 +13,30 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var isRemoveRollingpaper: Bool = false
     @Published var isReportRollingpaper: Bool = false
     @Published var isPresentPlayer: Bool = false
-    
+    @Published var isBookmark: Bool = false
     var selectIndex: Int?
     var selectModel: RollingpaperModel {
         models[selectIndex!]
     }
     var mode: WriteMode
     let roomCode: String
+    private var requestBookmarkCancellable: AnyCancellable?
     
     init(roomCode: String, mode: WriteMode) {
         self.roomCode = roomCode
         self.mode = mode
         testData()
+    }
+    
+    func requestBookmark(delete: Bool = false) {
+        requestBookmarkCancellable?.cancel()
+        requestBookmarkCancellable = APIRequest.shared.requestBookmark(roomCode: roomCode, delete: delete)
+            .replaceError(with: .init(statusCode: -1, data: Data()))
+            .sink { response in
+                if response.statusCode == 200 {
+                    self.isBookmark = !self.isBookmark
+                }
+            }
     }
 }
 
