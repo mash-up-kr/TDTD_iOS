@@ -192,9 +192,7 @@ struct RollingpaperView: View {
                     })
                     Spacer().frame(height: 24)
                     Button(action: {
-                        withAnimation(.spring()) {
-                            isPresentWriteView = true
-                        }
+                        isPresentWriteView = true
                     }, label: {
                         RoundedRectangle(cornerRadius: 18)
                             .fill(Color("grayscale_1"))

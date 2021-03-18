@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 
 struct RollingpaperWriteView: View {
-    @ObservedObject var viewModel: RollingpaperWriteViewModel
+    @StateObject var viewModel: RollingpaperWriteViewModel
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 24
     @State private var isShowToast: Bool = false
