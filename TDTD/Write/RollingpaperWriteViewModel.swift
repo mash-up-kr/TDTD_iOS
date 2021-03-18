@@ -12,21 +12,20 @@ import Moya
 enum RecordStatus {
     case none, record, end, play, pause
 }
-enum WriteMode: String {
-    case text = "TEXT"
-    case voice = "VOICE"
-}
+
 final class RollingpaperWriteViewModel: ObservableObject {
     @Published var model: RollingpaperWriteModel
     @Published var recordStatus: RecordStatus = .none
     private let roomCode: String
     
     var subTitle: String {
-        switch model.mode {
+        switch model.roomType {
         case .text:
             return "남기고 싶은 말을 써주세요!"
         case .voice:
             return "남기고 싶은 말을 속삭여주세요!"
+        case .none:
+            return ""
         }
     }
     
@@ -66,9 +65,9 @@ final class RollingpaperWriteViewModel: ObservableObject {
     private var cancelBag = Set<AnyCancellable>()
     
     // MARK: - 방생성 직후 룸접근
-    init(roomCode: String, mode: WriteMode) {
+    init(roomCode: String, roomType: RoomType) {
         self.roomCode = roomCode
-        model = RollingpaperWriteModel(mode: mode)
+        model = RollingpaperWriteModel(roomType: roomType)
         RecordManager.shared.delegate = self
         
         // FIXME: - 디버그용 추후 삭제 해야해용

@@ -58,13 +58,13 @@ struct PlayerView: View {
                     })
                 }
                 Spacer().frame(height: 20)
-                playerViewWithType(roomType: viewModel.selectModel.roomType)
+                playerViewWithType(roomType: viewModel.roomType)
             }
             .padding(.top, 24)
             .padding(.bottom, 34)
             .padding(.horizontal, 24)
         }
-        .frame(height: viewModel.selectModel.roomType == .voice ? 202 : 290)
+        .frame(height: viewModel.roomType == .voice ? 202 : 290)
         .cornerRadius(radius: 24, cornerStyle: [.topLeft, .topRight])
         .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 6)
     }

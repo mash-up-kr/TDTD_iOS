@@ -11,8 +11,6 @@ struct RollingpaperView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel: RollingpaperViewModel
     @State private var isPresentWriteView: Bool = false
-    // FIXME: - 추후 통신후 호스트 변수위치 수정가능
-    @State private var isHost: Bool = true
     // FIXME: - 추후 방만들기 직후 변수위치 수정가능
     @State private var isMakeRoom: Bool = false
     @State private var isPresentHostOptionView: Bool = false
@@ -49,7 +47,7 @@ struct RollingpaperView: View {
             }),
             trailing: Button(action: {
                 print("방 나가기!")
-                if isHost {
+                if viewModel.isHost {
                     withAnimation(.spring()) {
                         isPresentHostOptionView = true
                     }
@@ -57,7 +55,7 @@ struct RollingpaperView: View {
                     
                 }
             }, label: {
-                if isHost {
+                if viewModel.isHost {
                     NavigationItemView(name: "ic_more_24")
                 } else {
                     NavigationItemView(name: "ic_leave_24")
@@ -67,10 +65,13 @@ struct RollingpaperView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("버튼 타이틀 간격 방제목")
             .sheet(isPresented: $isPresentWriteView) {
-                RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode, mode: viewModel.mode))
+                RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode, roomType: viewModel.roomType))
+            }
+            .navigationBarHidden(viewModel.isReportRollingpaper || viewModel.isRemoveRollingpaper)
+            .onAppear {
+                viewModel.requestRoomDetailInfo()
             }
             alertView()
-            .navigationBarHidden(viewModel.isReportRollingpaper || viewModel.isRemoveRollingpaper)
         }
     }
     
@@ -107,7 +108,7 @@ struct RollingpaperView: View {
     
     @ViewBuilder
     private func emptyView() -> some View {
-        if isHost {
+        if viewModel.isHost {
             if isMakeRoom {
                 VStack(spacing: 24) {
                     PlaceholderView(text: "오른쪽 상단 더보기 버튼을 눌러서\n초대링크를 보낼수있어요!")
@@ -281,29 +282,51 @@ struct RollingpaperView: View {
 
 struct RollingpaperView_Previews: PreviewProvider {
     static var previews: some View {
-        RollingpaperView(viewModel: RollingpaperViewModel(roomCode: "1", mode: .text))
+        RollingpaperView(viewModel: RollingpaperViewModel(roomCode: "1", roomType: .text))
     }
 }
 
 enum CharacterAsset {
-    case normal(color: CharacterAsset.Color), select(color: CharacterAsset.Color)
+    case normal(color: CharacterAsset.Color)
+    case select(color: CharacterAsset.Color)
     
     enum Color: String, CaseIterable {
-        case red = "img_character_1_center_"
-        case yellow = "img_character_2_center_"
-        case green = "img_character_3_center_"
-        case blue = "img_character_4_center_"
-        case lavender = "img_character_5_center_"
-        case lightPink = "img_character_6_center_"
-        case lightGreen = "img_character_7_center_"
+        case red = "RED"
+        case yellow = "YELLOW"
+        case green = "GREEN"
+        case blue = "BLUE"
+        case lavender = "LAVENDER"
+        case lightPink = "LIGHT_PINK"
+        case lightGreen = "LIGHT_GREEN"
     }
     
     var image: Image {
         switch self {
         case .normal(let color):
-            return Image("\(color.rawValue)default")
+            let assetString = imageString(color)
+             return Image("\(assetString)default")
         case .select(let color):
-            return Image("\(color.rawValue)select")
+            let assetString = imageString(color)
+            return  Image("\(assetString)select")
+        }
+    }
+    
+    private func imageString(_ color: CharacterAsset.Color) -> String {
+        switch color {
+        case .red:
+            return "img_character_1_center_"
+        case .yellow:
+            return "img_character_2_center_"
+        case .green:
+            return "img_character_3_center_"
+        case .blue:
+            return "img_character_4_center_"
+        case .lavender:
+            return "img_character_5_center_"
+        case .lightPink:
+            return "img_character_6_center_"
+        case .lightGreen:
+            return "img_character_7_center_"
         }
     }
     

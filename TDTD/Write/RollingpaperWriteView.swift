@@ -32,7 +32,7 @@ struct RollingpaperWriteView: View {
                         SubTitle(text: viewModel.subTitle)
                         Spacer()
                     }
-                    writeBodyView(type: viewModel.model.mode)
+                    writeBodyView(type: viewModel.model.roomType)
                 }
                 Spacer()
                 bannerView()
@@ -46,7 +46,7 @@ struct RollingpaperWriteView: View {
     }
     
     @ViewBuilder
-    private func writeBodyView(type: WriteMode) -> some View {
+    private func writeBodyView(type: RoomType) -> some View {
         if type == .text {
             ZStack {
                 FocusTextView(text: Binding(get: { (viewModel.model.message ?? "") },
@@ -131,7 +131,7 @@ struct RollingpaperWriteView: View {
                     toastMessage = "닉네임을 입력해주세요!"
                     isShowToast = true
                 } else if viewModel.model.isEmptyData {
-                    if viewModel.model.mode == .text {
+                    if viewModel.model.roomType == .text {
                         toastMessage = "남기고 싶은 말을 써주세요!"
                     } else {
                         toastMessage = "남기고 싶은 말을 속삭여주세요!"
@@ -153,6 +153,6 @@ struct RollingpaperWriteView: View {
 
 struct RollingpagerWriteView_Previews: PreviewProvider {
     static var previews: some View {
-        RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: "1", mode: .text))
+        RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: "1", roomType: .text))
     }
 }
