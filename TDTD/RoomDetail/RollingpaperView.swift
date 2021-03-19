@@ -30,6 +30,13 @@ struct RollingpaperView: View {
             return CharacterAsset.normal(color: CharacterAsset.randomColor).image
         }
     }
+    func imageColor(color: CharacterAsset.Color, isSelect: Bool) -> Image {
+        if isSelect {
+            return CharacterAsset.select(color: color).image
+        } else {
+            return CharacterAsset.normal(color: color).image
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -87,7 +94,8 @@ struct RollingpaperView: View {
                                GridItem(.flexible())]
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(viewModel.models.indices, id: \.self) { index in
-                        randomImage(isSelect: false)
+                        let isSelect = viewModel.isPresentPlayer ? viewModel.selectIndex == index : false
+                        imageColor(color: viewModel.models[index].stickerColor, isSelect: isSelect)
                             .onTapGesture {
                                 if !viewModel.isPresentPlayer {
                                     viewModel.selectIndex = index
