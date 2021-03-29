@@ -14,6 +14,7 @@ struct RollingpaperView: View {
     // FIXME: - 추후 방만들기 직후 변수위치 수정가능
     @State private var isMakeRoom: Bool = false
     @State private var isPresentHostOptionView: Bool = false
+    @State private var isRequestErrorAlert: Bool = false
     var randomHorizontalSpacing: CGFloat {
         CGFloat(Int.random(in: -15...16))
     }
@@ -53,7 +54,7 @@ struct RollingpaperView: View {
                 NavigationItemView(name: "ic_arrow_left_24")
             }),
             trailing: Button(action: {
-                print("방 나가기!")
+            print("방 나가기!")
                 if viewModel.isHost {
                     withAnimation(.spring()) {
                         isPresentHostOptionView = true
@@ -75,11 +76,26 @@ struct RollingpaperView: View {
                 RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode, roomType: viewModel.roomType))
             }
             .navigationBarHidden(viewModel.isReportRollingpaper || viewModel.isRemoveRollingpaper)
+            
             .onAppear {
                 viewModel.requestRoomDetailInfo()
             }
+            .onReceive(viewModel.$isRemoved) { isRemove in
+                if isRemove {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
+            .onReceive(viewModel.$isRequestErrorAlert) { isAlert in
+                if let isAlert = isAlert, isAlert {
+                    isRequestErrorAlert = true
+                }
+            }
+            .alert(isPresented: $isRequestErrorAlert) {
+                Alert(title: Text("통신 오류"), message: Text("알 수 없는 오류가\n발생했어요!"))
+            }
             alertView()
         }
+       
     }
     
     @ViewBuilder
@@ -251,6 +267,7 @@ struct RollingpaperView: View {
                             Spacer().frame(height: 8)
                             Button(action: {
                                 print("방 삭제")
+                                viewModel.requestRemoveRoom()
                             }, label: {
                                 HStack(spacing: 8) {
                                     Image("ic_trash_32")

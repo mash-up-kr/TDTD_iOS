@@ -63,5 +63,9 @@ extension APIRequest {
     func requestRoomDetail(roomCode: String) -> Future<Response, Error> {
         request(.requestRoomDetail(roomCode: roomCode))
     }
+    
+    func requestRemoveRoom(roomCode: String) -> Future<Response, Error> {
+        request(.requestRemoveRoom(roomCode: roomCode))
+    }
 }
 

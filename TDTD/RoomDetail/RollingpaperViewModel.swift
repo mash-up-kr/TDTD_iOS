@@ -17,12 +17,16 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var isHost: Bool = false
     @Published var roomType: RoomType = .none
     @Published var roomTitleText: String = ""
+    @Published var isRemoved: Bool = false
+    @Published var isRequestErrorAlert: Bool?
+    
     var selectIndex: Int?
     var selectModel: RollingpaperModel {
         models[selectIndex!]
     }
     let roomCode: String
     private var requestBookmarkCancellable: AnyCancellable?
+    private var requestRemoveRoomCancellable: AnyCancellable?
     private var cancelBag = Set<AnyCancellable>()
     private var shareURL: String = ""
     
@@ -61,7 +65,28 @@ final class RollingpaperViewModel: ObservableObject {
             .sink { response in
                 if response.statusCode == 200 {
                     self.isBookmark = !self.isBookmark
+                } else {
+                    self.isRequestErrorAlert = true
                 }
             }
+    }
+    
+    /// 관리자가 방을 삭제
+    func requestRemoveRoom() {
+        requestRemoveRoomCancellable?.cancel()
+        requestRemoveRoomCancellable = APIRequest.shared.requestRemoveRoom(roomCode: roomCode)
+            .replaceError(with: .init(statusCode: -1, data: Data()))
+            .sink { [weak self] response in
+                if response.statusCode == 200 {
+                    self?.isRemoved = true
+                } else {
+                    self?.isRequestErrorAlert = true
+                }
+            }
+    }
+    
+    /// 방 나가기
+    func requestExitRoom() {
+        
     }
 }
