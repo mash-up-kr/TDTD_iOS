@@ -15,6 +15,11 @@ struct RollingpaperView: View {
     @State private var isMakeRoom: Bool = false
     @State private var isPresentHostOptionView: Bool = false
     @State private var isRequestErrorAlert: Bool = false
+    @State private var isPresentExitRoomAlert: Bool = false
+    @State var isRemoveRollingpaper: Bool = false
+    @State var isReportRollingpaper: Bool = false
+    @State var isPresentPlayer: Bool = false
+    
     var randomHorizontalSpacing: CGFloat {
         CGFloat(Int.random(in: -15...16))
     }
@@ -39,6 +44,10 @@ struct RollingpaperView: View {
         }
     }
     
+    var isNaviBarHidden: Bool {
+        isReportRollingpaper || isRemoveRollingpaper || isPresentExitRoomAlert
+    }
+    
     var body: some View {
         ZStack {
             ZStack {
@@ -54,13 +63,12 @@ struct RollingpaperView: View {
                 NavigationItemView(name: "ic_arrow_left_24")
             }),
             trailing: Button(action: {
-            print("방 나가기!")
                 if viewModel.isHost {
                     withAnimation(.spring()) {
                         isPresentHostOptionView = true
                     }
                 } else {
-                    
+                    isPresentExitRoomAlert = true
                 }
             }, label: {
                 if viewModel.isHost {
@@ -75,8 +83,7 @@ struct RollingpaperView: View {
             .sheet(isPresented: $isPresentWriteView) {
                 RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode, roomType: viewModel.roomType))
             }
-            .navigationBarHidden(viewModel.isReportRollingpaper || viewModel.isRemoveRollingpaper)
-            
+            .navigationBarHidden(isNaviBarHidden)
             .onAppear {
                 viewModel.requestRoomDetailInfo()
             }
@@ -93,7 +100,8 @@ struct RollingpaperView: View {
             .alert(isPresented: $isRequestErrorAlert) {
                 Alert(title: Text("통신 오류"), message: Text("알 수 없는 오류가\n발생했어요!"))
             }
-            alertView()
+            playerOptionAlertView().ignoresSafeArea()
+            exitRoomAlert().ignoresSafeArea()
         }
        
     }
@@ -110,14 +118,14 @@ struct RollingpaperView: View {
                                GridItem(.flexible())]
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(viewModel.models.indices, id: \.self) { index in
-                        let isSelect = viewModel.isPresentPlayer ? viewModel.selectIndex == index : false
+                        let isSelect = isPresentPlayer ? viewModel.selectIndex == index : false
                         imageColor(color: viewModel.models[index].stickerColor, isSelect: isSelect)
                             .onTapGesture {
-                                if !viewModel.isPresentPlayer {
+                                if !isPresentPlayer {
                                     viewModel.selectIndex = index
                                 }
                                 withAnimation {
-                                    viewModel.isPresentPlayer.toggle()
+                                    isPresentPlayer.toggle()
                                 }
                             }
                             .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
@@ -156,10 +164,12 @@ struct RollingpaperView: View {
     
     @ViewBuilder
     private func playerView() -> some View {
-        if viewModel.isPresentPlayer {
+        if isPresentPlayer {
             VStack {
                 Spacer()
-                PlayerView()
+                PlayerView(isRemoveRollingpaper: $isRemoveRollingpaper,
+                           isReportRollingpaper: $isReportRollingpaper,
+                           isPresentPlayer: $isPresentPlayer)
                     .environmentObject(viewModel)
             }
             .transition(.move(edge: .bottom))
@@ -168,32 +178,65 @@ struct RollingpaperView: View {
     }
     
     @ViewBuilder
-    private func alertView() -> some View {
-        if viewModel.isReportRollingpaper {
+    private func playerOptionAlertView() -> some View {
+        if isReportRollingpaper {
             AlertView(title: "답장 신고하기",
-                      msg: "정말 답장을 신고하시겠어요?🚨",
+                      msg: "답장을 신고하시겠어요?🚨",
                       leftTitle: "신고할래요",
                       leftAction: {
                         print("신고!")
-                        viewModel.isReportRollingpaper = false
+                        isReportRollingpaper = false
                       },
                       rightTitle: "안할래요!",
                       rightAction: {
-                        viewModel.isReportRollingpaper = false
+                        isReportRollingpaper = false
                       })
         }
-        if viewModel.isRemoveRollingpaper {
+        if isRemoveRollingpaper {
             AlertView(title: "답장 삭제하기",
                       msg: "정말 답장을 삭제하시겠어요?😭",
                       leftTitle: "삭제할래요",
                       leftAction: {
                         print("삭제!")
-                        viewModel.isRemoveRollingpaper = false
+                        isRemoveRollingpaper = false
                       },
                       rightTitle: "안할래요!",
                       rightAction: {
-                        viewModel.isRemoveRollingpaper = false
+                        isRemoveRollingpaper = false
                       })
+        }
+    }
+    
+    @ViewBuilder
+    private func exitRoomAlert() -> some View {
+        if isPresentExitRoomAlert {
+            if viewModel.isHost {
+                AlertView(title: "방 삭제하기",
+                          msg: "정말 롤링페이퍼 방을 삭제하시겠어요?😭",
+                          leftTitle: "방 삭제하기",
+                          leftAction: {
+                            viewModel.requestExitRoom()
+                            isPresentExitRoomAlert = false
+                          },
+                          rightTitle: "안할래요!",
+                          rightAction: {
+                            isPresentExitRoomAlert = false
+                          }
+                )
+            } else {
+                AlertView(title: "방 나가기",
+                          msg: "정말 롤링페이퍼 방을 나가시겠어요?😭",
+                          leftTitle: "방나가기",
+                          leftAction: {
+                            viewModel.requestExitRoom()
+                            isPresentExitRoomAlert = false
+                          },
+                          rightTitle: "안나갈래요!",
+                          rightAction: {
+                            isPresentExitRoomAlert = false
+                          }
+                )
+            }
         }
     }
     
@@ -266,8 +309,7 @@ struct RollingpaperView: View {
                             .frame(height: 48)
                             Spacer().frame(height: 8)
                             Button(action: {
-                                print("방 삭제")
-                                viewModel.requestRemoveRoom()
+                                isPresentExitRoomAlert = true
                             }, label: {
                                 HStack(spacing: 8) {
                                     Image("ic_trash_32")
@@ -282,7 +324,6 @@ struct RollingpaperView: View {
                             .frame(height: 48)
                             Spacer().frame(height: 16)
                             Button(action: {
-                                print("닫기")
                                 withAnimation(.spring()) {
                                     isPresentHostOptionView = false
                                 }

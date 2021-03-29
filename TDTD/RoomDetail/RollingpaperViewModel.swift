@@ -10,9 +10,7 @@ import Combine
 
 final class RollingpaperViewModel: ObservableObject {
     @Published private(set) var models: [RollingpaperModel] = []
-    @Published var isRemoveRollingpaper: Bool = false
-    @Published var isReportRollingpaper: Bool = false
-    @Published var isPresentPlayer: Bool = false
+    
     @Published var isBookmark: Bool = false
     @Published var isHost: Bool = false
     @Published var roomType: RoomType = .none
@@ -87,6 +85,15 @@ final class RollingpaperViewModel: ObservableObject {
     
     /// 방 나가기
     func requestExitRoom() {
-        
+        requestRemoveRoomCancellable?.cancel()
+        requestRemoveRoomCancellable = APIRequest.shared.requestExitRoom(roomCode: roomCode)
+            .replaceError(with: .init(statusCode: -1, data: Data()))
+            .sink { [weak self] response in
+                if response.statusCode == 200 {
+                    self?.isRemoved = true
+                } else {
+                    self?.isRequestErrorAlert = true
+                }
+            }
     }
 }

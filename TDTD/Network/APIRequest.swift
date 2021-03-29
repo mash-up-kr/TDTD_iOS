@@ -67,5 +67,9 @@ extension APIRequest {
     func requestRemoveRoom(roomCode: String) -> Future<Response, Error> {
         request(.requestRemoveRoom(roomCode: roomCode))
     }
+    
+    func requestExitRoom(roomCode: String) -> Future<Response, Error> {
+        request(.requestExitRoom(roomCode: roomCode))
+    }
 }
 

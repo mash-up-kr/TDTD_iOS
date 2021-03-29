@@ -11,6 +11,9 @@ struct PlayerView: View {
     @EnvironmentObject var viewModel: RollingpaperViewModel
     @State private var processValue: Float = 0.3
     @State private var isPlay: Bool = false
+    @Binding var isRemoveRollingpaper: Bool
+    @Binding var isReportRollingpaper: Bool
+    @Binding var isPresentPlayer: Bool
     
     var body: some View {
         ZStack {
@@ -32,7 +35,7 @@ struct PlayerView: View {
                     if !viewModel.selectModel.isMine {
                         Button(action: {
                             withAnimation {
-                                viewModel.isReportRollingpaper = true
+                                isReportRollingpaper = true
                             }
                         }, label: {
                             Image("ic_report_24")
@@ -42,7 +45,7 @@ struct PlayerView: View {
                     if viewModel.selectModel.isMine {
                         Button(action: {
                             withAnimation {
-                                viewModel.isRemoveRollingpaper = true
+                                isRemoveRollingpaper = true
                             }
                         }, label: {
                             Image("ic_remove_24")
@@ -51,7 +54,7 @@ struct PlayerView: View {
                     }
                     Button(action: {
                         withAnimation {
-                            viewModel.isPresentPlayer = false
+                            isPresentPlayer = false
                         }
                     }, label: {
                         Image("ic_close_24")
@@ -118,12 +121,5 @@ struct PlayerView: View {
             }
         }
         .frame(height: roomType == .voice ? 96 : 184)
-    }
-}
-
-
-struct PlayerView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayerView()
     }
 }

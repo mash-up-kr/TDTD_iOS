@@ -16,6 +16,7 @@ enum API {
     case requestBookmark(roomCode: String, delete: Bool)
     case requestRoomDetail(roomCode: String)
     case requestRemoveRoom(roomCode: String)
+    case requestExitRoom(roomCode: String)
 }
 
 extension API: TargetType {
@@ -35,6 +36,8 @@ extension API: TargetType {
             return "/api/v1/rooms/\(roomCode)"
         case let .requestRemoveRoom(roomCode):
             return "/api/v1/host/rooms/\(roomCode)"
+        case let .requestExitRoom(roomCode):
+            return "/api/v1/users/\(roomCode)"
         }
     }
     
@@ -53,6 +56,8 @@ extension API: TargetType {
         case .requestRoomDetail:
             return .get
         case .requestRemoveRoom:
+            return .delete
+        case .requestExitRoom:
             return .delete
         }
     }
@@ -83,6 +88,9 @@ extension API: TargetType {
             return .requestPlain
             
         case .requestRemoveRoom:
+            return .requestPlain
+            
+        case .requestExitRoom:
             return .requestPlain
         }
     }
