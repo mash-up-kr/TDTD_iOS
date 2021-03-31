@@ -27,7 +27,7 @@ final class RollingpaperViewModel: ObservableObject {
     private var requestBookmarkCancellable: AnyCancellable?
     private var requestRemoveRoomCancellable: AnyCancellable?
     private var requestReportCancellable: AnyCancellable?
-    private var requestRemoveCommentFromUserCancellable: AnyCancellable?
+    private var requestRemoveCommentCancellable: AnyCancellable?
     private var cancelBag = Set<AnyCancellable>()
     private var shareURL: String = ""
     
@@ -117,6 +117,7 @@ final class RollingpaperViewModel: ObservableObject {
     func requestRemoveComment() {
         if isHost {
             Log("관리자가 삭제")
+            requestRemoveCommentFromHost()
         } else {
             Log("유저가 삭제")
             requestRemoveCommentFromUser()
@@ -126,8 +127,22 @@ final class RollingpaperViewModel: ObservableObject {
     /// 자신게시물 삭제
     func requestRemoveCommentFromUser() {
         let id = selectModel.id
-        requestRemoveCommentFromUserCancellable?.cancel()
-        requestRemoveCommentFromUserCancellable = APIRequest.shared.requestRemoveCommentFromUser(commentId: id)
+        requestRemoveCommentCancellable?.cancel()
+        requestRemoveCommentCancellable = APIRequest.shared.requestRemoveCommentFromUser(commentId: id)
+            .replaceError(with: .init(statusCode: -1, data: Data()))
+            .sink { [weak self] response in
+                if response.statusCode == 200 {
+                    self?.removeModel(id: id)
+                    self?.isCommentRemoved = true
+                }
+            }
+    }
+
+    /// 관리자가 게시물 삭제
+    func requestRemoveCommentFromHost() {
+        let id = selectModel.id
+        requestRemoveCommentCancellable?.cancel()
+        requestRemoveCommentCancellable = APIRequest.shared.requestRemoveCommentFromHost(commentId: id)
             .replaceError(with: .init(statusCode: -1, data: Data()))
             .sink { [weak self] response in
                 if response.statusCode == 200 {

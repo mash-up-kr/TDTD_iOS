@@ -19,6 +19,7 @@ enum API {
     case requestExitRoom(roomCode: String)
     case requestReport(commentId: Int)
     case requestRemoveCommentFromUser(commentId: Int)
+    case requestRemoveCommentFromHost(commentId: Int)
 }
 
 extension API: TargetType {
@@ -43,7 +44,9 @@ extension API: TargetType {
         case let .requestReport(commentId):
             return "/api/v1/reports/\(commentId)"
         case let .requestRemoveCommentFromUser(commentId):
-        return "/api/v1/comments/\(commentId)"
+            return "/api/v1/comments/\(commentId)"
+        case let .requestRemoveCommentFromHost(commentId):
+            return "/api/v1/host/comments/\(commentId)"
         }
     }
     
@@ -51,7 +54,6 @@ extension API: TargetType {
         switch self {
         case .requestRooms:
             return .get
-            
         case .requestJoinRoom,
              .requestMakeRoom:
             return .post
@@ -68,6 +70,8 @@ extension API: TargetType {
         case .requestReport:
             return .post
         case .requestRemoveCommentFromUser:
+            return .delete
+        case .requestRemoveCommentFromHost:
             return .delete
         }
     }
@@ -107,6 +111,9 @@ extension API: TargetType {
             return .requestPlain
         
         case .requestRemoveCommentFromUser:
+            return .requestPlain
+            
+        case .requestRemoveCommentFromHost:
             return .requestPlain
         }
     }
