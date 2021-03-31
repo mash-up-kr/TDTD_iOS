@@ -26,6 +26,7 @@ final class RollingpaperViewModel: ObservableObject {
     private var requestBookmarkCancellable: AnyCancellable?
     private var requestRemoveRoomCancellable: AnyCancellable?
     private var requestReportCancellable: AnyCancellable?
+    private var requestRemoveCommentFromUserCancellable: AnyCancellable?
     private var cancelBag = Set<AnyCancellable>()
     private var shareURL: String = ""
     
@@ -110,5 +111,26 @@ final class RollingpaperViewModel: ObservableObject {
                     }
                 }
         }
+    }
+    
+    func requestRemoveComment() {
+        if isHost {
+            Log("관리자가 삭제")
+        } else {
+            Log("유저가 삭제")
+            requestRemoveCommentFromUser()
+        }
+    }
+    
+    /// 자신게시물 삭제
+    func requestRemoveCommentFromUser() {
+        requestRemoveCommentFromUserCancellable?.cancel()
+        requestRemoveCommentFromUserCancellable = APIRequest.shared.requestRemoveCommentFromUser(commentId: selectModel.id)
+            .replaceError(with: .init(statusCode: -1, data: Data()))
+            .sink { response in
+                if response.statusCode == 200 {
+                    Log("삭제완료")
+                }
+            }
     }
 }

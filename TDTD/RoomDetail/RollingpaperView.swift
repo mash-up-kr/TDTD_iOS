@@ -184,7 +184,6 @@ struct RollingpaperView: View {
                       msg: "답장을 신고하시겠어요?🚨",
                       leftTitle: "신고할래요",
                       leftAction: {
-                        print("신고!")
                         viewModel.requestReport()
                         isReportRollingpaper = false
                       },
@@ -198,7 +197,7 @@ struct RollingpaperView: View {
                       msg: "정말 답장을 삭제하시겠어요?😭",
                       leftTitle: "삭제할래요",
                       leftAction: {
-                        print("삭제!")
+                        viewModel.requestRemoveComment()
                         isRemoveRollingpaper = false
                       },
                       rightTitle: "안할래요!",

@@ -31,7 +31,6 @@ struct PlayerView: View {
                         )
                         .frame(height: 32)
                     Spacer()
-                    // TODO: - 추후 관리자인경우 모두 보이게 설정해야함
                     if !viewModel.selectModel.isMine {
                         Button(action: {
                             withAnimation {
@@ -42,7 +41,7 @@ struct PlayerView: View {
                         })
                         Spacer().frame(width: 16)
                     }
-                    if viewModel.selectModel.isMine {
+                    if viewModel.selectModel.isMine || viewModel.isHost {
                         Button(action: {
                             withAnimation {
                                 isRemoveRollingpaper = true

@@ -75,5 +75,9 @@ extension APIRequest {
     func requestReport(commentId: Int) -> Future<Response, Error> {
         request(.requestReport(commentId: commentId))
     }
+    
+    func requestRemoveCommentFromUser(commentId: Int) -> Future<Response, Error> {
+        request(.requestRemoveCommentFromUser(commentId: commentId))
+    }
 }
 
