@@ -71,5 +71,9 @@ extension APIRequest {
     func requestExitRoom(roomCode: String) -> Future<Response, Error> {
         request(.requestExitRoom(roomCode: roomCode))
     }
+    
+    func requestReport(commentId: Int) -> Future<Response, Error> {
+        request(.requestReport(commentId: commentId))
+    }
 }
 

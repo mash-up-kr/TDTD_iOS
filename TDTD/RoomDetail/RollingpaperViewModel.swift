@@ -25,6 +25,7 @@ final class RollingpaperViewModel: ObservableObject {
     let roomCode: String
     private var requestBookmarkCancellable: AnyCancellable?
     private var requestRemoveRoomCancellable: AnyCancellable?
+    private var requestReportCancellable: AnyCancellable?
     private var cancelBag = Set<AnyCancellable>()
     private var shareURL: String = ""
     
@@ -95,5 +96,19 @@ final class RollingpaperViewModel: ObservableObject {
                     self?.isRequestErrorAlert = true
                 }
             }
+    }
+    
+    /// 신고
+    func requestReport() {
+        if selectIndex != nil {
+            requestReportCancellable?.cancel()
+            requestReportCancellable = APIRequest.shared.requestReport(commentId: selectModel.id)
+                .replaceError(with: .init(statusCode: -1, data: Data()))
+                .sink { response in
+                    if response.statusCode == 200 {
+                        Log("신고완료")
+                    }
+                }
+        }
     }
 }

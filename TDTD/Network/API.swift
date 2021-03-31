@@ -17,6 +17,7 @@ enum API {
     case requestRoomDetail(roomCode: String)
     case requestRemoveRoom(roomCode: String)
     case requestExitRoom(roomCode: String)
+    case requestReport(commentId: Int)
 }
 
 extension API: TargetType {
@@ -38,6 +39,8 @@ extension API: TargetType {
             return "/api/v1/host/rooms/\(roomCode)"
         case let .requestExitRoom(roomCode):
             return "/api/v1/users/\(roomCode)"
+        case let .requestReport(commentId):
+            return "/api/v1/reports/\(commentId)"
         }
     }
     
@@ -59,6 +62,8 @@ extension API: TargetType {
             return .delete
         case .requestExitRoom:
             return .delete
+        case .requestReport:
+            return .post
         }
     }
     
@@ -91,6 +96,9 @@ extension API: TargetType {
             return .requestPlain
             
         case .requestExitRoom:
+            return .requestPlain
+            
+        case .requestReport:
             return .requestPlain
         }
     }

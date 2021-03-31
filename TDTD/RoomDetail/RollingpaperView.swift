@@ -185,6 +185,7 @@ struct RollingpaperView: View {
                       leftTitle: "신고할래요",
                       leftAction: {
                         print("신고!")
+                        viewModel.requestReport()
                         isReportRollingpaper = false
                       },
                       rightTitle: "안할래요!",
