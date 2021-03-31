@@ -15,8 +15,9 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var isHost: Bool = false
     @Published var roomType: RoomType = .none
     @Published var roomTitleText: String = ""
-    @Published var isRemoved: Bool = false
+    @Published var isRoomRemoved: Bool = false
     @Published var isRequestErrorAlert: Bool?
+    @Published var isCommentRemoved: Bool = false
     
     var selectIndex: Int?
     var selectModel: RollingpaperModel {
@@ -78,7 +79,7 @@ final class RollingpaperViewModel: ObservableObject {
             .replaceError(with: .init(statusCode: -1, data: Data()))
             .sink { [weak self] response in
                 if response.statusCode == 200 {
-                    self?.isRemoved = true
+                    self?.isRoomRemoved = true
                 } else {
                     self?.isRequestErrorAlert = true
                 }
@@ -92,7 +93,7 @@ final class RollingpaperViewModel: ObservableObject {
             .replaceError(with: .init(statusCode: -1, data: Data()))
             .sink { [weak self] response in
                 if response.statusCode == 200 {
-                    self?.isRemoved = true
+                    self?.isRoomRemoved = true
                 } else {
                     self?.isRequestErrorAlert = true
                 }
@@ -124,13 +125,22 @@ final class RollingpaperViewModel: ObservableObject {
     
     /// 자신게시물 삭제
     func requestRemoveCommentFromUser() {
+        let id = selectModel.id
         requestRemoveCommentFromUserCancellable?.cancel()
-        requestRemoveCommentFromUserCancellable = APIRequest.shared.requestRemoveCommentFromUser(commentId: selectModel.id)
+        requestRemoveCommentFromUserCancellable = APIRequest.shared.requestRemoveCommentFromUser(commentId: id)
             .replaceError(with: .init(statusCode: -1, data: Data()))
-            .sink { response in
+            .sink { [weak self] response in
                 if response.statusCode == 200 {
-                    Log("삭제완료")
+                    self?.removeModel(id: id)
+                    self?.isCommentRemoved = true
                 }
             }
+    }
+    
+    private func removeModel(id: Int) {
+        let index = models.firstIndex { $0.id == id }
+        if let index = index {
+            models.remove(at: index)
+        }
     }
 }

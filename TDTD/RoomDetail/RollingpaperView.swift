@@ -87,7 +87,7 @@ struct RollingpaperView: View {
             .onAppear {
                 viewModel.requestRoomDetailInfo()
             }
-            .onReceive(viewModel.$isRemoved) { isRemove in
+            .onReceive(viewModel.$isRoomRemoved) { isRemove in
                 if isRemove {
                     presentationMode.wrappedValue.dismiss()
                 }
@@ -95,6 +95,13 @@ struct RollingpaperView: View {
             .onReceive(viewModel.$isRequestErrorAlert) { isAlert in
                 if let isAlert = isAlert, isAlert {
                     isRequestErrorAlert = true
+                }
+            }
+            .onReceive(viewModel.$isCommentRemoved) { isRemoved in
+                if isRemoved {
+                    withAnimation {
+                        isPresentPlayer = false
+                    }
                 }
             }
             .alert(isPresented: $isRequestErrorAlert) {
