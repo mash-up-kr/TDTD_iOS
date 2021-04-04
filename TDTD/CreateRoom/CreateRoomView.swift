@@ -9,9 +9,10 @@ import SwiftUI
 
 
 struct CreateRoomView: View {
-
+    @EnvironmentObject var homeViewModel: HomeViewModel
     @StateObject var viewModel: CreateRoomViewModel
     @State private var isWrite: Bool = false
+    @Binding var presentCreatRoom: Bool
     
     var body: some View {
         ZStack {
@@ -35,6 +36,12 @@ struct CreateRoomView: View {
                 .buttonStyle(RoundButtonStyle(style: .dark))
             }
             .padding(16)
+            .onReceive(viewModel.$isCreated) {
+                if $0 {
+                    presentCreatRoom = false
+                    homeViewModel.roomCode = viewModel.newRoomCode
+                }
+            }
         }
         .environmentObject(viewModel)
     }

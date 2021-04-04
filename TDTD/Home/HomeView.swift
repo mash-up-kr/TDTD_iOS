@@ -12,6 +12,7 @@ struct HomeView: View {
     
     @State private var presentCreatRoom = false
     @State private var showFavoritesOnly = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     private var rooms: [RoomSummary] {
         Array(Set(viewModel.rooms.filter { roomSummary in
@@ -26,6 +27,13 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                if let roomCode = viewModel.roomCode {
+                    let newViewModel = RollingpaperViewModel(roomCode: roomCode)
+                    let newRollingPaperView = RollingpaperView(viewModel: newViewModel)
+                    NavigationLink(destination: newRollingPaperView, isActive: .constant(true)) {
+                        EmptyView()
+                    }
+                }
                 Rectangle()
                     .foregroundColor(Color("beige_1"))
                     .ignoresSafeArea()
@@ -59,14 +67,16 @@ struct HomeView: View {
             )
             .onAppear {
                 viewModel.requestRooms()
+                Log("onAppear")
             }
         }
         .sheet(isPresented: $presentCreatRoom, content: {
-            let viewModel = CreateRoomViewModel(isPresented: $presentCreatRoom) {
-                self.viewModel.roomCode = $0
-            }
-            CreateRoomView(viewModel: viewModel)
+            let viewModel = CreateRoomViewModel()
+            CreateRoomView(viewModel: viewModel,
+                           presentCreatRoom: $presentCreatRoom)
+                .environmentObject(self.viewModel)
         })
+        
     }
 }
 

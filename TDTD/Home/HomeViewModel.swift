@@ -10,8 +10,7 @@ import Combine
 
 final class HomeViewModel: ObservableObject {
     @Published var rooms = [RoomSummary]()
-    
-    @Published var roomCode: String? = ""
+    @Published var roomCode: String?
     private var bag = Set<AnyCancellable>()
 }
 

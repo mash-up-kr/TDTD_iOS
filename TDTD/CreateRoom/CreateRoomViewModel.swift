@@ -14,17 +14,11 @@ class CreateRoomViewModel: ObservableObject {
     
     @Published var type: RoomType = .none
     @Published var title: String = ""
-    @Binding var isPresented: Bool
+    @Published var isCreated: Bool = false
     
-    var isRoomCreated: ((String) -> Void)?
+    private var requestMakeRoomCancellable: AnyCancellable?
     
-    private var bag = Set<AnyCancellable>()
-    
-    init(isPresented: Binding<Bool>, isRoomCreated: ((String) -> Void)? = nil) {
-        self._isPresented = isPresented
-        self.isRoomCreated = isRoomCreated
-    }
-    
+    private(set) var newRoomCode: String?
     
     func updateRoom(type: RoomType) {
         self.type = type
@@ -35,25 +29,23 @@ class CreateRoomViewModel: ObservableObject {
     }
     
     func createRoom() {
-        //TODO:- Create Room
         requestMakeRoom()
     }
-    
-    
-    
 }
 
 
 extension CreateRoomViewModel {
     private func requestMakeRoom() {
-        APIRequest.shared.requestMakeRoom(title: title, type: type)
+        requestMakeRoomCancellable?.cancel()
+        requestMakeRoomCancellable = APIRequest.shared.requestMakeRoom(title: title, type: type)
             .sink(receiveCompletion: { _ in }
                   , receiveValue: { [weak self] in
-                    if let roomCode = try? $0.map(String.self, atKeyPath: "room_code") {
-                        self?.isPresented = false
-                        self?.isRoomCreated?(roomCode)
+                    if let data = try? $0.map(ResponseModel<[String:String]>.self) {
+                        if data.code == 2000 {
+                            self?.newRoomCode = data.result["room_code"]
+                            self?.isCreated = true
+                        }
                     }
                   })
-            .store(in: &bag)
     }
 }
