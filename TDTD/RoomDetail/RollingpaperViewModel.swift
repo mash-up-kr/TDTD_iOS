@@ -29,7 +29,7 @@ final class RollingpaperViewModel: ObservableObject {
     private var requestReportCancellable: AnyCancellable?
     private var requestRemoveCommentCancellable: AnyCancellable?
     private var cancelBag = Set<AnyCancellable>()
-    private var shareURL: String = ""
+    private(set) var shareURL: String = ""
     
     init(roomCode: String, roomType: RoomType) {
         self.roomCode = roomCode

@@ -19,6 +19,7 @@ struct RollingpaperView: View {
     @State var isRemoveRollingpaper: Bool = false
     @State var isReportRollingpaper: Bool = false
     @State var isPresentPlayer: Bool = false
+    @State var isPresentCopyConfirmAlert: Bool = false
     
     var randomHorizontalSpacing: CGFloat {
         CGFloat(Int.random(in: -15...16))
@@ -45,7 +46,7 @@ struct RollingpaperView: View {
     }
     
     var isNaviBarHidden: Bool {
-        isReportRollingpaper || isRemoveRollingpaper || isPresentExitRoomAlert
+        isReportRollingpaper || isRemoveRollingpaper || isPresentExitRoomAlert || isPresentCopyConfirmAlert
     }
     
     var body: some View {
@@ -108,7 +109,8 @@ struct RollingpaperView: View {
                 Alert(title: Text("통신 오류"), message: Text("알 수 없는 오류가\n발생했어요!"))
             }
             playerOptionAlertView().ignoresSafeArea()
-            exitRoomAlert().ignoresSafeArea()
+            exitRoomAlertView().ignoresSafeArea()
+            copyConfirmAlertView().ignoresSafeArea()
         }
        
     }
@@ -153,7 +155,7 @@ struct RollingpaperView: View {
                     PlaceholderView(text: "오른쪽 상단 더보기 버튼을 눌러서\n초대링크를 보낼수있어요!")
                         .multilineTextAlignment(.center)
                     Button(action: {
-                        print("초대링크 보내기!")
+                        copyRoomCodeLink()
                     }, label: {
                         Text("초대링크 보내기")
                     })
@@ -215,7 +217,7 @@ struct RollingpaperView: View {
     }
     
     @ViewBuilder
-    private func exitRoomAlert() -> some View {
+    private func exitRoomAlertView() -> some View {
         if isPresentExitRoomAlert {
             if viewModel.isHost {
                 AlertView(title: "방 삭제하기",
@@ -301,7 +303,7 @@ struct RollingpaperView: View {
                         Spacer().frame(height: 16)
                         VStack(alignment: .leading) {
                             Button(action: {
-                                print("초대링크 공유")
+                                copyRoomCodeLink()
                             }, label: {
                                 HStack(spacing: 8) {
                                     Image("ic_share_32")
@@ -350,6 +352,24 @@ struct RollingpaperView: View {
             .transition(.move(edge: .bottom))
             .zIndex(1)
         }
+    }
+    
+    @ViewBuilder
+    private func copyConfirmAlertView() -> some View {
+        if isPresentCopyConfirmAlert {
+            AlertView(title: "초대코드 복사완료!",
+                      msg: "초대코드를 친구들에게 전달해주세요!🥰",
+                      leftTitle: "확인",
+                      leftAction: {
+                        isPresentCopyConfirmAlert = false
+                      })
+        }
+    }
+    
+    private func copyRoomCodeLink() {
+        let shareLink = viewModel.shareURL
+        UIPasteboard.general.string = shareLink
+        isPresentCopyConfirmAlert = true
     }
 }
 
