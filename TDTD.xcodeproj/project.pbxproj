@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0609A0262619A19700A81A2F /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0609A0252619A19700A81A2F /* ResponseModel.swift */; };
 		0637E3FD25E7FB77008049F7 /* TTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E3FC25E7FB77008049F7 /* TTSManager.swift */; };
 		0637E40225E809A3008049F7 /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E40125E809A3008049F7 /* RecordManager.swift */; };
 		0637E40525E80CBA008049F7 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E40425E80CBA008049F7 /* Date+.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0609A0252619A19700A81A2F /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		0637E3FC25E7FB77008049F7 /* TTSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSManager.swift; sourceTree = "<group>"; };
 		0637E40125E809A3008049F7 /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
 		0637E40425E80CBA008049F7 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				B1D97DEF25EAC9150099C9B8 /* APIRequest.swift */,
 				B1D97DEC25EAC13D0099C9B8 /* APITargetType.swift */,
 				57220E8925F64B6500CDE9BC /* NetworkLogger.swift */,
+				0609A0252619A19700A81A2F /* ResponseModel.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				D545117725EA6E4900B19C66 /* RoomType.swift in Sources */,
 				D545117F25EA78E300B19C66 /* RoomTypeButton.swift in Sources */,
 				D545118E25EA8B8A00B19C66 /* CreateRoomViewModel.swift in Sources */,
+				0609A0262619A19700A81A2F /* ResponseModel.swift in Sources */,
 				57220E8425F6487600CDE9BC /* DebugManager.swift in Sources */,
 				0637E3FD25E7FB77008049F7 /* TTSManager.swift in Sources */,
 				B1ED9B4225EA401B000A8C4D /* HomeView.swift in Sources */,

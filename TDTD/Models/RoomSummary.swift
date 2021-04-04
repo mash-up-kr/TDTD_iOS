@@ -13,6 +13,7 @@ struct RoomSummary: Codable, Equatable, Hashable {
     let roomCode: String?
     var isBookmark: Bool
     let createdAt: String?
+    let shareURL: String?
     
     enum CodingKeys: String, CodingKey {
         case title
@@ -20,5 +21,6 @@ struct RoomSummary: Codable, Equatable, Hashable {
         case roomCode = "room_code"
         case isBookmark = "is_bookmark"
         case createdAt = "created_at"
+        case shareURL = "share_url"
     }
 }

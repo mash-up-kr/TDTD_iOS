@@ -56,7 +56,8 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(roomSummary: RoomSummary(isHost: true, title: "이거슨 타이틀입니다.", roomCode: "", isBookmark: true, createdAt: nil))
+        CardView(roomSummary: RoomSummary(isHost: true, title: "이거슨 타이틀입니다.", roomCode: "", isBookmark: true, createdAt: nil, shareURL: nil
+        ))
             .padding(.horizontal, 16)
     }
 }
