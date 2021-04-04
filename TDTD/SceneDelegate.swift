@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -72,7 +73,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
+    
+    // MARK: -  Deep Link 수신
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let urlToOpen = userActivity.webpageURL else {
+              return
+          }
+        Log(urlToOpen)
+        DynamicLinks.dynamicLinks().handleUniversalLink(urlToOpen) { (dynamiclink, error) in
+            if let redirectURL = dynamiclink?.url {
+                Log(redirectURL)
+            }
+        }
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        for context in URLContexts {
+            print("url: \(context.url.absoluteURL)")
+            print("scheme: \(context.url.scheme)")
+            print("host: \(context.url.host)")
+            print("path: \(context.url.path)")
+            print("components: \(context.url.pathComponents)")
+            
+            if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: context.url) {
+                // Handle the deep link. For example, show the deep-linked content or
+                // apply a promotional offer to the user's account.
+                // ...
+                Log(dynamicLink)
+              }
+          }
+    }
 }
 
