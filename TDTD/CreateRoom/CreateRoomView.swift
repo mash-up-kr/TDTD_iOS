@@ -40,6 +40,7 @@ struct CreateRoomView: View {
                 if $0 {
                     presentCreatRoom = false
                     homeViewModel.roomCode = viewModel.newRoomCode
+                    homeViewModel.objectWillChange.send()
                 }
             }
         }

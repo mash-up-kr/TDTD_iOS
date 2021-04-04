@@ -11,8 +11,6 @@ struct RollingpaperView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel: RollingpaperViewModel
     @State private var isPresentWriteView: Bool = false
-    // FIXME: - 추후 방만들기 직후 변수위치 수정가능
-    @State private var isMakeRoom: Bool = false
     @State private var isPresentHostOptionView: Bool = false
     @State private var isRequestErrorAlert: Bool = false
     @State private var isPresentExitRoomAlert: Bool = false
@@ -150,7 +148,7 @@ struct RollingpaperView: View {
     @ViewBuilder
     private func emptyView() -> some View {
         if viewModel.isHost {
-            if isMakeRoom {
+            if viewModel.isMakeRoom {
                 VStack(spacing: 24) {
                     PlaceholderView(text: "오른쪽 상단 더보기 버튼을 눌러서\n초대링크를 보낼수있어요!")
                         .multilineTextAlignment(.center)
@@ -375,7 +373,7 @@ struct RollingpaperView: View {
 
 struct RollingpaperView_Previews: PreviewProvider {
     static var previews: some View {
-        RollingpaperView(viewModel: RollingpaperViewModel(roomCode: "1", roomType: .text))
+        RollingpaperView(viewModel: RollingpaperViewModel(roomCode: "1"))
     }
 }
 

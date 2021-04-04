@@ -12,7 +12,7 @@ struct HomeView: View {
     
     @State private var presentCreatRoom = false
     @State private var showFavoritesOnly = false
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var isCanMakeRoomFirstEnter = true
     
     private var rooms: [RoomSummary] {
         Array(Set(viewModel.rooms.filter { roomSummary in
@@ -27,13 +27,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if let roomCode = viewModel.roomCode {
-                    let newViewModel = RollingpaperViewModel(roomCode: roomCode)
-                    let newRollingPaperView = RollingpaperView(viewModel: newViewModel)
-                    NavigationLink(destination: newRollingPaperView, isActive: .constant(true)) {
-                        EmptyView()
-                    }
-                }
+                moveNewRoom()
                 Rectangle()
                     .foregroundColor(Color("beige_1"))
                     .ignoresSafeArea()
@@ -50,8 +44,8 @@ struct HomeView: View {
                         }
                         .padding(.horizontal, 16)
                         LazyVStack(spacing: 8) {
-                            ForEach(rooms, id: \.self.roomCode) { roomSummary in
-                                let view = RollingpaperView(viewModel: RollingpaperViewModel(roomCode: roomSummary.roomCode ?? "", roomType: .text))
+                            ForEach(rooms, id: \.roomCode) { roomSummary in
+                                let view = RollingpaperView(viewModel: RollingpaperViewModel(roomCode: roomSummary.roomCode ?? ""))
                                 NavigationLink(destination: view) {
                                     CardView(roomSummary: roomSummary)
                                 }
@@ -67,7 +61,6 @@ struct HomeView: View {
             )
             .onAppear {
                 viewModel.requestRooms()
-                Log("onAppear")
             }
         }
         .sheet(isPresented: $presentCreatRoom, content: {
@@ -77,6 +70,20 @@ struct HomeView: View {
                 .environmentObject(self.viewModel)
         })
         
+    }
+    
+    @ViewBuilder
+    private func moveNewRoom() -> some View {
+        if let roomCode = viewModel.roomCode {
+            let newViewModel = RollingpaperViewModel(roomCode: roomCode, isMakeRoom: true)
+            let newRollingPaperView = RollingpaperView(viewModel: newViewModel)
+            NavigationLink(destination: newRollingPaperView, isActive: .constant(true)) {
+                EmptyView()
+            }
+            .onDisappear {
+                viewModel.roomCode = nil
+            }
+        }
     }
 }
 

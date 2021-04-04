@@ -18,6 +18,7 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var isRoomRemoved: Bool = false
     @Published var isRequestErrorAlert: Bool?
     @Published var isCommentRemoved: Bool = false
+    @Published var isMakeRoom: Bool = false
     
     var selectIndex: Int?
     var selectModel: RollingpaperModel {
@@ -31,13 +32,11 @@ final class RollingpaperViewModel: ObservableObject {
     private var cancelBag = Set<AnyCancellable>()
     private(set) var shareURL: String = ""
     
-    init(roomCode: String, roomType: RoomType) {
+    /// - parameters:
+    ///    - isMakeRoom: 바로 방만든경우 true
+    init(roomCode: String, isMakeRoom: Bool = false) {
         self.roomCode = roomCode
-        self.roomType = roomType
-    }
-    
-    init(roomCode: String) {
-        self.roomCode = roomCode
+        self.isMakeRoom = isMakeRoom
     }
     
     func requestRoomDetailInfo() {
