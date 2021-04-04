@@ -20,8 +20,8 @@ extension HomeViewModel {
         APIRequest.shared.requestRooms()
             .sink(receiveCompletion: { _ in }
             , receiveValue: {
-                if let rooms = try? $0.map([RoomSummary].self) {
-                    self.rooms = rooms
+                if let rooms = try? $0.map(ResponseModel<[RoomSummary]>.self) {
+                    self.rooms = rooms.result
                 }
             })
             .store(in: &bag)
