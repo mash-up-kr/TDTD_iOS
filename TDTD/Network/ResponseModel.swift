@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ResponseModel<T: Codable>: Codable {
+struct ResponseModel<T: Decodable>: Decodable {
     let message: String
     let result: T
     let code: Int

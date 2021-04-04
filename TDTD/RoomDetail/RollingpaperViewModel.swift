@@ -45,8 +45,8 @@ final class RollingpaperViewModel: ObservableObject {
             .replaceError(with: .init(statusCode: -1, data: Data()))
             .sink { [self] response in
                 do {
-                    let responseModel = try response.map(RoomResponse.self)
-                    let model = RoomModel(model: responseModel)
+                    let responseModel = try response.map(ResponseModel<RoomResponse>.self)
+                    let model = RoomModel(model: responseModel.result)
                     roomType = model.type
                     isHost = model.isHost
                     models = model.comments
