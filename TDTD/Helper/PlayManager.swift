@@ -54,6 +54,7 @@ final class PlayManager: NSObject {
     
     /// 기존파일 재생
     func play() {
+        delegate?.loadAudioDataComplete()
         player?.play()
     }
     

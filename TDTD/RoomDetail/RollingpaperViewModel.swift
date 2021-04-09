@@ -218,8 +218,7 @@ extension RollingpaperViewModel: PlayManagerDelegate {
     }
     
     private func convertTimeString(_ time: TimeInterval) -> String {
-        let timerString = String(format: "00:%02d",
-                                 Int(floor(time)))
+        let timerString = String(format: "00:%02d", Int(floor(time)))
         
         return timerString
     }
@@ -253,12 +252,13 @@ extension RollingpaperViewModel: PlayManagerDelegate {
         playMode = .end
         timerCancellable?.cancel()
         progressRate = 1
+        curPlayTime = totalPlayTime
         isPlay = false
     }
     
     func playerReset() {
-        playMode = .none
         PlayManager.shared.stop()
+        playMode = .none
         timerCancellable?.cancel()
         progressRate = 0
         isPlay = false
