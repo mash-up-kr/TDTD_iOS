@@ -47,7 +47,7 @@ struct UITextViewWrapper: UIViewRepresentable {
         let textView = UITextView()
         textView.text = placeholder
         textView.textColor = UIColor(named: "grayscale_4")
-        textView.font = Font.uhBeeCustom(20, weight: .bold)
+        textView.font = UIFont.uhBeeCustom(20, weight: .bold)
         textView.delegate = context.coordinator
         textView.backgroundColor = .clear
         textView.autocorrectionType = .no
