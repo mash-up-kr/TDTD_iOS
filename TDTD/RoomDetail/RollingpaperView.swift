@@ -65,6 +65,7 @@ struct RollingpaperView: View {
                 if viewModel.isHost {
                     withAnimation(.spring()) {
                         isPresentHostOptionView = true
+                        isPresentPlayer = false
                     }
                 } else {
                     isPresentExitRoomAlert = true
@@ -133,6 +134,9 @@ struct RollingpaperView: View {
                                 }
                                 withAnimation {
                                     isPresentPlayer.toggle()
+                                    if isPresentPlayer {
+                                        isPresentHostOptionView = false
+                                    }
                                 }
                             }
                             .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
