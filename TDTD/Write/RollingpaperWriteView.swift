@@ -15,6 +15,7 @@ struct RollingpaperWriteView: View {
     @State private var isShowToast: Bool = false
     @State private var toastMessage: String = ""
     @State private var isWrite: Bool = false
+    @Binding var isPresentWriteView: Bool
     
     var body: some View {
         ZStack {
@@ -42,6 +43,11 @@ struct RollingpaperWriteView: View {
             .padding(.vertical, verticalPadding)
             .toast(isShowing: $isShowToast, title: Text(toastMessage), hideAfter: 3)
             .hideKeyboard()
+        }
+        .onReceive(viewModel.$isCreatedComment) {
+            if let isCreated = $0, isCreated {
+                isPresentWriteView = false
+            }
         }
     }
     
@@ -138,8 +144,6 @@ struct RollingpaperWriteView: View {
                     }
                     isShowToast = true
                 } else {
-                    
-                    // TODO: - 완료후 화면으로 넘어가기
                     viewModel.requestWriteComment()
                 }
             }, label: {
@@ -153,6 +157,6 @@ struct RollingpaperWriteView: View {
 
 struct RollingpagerWriteView_Previews: PreviewProvider {
     static var previews: some View {
-        RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: "1", roomType: .text))
+        RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: "1", roomType: .text), isPresentWriteView: .constant(true))
     }
 }

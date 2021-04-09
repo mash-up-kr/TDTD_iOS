@@ -81,7 +81,9 @@ struct RollingpaperView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("버튼 타이틀 간격 방제목")
             .sheet(isPresented: $isPresentWriteView) {
-                RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode, roomType: viewModel.roomType))
+                RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode,
+                                                                            roomType: viewModel.roomType),
+                                      isPresentWriteView: $isPresentWriteView)
             }
             .navigationBarHidden(isNaviBarHidden)
             .onAppear {

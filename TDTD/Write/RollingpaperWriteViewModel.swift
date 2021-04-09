@@ -16,6 +16,7 @@ enum RecordStatus {
 final class RollingpaperWriteViewModel: ObservableObject {
     @Published var model: RollingpaperWriteModel
     @Published var recordStatus: RecordStatus = .none
+    @Published var isCreatedComment: Bool?
     private let roomCode: String
     
     var subTitle: String {
@@ -164,10 +165,21 @@ protocol RecordManagerDelegate: class {
 
 extension RollingpaperWriteViewModel {
     func requestWriteComment() {
-        APIRequest.shared.requestWriteComment(roomCode: roomCode, data: model.multipartData)
+        let tempModel = model
+        APIRequest.shared.requestWriteComment(roomCode: roomCode, data: tempModel.multipartData)
             .replaceError(with: Response(statusCode: -1, data: Data()))
-            .sink {
-                Log($0)
+            .sink { [weak self] response in
+                do {
+                    if let responseModel = try response.mapJSON() as? [String: Any] {
+                        if responseModel["code"] as! Int == 2000 {
+                            self?.isCreatedComment = true
+                        } else {
+                            self?.isCreatedComment = false
+                        }
+                    }
+                } catch {
+                    Log("decode error")
+                }
             }
             .store(in: &cancelBag)
     }
