@@ -21,7 +21,7 @@ struct PlayerView: View {
                 .fill(Color.white)
             VStack {
                 HStack {
-                    Text(viewModel.selectModel.nickname)
+                    Text(viewModel.selectModel?.nickname ?? "")
                         .font(Font.uhBeeCustom(14, weight: .bold))
                         .foregroundColor(Color("grayscale_1"))
                         .padding(8)
@@ -31,7 +31,7 @@ struct PlayerView: View {
                         )
                         .frame(height: 32)
                     Spacer()
-                    if !viewModel.selectModel.isMine {
+                    if !(viewModel.selectModel?.isMine ?? false) {
                         Button(action: {
                             withAnimation {
                                 isReportRollingpaper = true
@@ -41,7 +41,7 @@ struct PlayerView: View {
                         })
                         Spacer().frame(width: 16)
                     }
-                    if viewModel.selectModel.isMine || viewModel.isHost {
+                    if (viewModel.selectModel?.isMine ?? false) || viewModel.isHost {
                         Button(action: {
                             withAnimation {
                                 isRemoveRollingpaper = true
@@ -110,7 +110,7 @@ struct PlayerView: View {
                     .padding(.horizontal, 24)
                 } else {
                     ScrollView {
-                        Text(viewModel.selectModel.text ?? "")
+                        Text(viewModel.selectModel?.text ?? "")
                             .font(Font.uhBeeCustom(16, weight: .bold))
                             .foregroundColor(Color("grayscale_1"))
                         

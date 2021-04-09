@@ -171,7 +171,7 @@ struct RollingpaperView: View {
     
     @ViewBuilder
     private func playerView() -> some View {
-        if isPresentPlayer {
+        if isPresentPlayer && viewModel.selectIndex != nil {
             VStack {
                 Spacer()
                 PlayerView(isRemoveRollingpaper: $isRemoveRollingpaper,
@@ -206,6 +206,7 @@ struct RollingpaperView: View {
                       leftAction: {
                         viewModel.requestRemoveComment()
                         isRemoveRollingpaper = false
+                        viewModel.selectIndex = nil
                       },
                       rightTitle: "안할래요!",
                       rightAction: {

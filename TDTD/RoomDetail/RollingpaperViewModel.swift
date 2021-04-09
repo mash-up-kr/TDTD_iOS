@@ -21,8 +21,12 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var isMakeRoom: Bool = false
     
     var selectIndex: Int?
-    var selectModel: RollingpaperModel {
-        models[selectIndex!]
+    var selectModel: RollingpaperModel? {
+        if let index = selectIndex {
+            return models[index]
+        } else {
+            return nil
+        }
     }
     let roomCode: String
     private var requestBookmarkCancellable: AnyCancellable?
@@ -101,9 +105,9 @@ final class RollingpaperViewModel: ObservableObject {
     
     /// 신고
     func requestReport() {
-        if selectIndex != nil {
+        if let model = selectModel {
             requestReportCancellable?.cancel()
-            requestReportCancellable = APIRequest.shared.requestReport(commentId: selectModel.id)
+            requestReportCancellable = APIRequest.shared.requestReport(commentId: model.id)
                 .replaceError(with: .init(statusCode: -1, data: Data()))
                 .sink { response in
                     if response.statusCode == 200 {
@@ -125,30 +129,32 @@ final class RollingpaperViewModel: ObservableObject {
     
     /// 자신게시물 삭제
     func requestRemoveCommentFromUser() {
-        let id = selectModel.id
-        requestRemoveCommentCancellable?.cancel()
-        requestRemoveCommentCancellable = APIRequest.shared.requestRemoveCommentFromUser(commentId: id)
-            .replaceError(with: .init(statusCode: -1, data: Data()))
-            .sink { [weak self] response in
-                if response.statusCode == 200 {
-                    self?.removeModel(id: id)
-                    self?.isCommentRemoved = true
+        if let id = selectModel?.id {
+            requestRemoveCommentCancellable?.cancel()
+            requestRemoveCommentCancellable = APIRequest.shared.requestRemoveCommentFromUser(commentId: id)
+                .replaceError(with: .init(statusCode: -1, data: Data()))
+                .sink { [weak self] response in
+                    if response.statusCode == 200 {
+                        self?.removeModel(id: id)
+                        self?.isCommentRemoved = true
+                    }
                 }
-            }
+        }
     }
 
     /// 관리자가 게시물 삭제
     func requestRemoveCommentFromHost() {
-        let id = selectModel.id
-        requestRemoveCommentCancellable?.cancel()
-        requestRemoveCommentCancellable = APIRequest.shared.requestRemoveCommentFromHost(commentId: id)
-            .replaceError(with: .init(statusCode: -1, data: Data()))
-            .sink { [weak self] response in
-                if response.statusCode == 200 {
-                    self?.removeModel(id: id)
-                    self?.isCommentRemoved = true
+        if let id = selectModel?.id {
+            requestRemoveCommentCancellable?.cancel()
+            requestRemoveCommentCancellable = APIRequest.shared.requestRemoveCommentFromHost(commentId: id)
+                .replaceError(with: .init(statusCode: -1, data: Data()))
+                .sink { [weak self] response in
+                    if response.statusCode == 200 {
+                        self?.removeModel(id: id)
+                        self?.isCommentRemoved = true
+                    }
                 }
-            }
+        }
     }
     
     private func removeModel(id: Int) {
