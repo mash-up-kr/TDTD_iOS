@@ -8,6 +8,10 @@
 import SwiftUI
 import Combine
 
+enum PlayMode {
+    case none, play, end, pause
+}
+
 final class RollingpaperViewModel: ObservableObject {
     @Published private(set) var models: [RollingpaperModel] = []
     
@@ -23,6 +27,7 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var totalPlayTime: String = "00:00"
     @Published var progressRate: Float = 0
     @Published var isPlay: Bool = false
+    private var playMode: PlayMode = .none
     
     private var timerCancellable: AnyCancellable?
     
@@ -34,6 +39,7 @@ final class RollingpaperViewModel: ObservableObject {
             return nil
         }
     }
+    
     let roomCode: String
     private var requestBookmarkCancellable: AnyCancellable?
     private var requestRemoveRoomCancellable: AnyCancellable?
@@ -48,6 +54,10 @@ final class RollingpaperViewModel: ObservableObject {
         self.roomCode = roomCode
         self.isMakeRoom = isMakeRoom
         self.isBookmark = isBookmark
+    }
+    
+    deinit {
+        playerReset()
     }
     
     /// 방정보 가져오기
@@ -184,22 +194,22 @@ final class RollingpaperViewModel: ObservableObject {
 
 protocol PlayManagerDelegate: class {
     func loadAudioDataComplete()
+    func finishedPlay()
 }
 
 extension RollingpaperViewModel: PlayManagerDelegate {
+    func finishedPlay() {
+        stop()
+    }
+    
     func loadAudioDataComplete() {
         DispatchQueue.main.async { [weak self] in
             self?.totalPlayTime = self?.convertTimeString(PlayManager.shared.playTime) ?? "00:00"
         }
         
-        timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
+        timerCancellable = Timer.publish(every: 0.5, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
-                Log(PlayManager.shared.curTime)
-                Log(PlayManager.shared.progressRate)
-                if PlayManager.shared.playTime <= PlayManager.shared.curTime {
-                    self?.stop()
-                }
                 if let curTime = self?.convertTimeString(PlayManager.shared.curTime) {
                     self?.curPlayTime = curTime
                     self?.progressRate = PlayManager.shared.progressRate
@@ -216,25 +226,42 @@ extension RollingpaperViewModel: PlayManagerDelegate {
     
     
     private func play() {
-        let testURL = "https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3"
-        PlayManager.shared.delegate = self
-        if let model = selectModel, let url = URL(string: testURL ?? "") {
-            do {
-                try PlayManager.shared.play(url)
-            } catch {
-                Log(error)
+        if playMode == .none {
+            playMode = .play
+            progressRate = 0
+            let testURL = "https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3"
+            PlayManager.shared.delegate = self
+            if let model = selectModel, let url = URL(string: testURL ?? "") {
+                do {
+                    try PlayManager.shared.play(url)
+                } catch {
+                    Log(error)
+                }
             }
+        } else if playMode == .end || playMode == .pause {
+            playMode = .play
+            PlayManager.shared.play()
         }
     }
     
     private func pause() {
-        PlayManager.shared.pause()
+        playMode = .pause
         timerCancellable?.cancel()
+        PlayManager.shared.pause()
     }
     
     private func stop() {
+        playMode = .end
+        timerCancellable?.cancel()
+        progressRate = 1
+        isPlay = false
+    }
+    
+    func playerReset() {
+        playMode = .none
         PlayManager.shared.stop()
         timerCancellable?.cancel()
+        progressRate = 0
         isPlay = false
     }
 }

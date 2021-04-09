@@ -7,8 +7,8 @@
 
 import AVFoundation
 
-final class PlayManager {
-    private init() {}
+final class PlayManager: NSObject {
+    private override init() {}
     static let shared: PlayManager = PlayManager()
     
     private var player: AVAudioPlayer?
@@ -29,19 +29,27 @@ final class PlayManager {
         }.resume()
     }
     
+    /// 새파일 재생
     func play<T>(_ file: T) throws {
         if file is Data {
             player = try AVAudioPlayer(data: file as! Data)
+            player?.delegate = self
             player?.play()
         } else if file is URL {
             requestAudioFile(file as! URL) { [weak self] audioData in
                 if let audioData = audioData {
                     self?.player = try? AVAudioPlayer(data: audioData)
+                    self?.player?.delegate = self
                     self?.delegate?.loadAudioDataComplete()
                     self?.player?.play()
                 }
             }
         }
+    }
+    
+    /// 기존파일 재생
+    func play() {
+        player?.play()
     }
     
     func pause() {
@@ -62,5 +70,12 @@ final class PlayManager {
     
     var progressRate: Float {
         Float(curTime / playTime)
+    }
+}
+
+extension PlayManager: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        player.stop()
+        delegate?.finishedPlay()
     }
 }

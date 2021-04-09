@@ -52,6 +52,7 @@ struct PlayerView: View {
                     Button(action: {
                         withAnimation {
                             isPresentPlayer = false
+                            viewModel.playerReset()
                         }
                     }, label: {
                         Image("ic_close_24")

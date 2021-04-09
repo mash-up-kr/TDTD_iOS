@@ -108,6 +108,11 @@ struct RollingpaperView: View {
             copyConfirmAlertView().ignoresSafeArea()
         }
         .environmentObject(viewModel)
+        .onChange(of: isPresentPlayer) {
+            if !$0 {
+                viewModel.playerReset()
+            }
+        }
     }
     
     @ViewBuilder
@@ -178,7 +183,6 @@ struct RollingpaperView: View {
                 PlayerView(isRemoveRollingpaper: $isRemoveRollingpaper,
                            isReportRollingpaper: $isReportRollingpaper,
                            isPresentPlayer: $isPresentPlayer)
-//                    .environmentObject(viewModel)
             }
             .transition(.move(edge: .bottom))
             .zIndex(1)
