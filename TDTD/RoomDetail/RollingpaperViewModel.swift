@@ -19,6 +19,12 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var isRequestErrorAlert: Bool?
     @Published var isCommentRemoved: Bool = false
     @Published var isMakeRoom: Bool = false
+    @Published var curPlayTime: String = "00:00"
+    @Published var totalPlayTime: String = "00:00"
+    @Published var progressRate: Float = 0
+    @Published var isPlay: Bool = false
+    
+    private var timerCancellable: AnyCancellable?
     
     var selectIndex: Int?
     var selectModel: RollingpaperModel? {
@@ -44,6 +50,7 @@ final class RollingpaperViewModel: ObservableObject {
         self.isBookmark = isBookmark
     }
     
+    /// 방정보 가져오기
     func requestRoomDetailInfo() {
         APIRequest.shared.requestRoomDetail(roomCode: roomCode)
             .replaceError(with: .init(statusCode: -1, data: Data()))
@@ -63,6 +70,7 @@ final class RollingpaperViewModel: ObservableObject {
             .store(in: &cancelBag)
     }
     
+    /// 즐겨찾기
     func requestBookmark(delete: Bool = false) {
         requestBookmarkCancellable?.cancel()
         requestBookmarkCancellable = APIRequest.shared.requestBookmark(roomCode: roomCode, delete: delete)
@@ -118,6 +126,7 @@ final class RollingpaperViewModel: ObservableObject {
         }
     }
     
+    /// 답장 삭제
     func requestRemoveComment() {
         if isHost {
             Log("관리자가 삭제")
@@ -129,7 +138,7 @@ final class RollingpaperViewModel: ObservableObject {
     }
     
     /// 자신게시물 삭제
-    func requestRemoveCommentFromUser() {
+    private func requestRemoveCommentFromUser() {
         if let id = selectModel?.id {
             requestRemoveCommentCancellable?.cancel()
             requestRemoveCommentCancellable = APIRequest.shared.requestRemoveCommentFromUser(commentId: id)
@@ -144,7 +153,7 @@ final class RollingpaperViewModel: ObservableObject {
     }
 
     /// 관리자가 게시물 삭제
-    func requestRemoveCommentFromHost() {
+    private func requestRemoveCommentFromHost() {
         if let id = selectModel?.id {
             requestRemoveCommentCancellable?.cancel()
             requestRemoveCommentCancellable = APIRequest.shared.requestRemoveCommentFromHost(commentId: id)
@@ -163,5 +172,69 @@ final class RollingpaperViewModel: ObservableObject {
         if let index = index {
             models.remove(at: index)
         }
+    }
+    
+    func speackButtonTouchUpInside() {
+        isPlay = !isPlay
+        isPlay ? play() : pause()
+    }
+}
+
+// MARK: - PlayerView관련 동작
+
+protocol PlayManagerDelegate: class {
+    func loadAudioDataComplete()
+}
+
+extension RollingpaperViewModel: PlayManagerDelegate {
+    func loadAudioDataComplete() {
+        DispatchQueue.main.async { [weak self] in
+            self?.totalPlayTime = self?.convertTimeString(PlayManager.shared.playTime) ?? "00:00"
+        }
+        
+        timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                Log(PlayManager.shared.curTime)
+                Log(PlayManager.shared.progressRate)
+                if PlayManager.shared.playTime <= PlayManager.shared.curTime {
+                    self?.stop()
+                }
+                if let curTime = self?.convertTimeString(PlayManager.shared.curTime) {
+                    self?.curPlayTime = curTime
+                    self?.progressRate = PlayManager.shared.progressRate
+                }
+            }
+    }
+    
+    private func convertTimeString(_ time: TimeInterval) -> String {
+        let timerString = String(format: "00:%02d",
+                                 Int(floor(time)))
+        
+        return timerString
+    }
+    
+    
+    private func play() {
+        let testURL = "https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3"
+        PlayManager.shared.delegate = self
+        if let model = selectModel, let url = URL(string: testURL ?? "") {
+            do {
+                try PlayManager.shared.play(url)
+            } catch {
+                Log(error)
+            }
+        }
+    }
+    
+    private func pause() {
+        PlayManager.shared.pause()
+        timerCancellable?.cancel()
+    }
+    
+    private func stop() {
+        PlayManager.shared.stop()
+        timerCancellable?.cancel()
+        isPlay = false
     }
 }

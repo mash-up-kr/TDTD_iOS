@@ -19,12 +19,6 @@ struct RollingpaperView: View {
     @State var isPresentPlayer: Bool = false
     @State var isPresentCopyConfirmAlert: Bool = false
     
-    var randomHorizontalSpacing: CGFloat {
-        CGFloat(Int.random(in: -15...16))
-    }
-    var randomVerticalSpacing: CGFloat {
-        CGFloat(Int.random(in: -8...8))
-    }
     var randomRotate: Double {
         Double(Int.random(in: -10...10))
     }
@@ -141,8 +135,9 @@ struct RollingpaperView: View {
                                     }
                                 }
                             }
-                            .offset(x: randomHorizontalSpacing, y: randomVerticalSpacing)
-                            .rotationEffect(Angle(degrees: randomRotate))
+                            .offset(x: viewModel.models[index].horizontalSpacing,
+                                    y: viewModel.models[index].verticalSpacing)
+                            .rotationEffect(Angle(degrees: Double(viewModel.models[index].stickerAngle)))
                             .frame(height: 146)
                     }
                 }

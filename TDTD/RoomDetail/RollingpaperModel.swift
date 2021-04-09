@@ -5,7 +5,7 @@
 //  Created by 남수김 on 2021/03/09.
 //
 
-import Foundation
+import UIKit
 
 struct RoomResponse: Decodable {
     let title: String  // required, 방 제목
@@ -68,6 +68,8 @@ struct RollingpaperModel: Identifiable {
     let stickerColor: CharacterAsset.Color
     let stickerAngle: Int
     let createAt: Date
+    let horizontalSpacing: CGFloat
+    let verticalSpacing: CGFloat
     
     init(model: RollingpaperResponse) {
         id = model.id
@@ -78,6 +80,9 @@ struct RollingpaperModel: Identifiable {
         stickerColor = CharacterAsset.Color(rawValue: model.stickerColor) ?? .lavender
         stickerAngle = model.stickerAngle
         createAt = DateFormatter().date(from: model.createAt) ?? Date()
+        
+        horizontalSpacing = CGFloat(Int.random(in: -15...16))
+        verticalSpacing = CGFloat(Int.random(in: -8...8))
     }
 }
 

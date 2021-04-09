@@ -9,8 +9,6 @@ import SwiftUI
 
 struct PlayerView: View {
     @EnvironmentObject var viewModel: RollingpaperViewModel
-    @State private var processValue: Float = 0.3
-    @State private var isPlay: Bool = false
     @Binding var isRemoveRollingpaper: Bool
     @Binding var isReportRollingpaper: Bool
     @Binding var isPresentPlayer: Bool
@@ -80,28 +78,27 @@ struct PlayerView: View {
                     HStack {
                         VStack {
                             Spacer().frame(height: 40)
-                            ProgressView(value: processValue)
+                            ProgressView(value: viewModel.progressRate)
                                 .accentColor(Color("grayscale_1"))
                                 .frame(height: 8)
                                 .scaleEffect(x: 1, y: 1.8, anchor: .center)
                             Spacer().frame(height: 8)
                             HStack {
-                                // FIXME:  추후 뷰모델과 연결후 플레이어 시간 넣어주기
-                                Text("00:00").font(Font.uhBeeCustom(14, weight: .bold))
+                                Text(viewModel.curPlayTime)
+                                    .font(Font.uhBeeCustom(14, weight: .bold))
                                     .foregroundColor(Color("grayscale_3"))
                                 Spacer()
-                                Text("00:03").font(Font.uhBeeCustom(14, weight: .bold))
+                                Text(viewModel.totalPlayTime)
+                                    .font(Font.uhBeeCustom(14, weight: .bold))
                                     .foregroundColor(Color("grayscale_3"))
                             }
                         }
                         .padding(.bottom, 24)
                         Spacer().frame(width: 16)
-                        if isPlay {
-                            Image("ic_speak_stop_32")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                        } else {
-                            Image("ic_speak_play_32")
+                        Button {
+                            viewModel.speackButtonTouchUpInside()
+                        } label: {
+                            Image(viewModel.isPlay ? "ic_speak_stop_32" : "ic_speak_play_32")
                                 .resizable()
                                 .frame(width: 40, height: 40)
                         }
