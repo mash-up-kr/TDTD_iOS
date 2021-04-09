@@ -113,7 +113,7 @@ struct RollingpaperView: View {
             exitRoomAlertView().ignoresSafeArea()
             copyConfirmAlertView().ignoresSafeArea()
         }
-       
+        .environmentObject(viewModel)
     }
     
     @ViewBuilder
@@ -183,7 +183,7 @@ struct RollingpaperView: View {
                 PlayerView(isRemoveRollingpaper: $isRemoveRollingpaper,
                            isReportRollingpaper: $isReportRollingpaper,
                            isPresentPlayer: $isPresentPlayer)
-                    .environmentObject(viewModel)
+//                    .environmentObject(viewModel)
             }
             .transition(.move(edge: .bottom))
             .zIndex(1)

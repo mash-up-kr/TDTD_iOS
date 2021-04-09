@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 
 struct RollingpaperWriteView: View {
+    @EnvironmentObject var parentViewModel: RollingpaperViewModel
     @StateObject var viewModel: RollingpaperWriteViewModel
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 24
@@ -46,6 +47,7 @@ struct RollingpaperWriteView: View {
         }
         .onReceive(viewModel.$isCreatedComment) {
             if let isCreated = $0, isCreated {
+                parentViewModel.requestRoomDetailInfo()
                 isPresentWriteView = false
             }
         }
