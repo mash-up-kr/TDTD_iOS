@@ -30,18 +30,23 @@ final class PlayManager: NSObject {
     }
     
     /// 새파일 재생
-    func play<T>(_ file: T) throws {
+    func play<T>(_ file: T, isRecord: Bool = false) throws {
         if file is Data {
             player = try AVAudioPlayer(data: file as! Data)
             player?.delegate = self
             player?.play()
         } else if file is URL {
-            requestAudioFile(file as! URL) { [weak self] audioData in
-                if let audioData = audioData {
-                    self?.player = try? AVAudioPlayer(data: audioData)
-                    self?.player?.delegate = self
-                    self?.delegate?.loadAudioDataComplete()
-                    self?.player?.play()
+            if isRecord {
+                player = try? AVAudioPlayer(contentsOf: file as! URL)
+                player?.play()
+            } else {
+                requestAudioFile(file as! URL) { [weak self] audioData in
+                    if let audioData = audioData {
+                        self?.player = try? AVAudioPlayer(data: audioData)
+                        self?.player?.delegate = self
+                        self?.delegate?.loadAudioDataComplete()
+                        self?.player?.play()
+                    }
                 }
             }
         }

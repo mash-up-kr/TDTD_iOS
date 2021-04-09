@@ -229,9 +229,8 @@ extension RollingpaperViewModel: PlayManagerDelegate {
         if playMode == .none {
             playMode = .play
             progressRate = 0
-            let testURL = "https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3"
             PlayManager.shared.delegate = self
-            if let model = selectModel, let url = URL(string: testURL ?? "") {
+            if let model = selectModel, let url = URL(string: model.voiceURL ?? "") {
                 do {
                     try PlayManager.shared.play(url)
                 } catch {

@@ -103,7 +103,7 @@ final class RollingpaperWriteViewModel: ObservableObject {
     func play() {
         recordStatus = .play
         do {
-            try PlayManager.shared.play(RecordManager.shared.recorderURL)
+            try PlayManager.shared.play(RecordManager.shared.recorderURL, isRecord: true)
             var timer: Double = 0.0
             timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
                 .autoconnect()
