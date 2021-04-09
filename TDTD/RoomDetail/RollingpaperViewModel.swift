@@ -38,9 +38,10 @@ final class RollingpaperViewModel: ObservableObject {
     
     /// - parameters:
     ///    - isMakeRoom: 바로 방만든경우 true
-    init(roomCode: String, isMakeRoom: Bool = false) {
+    init(roomCode: String, isMakeRoom: Bool = false, isBookmark: Bool = false) {
         self.roomCode = roomCode
         self.isMakeRoom = isMakeRoom
+        self.isBookmark = isBookmark
     }
     
     func requestRoomDetailInfo() {
