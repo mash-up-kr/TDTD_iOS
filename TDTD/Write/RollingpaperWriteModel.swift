@@ -37,7 +37,7 @@ struct RollingpaperWriteModel {
         let parameters: [String: Any] = [
             "nickname": nickname!,
             "message_type": roomType.rawValue,
-            "sticker_color": stickerColor,
+            "sticker_color": stickerColor.rawValue,
             "sticker_angle": stickerAngle,
         ]
         
