@@ -45,8 +45,7 @@ struct HomeView: View {
                         .padding(.horizontal, 16)
                         LazyVStack(spacing: 8) {
                             ForEach(rooms, id: \.roomCode) { roomSummary in
-                                let view = RollingpaperView(viewModel: RollingpaperViewModel(roomCode: roomSummary.roomCode ?? "",
-                                                                                             isBookmark: roomSummary.isBookmark))
+                                let view = RollingpaperView(viewModel: RollingpaperViewModel(roomInfo: roomSummary))
                                 NavigationLink(destination: view) {
                                     CardView(roomSummary: roomSummary)
                                 }
@@ -76,7 +75,7 @@ struct HomeView: View {
     @ViewBuilder
     private func moveNewRoom() -> some View {
         if let roomCode = viewModel.roomCode {
-            let newViewModel = RollingpaperViewModel(roomCode: roomCode, isMakeRoom: true)
+            let newViewModel = RollingpaperViewModel(roomCode: roomCode)
             let newRollingPaperView = RollingpaperView(viewModel: newViewModel)
             NavigationLink(destination: newRollingPaperView, isActive: .constant(true)) {
                 EmptyView()

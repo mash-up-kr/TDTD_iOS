@@ -27,6 +27,7 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var totalPlayTime: String = "00:00"
     @Published var progressRate: Float = 0
     @Published var isPlay: Bool = false
+    private(set) var roomCreatedAt: String?
     private var playMode: PlayMode = .none
     
     private var timerCancellable: AnyCancellable?
@@ -48,12 +49,19 @@ final class RollingpaperViewModel: ObservableObject {
     private var cancelBag = Set<AnyCancellable>()
     private(set) var shareURL: String = ""
     
+    /// - 방리스트에서 선택했을 때 사용하는 생성자
+    init(roomInfo: RoomSummary) {
+        self.roomCode = roomInfo.roomCode ?? ""
+        self.isBookmark = roomInfo.isBookmark
+        self.roomCreatedAt = roomInfo.createdAt ?? ""
+    }
+    
     /// - parameters:
     ///    - isMakeRoom: 바로 방만든경우 true
-    init(roomCode: String, isMakeRoom: Bool = false, isBookmark: Bool = false) {
+    /// - 방만든 직후 생성할 때 사용하는 생성자
+    init(roomCode: String) {
+        self.isMakeRoom = true
         self.roomCode = roomCode
-        self.isMakeRoom = isMakeRoom
-        self.isBookmark = isBookmark
     }
     
     deinit {

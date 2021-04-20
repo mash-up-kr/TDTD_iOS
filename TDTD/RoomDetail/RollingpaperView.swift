@@ -295,7 +295,7 @@ struct RollingpaperView: View {
                                            size: 16,
                                            weight: .bold,
                                            pallete: .grayscale(3))
-                            UhBeeZigleText("2021년 01월 02일",
+                            UhBeeZigleText(viewModel.roomCreatedAt?.convertKORDate ?? "조금 전",
                                            size: 16,
                                            weight: .bold,
                                            pallete: .grayscale(2))
@@ -379,7 +379,12 @@ struct RollingpaperView: View {
 
 struct RollingpaperView_Previews: PreviewProvider {
     static var previews: some View {
-        RollingpaperView(viewModel: RollingpaperViewModel(roomCode: "1"))
+        RollingpaperView(viewModel: RollingpaperViewModel(roomInfo: RoomSummary(isHost: true,
+                                                                                title: "타이틀",
+                                                                                roomCode: "1ab3",
+                                                                                isBookmark: true,
+                                                                                createdAt: "2021-04-12T16:59:35",
+                                                                                shareURL: nil)))
     }
 }
 
