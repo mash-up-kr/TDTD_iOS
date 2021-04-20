@@ -363,8 +363,8 @@ struct RollingpaperView: View {
         if isPresentCopyConfirmAlert {
             AlertView(title: "초대코드 복사완료!",
                       msg: "초대코드를 친구들에게 전달해주세요!🥰",
-                      leftTitle: "확인",
-                      leftAction: {
+                      rightTitle: "확인",
+                      rightAction: {
                         isPresentCopyConfirmAlert = false
                       })
         }
