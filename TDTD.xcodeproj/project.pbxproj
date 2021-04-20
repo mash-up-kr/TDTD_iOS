@@ -28,6 +28,7 @@
 		068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */; };
 		068EC1FF25ECE5AE00484FBB /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC1FE25ECE5AE00484FBB /* View+.swift */; };
 		068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC20125EE145200484FBB /* PlaceholderView.swift */; };
+		06C2F2F0262F3B6D0090DD70 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2F2EF262F3B6D0090DD70 /* String+.swift */; };
 		06FDBFE225F21417003DB1FC /* RollingpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FDBFE125F21417003DB1FC /* RollingpaperView.swift */; };
 		57220E8425F6487600CDE9BC /* DebugManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57220E8325F6487600CDE9BC /* DebugManager.swift */; };
 		57220E8A25F64B6500CDE9BC /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57220E8925F64B6500CDE9BC /* NetworkLogger.swift */; };
@@ -89,6 +90,7 @@
 		068EC1FB25ECD87000484FBB /* RollingpaperWriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperWriteModel.swift; sourceTree = "<group>"; };
 		068EC1FE25ECE5AE00484FBB /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		068EC20125EE145200484FBB /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		06C2F2EF262F3B6D0090DD70 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		06FDBFE125F21417003DB1FC /* RollingpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperView.swift; sourceTree = "<group>"; };
 		0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TDTD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDTD.release.xcconfig"; path = "Target Support Files/Pods-TDTD/Pods-TDTD.release.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				0637E40425E80CBA008049F7 /* Date+.swift */,
 				B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */,
 				068EC1FE25ECE5AE00484FBB /* View+.swift */,
+				06C2F2EF262F3B6D0090DD70 /* String+.swift */,
 			);
 			path = GlobalExtension;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				06837B0325F75D11004EA12B /* RollingpaperViewModel.swift in Sources */,
 				D545117725EA6E4900B19C66 /* RoomType.swift in Sources */,
 				D545117F25EA78E300B19C66 /* RoomTypeButton.swift in Sources */,
+				06C2F2F0262F3B6D0090DD70 /* String+.swift in Sources */,
 				D545118E25EA8B8A00B19C66 /* CreateRoomViewModel.swift in Sources */,
 				0609A0262619A19700A81A2F /* ResponseModel.swift in Sources */,
 				57220E8425F6487600CDE9BC /* DebugManager.swift in Sources */,

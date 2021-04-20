@@ -77,9 +77,7 @@ final class RollingpaperWriteViewModel: ObservableObject {
         }
         .store(in: &cancelBag)
     }
-    
-    // TODO:  방리스트에서 룸접근 생성자
-   
+
     func record() {
         recordStatus = .record
         try? RecordManager.shared.record()

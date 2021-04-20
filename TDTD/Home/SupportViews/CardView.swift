@@ -32,12 +32,11 @@ struct CardView: View {
                 Text("만든 날짜")
                     .foregroundColor(.init("grayscale_2"))
                     .font(.uhBeeCustom(16, weight: .bold))
-                Text("0000/00/00")
+                Text((roomSummary.createdAt ?? "").convertSlashDate)
                     .foregroundColor(.init("grayscale_2"))
                     .font(.uhBeeCustom(14, weight: .bold))
                 Spacer()
                 Button(action: {
-//                    roomSummary.isBookmark.toggle()
                 }) {
                     roomSummary.isBookmark ? Image("ic_favorties_on_16") : Image("ic_favorties_off_16")
                 }
