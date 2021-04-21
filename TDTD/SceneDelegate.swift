@@ -8,12 +8,14 @@
 import UIKit
 import SwiftUI
 import Firebase
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    private var cancelBag = Set<AnyCancellable>()
+    @Published private var isUpdate: Bool?
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -23,7 +25,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         NetworkLogger.shared.startLogging()
         
-        let contentView = HomeView(viewModel: HomeViewModel())
+        let viewModel = HomeViewModel()
+        let contentView = HomeView(viewModel: viewModel)
+            .onReceive($isUpdate) {
+                if let isUpdate = $0, isUpdate {
+                    Log("Deep Link Update")
+                    viewModel.requestRooms()
+                }
+            }
 
         // MARK: - 네비게이션 설정
         
@@ -82,10 +91,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
               return
           }
         Log(urlToOpen)
-        DynamicLinks.dynamicLinks().handleUniversalLink(urlToOpen) { (dynamiclink, error) in
+        DynamicLinks.dynamicLinks().handleUniversalLink(urlToOpen) { [weak self] (dynamiclink, error) in
+            guard let self = self else {
+                return
+            }
+            
             if let redirectURL = dynamiclink?.url {
                 Log(redirectURL)
             }
+            APIRequest.shared.requestJoinRoom(roomCode: "yqY4KKDKR-6W-wVIJaNeWw")
+                .replaceError(with: .init(statusCode: -1, data: Data()))
+                .sink { [weak self] response in
+                    do {
+                        if let responseModel = try response.mapJSON() as? [String: Any] {
+                            if responseModel["code"] as? Int != 2000 {
+                                Log("Fail JoinRoom")
+                                self?.isUpdate = false
+                            } else {
+                                self?.isUpdate = true
+                            }
+                            Log(responseModel)
+                        }
+                    } catch {
+                        Log("decode error")
+                    }
+                }
+                .store(in: &self.cancelBag)
         }
     }
     

@@ -83,5 +83,9 @@ extension APIRequest {
     func requestRemoveCommentFromHost(commentId: Int) -> Future<Response, Error> {
         request(.requestRemoveCommentFromHost(commentId: commentId))
     }
+    
+    func requestJoinRoom(roomCode: String) -> Future<Response, Error> {
+        request(.requestJoinRoom(roomCode: roomCode))
+    }
 }
 
