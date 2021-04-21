@@ -56,9 +56,9 @@ struct HomeView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: Image("logo"),
-                                trailing: Image("ic_settingButton_40")
-            )
+            .navigationBarItems(leading: Image("logo"))
+// TODO: 추후 설정창 옵션추가시 구현
+//            trailing: Image("ic_settingButton_40")
             .onAppear {
                 viewModel.requestRooms()
             }
