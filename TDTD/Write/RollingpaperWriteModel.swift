@@ -12,7 +12,11 @@ struct RollingpaperWriteModel {
     var nickname: String?
     var roomType: RoomType
     var message: String?
-    var voice: Data?
+    var voice: Data? {
+        didSet {
+            Log(voice)
+        }
+    }
     var stickerColor: CharacterAsset.Color
     var stickerAngle: Int
     

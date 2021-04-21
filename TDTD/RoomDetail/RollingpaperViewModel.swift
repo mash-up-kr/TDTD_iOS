@@ -215,7 +215,7 @@ extension RollingpaperViewModel: PlayManagerDelegate {
             self?.totalPlayTime = self?.convertTimeString(PlayManager.shared.playTime) ?? "00:00"
         }
         
-        timerCancellable = Timer.publish(every: 0.01, on: .main, in: .common)
+        timerCancellable = Timer.publish(every: 0.05, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 if let curTime = self?.convertTimeString(PlayManager.shared.curTime) {
@@ -226,7 +226,9 @@ extension RollingpaperViewModel: PlayManagerDelegate {
     }
     
     private func convertTimeString(_ time: TimeInterval) -> String {
-        let timerString = String(format: "00:%02d", Int(floor(time)))
+        let min = Int(time / 60)
+        let sec = Int(time.truncatingRemainder(dividingBy: 60))
+        let timerString = String(format: "%02d:%02d", min, sec)
         
         return timerString
     }

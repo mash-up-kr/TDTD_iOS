@@ -85,6 +85,7 @@ final class RollingpaperWriteViewModel: ObservableObject {
                 }
                 Log(RecordManager.shared.recordTime)
                 self.timerString = String(format: "00:%02d", Int(floor(RecordManager.shared.recordTime)))
+                
             }
     }
     
