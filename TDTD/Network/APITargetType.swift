@@ -15,10 +15,20 @@ extension TargetType {
     }
 
     var headers: [String: String]? {
-        return ["Device-Id": "device-1"]
+        return ["Device-Id": deviceID]
     }
 
     var sampleData: Data {
         Data()
+    }
+}
+
+extension TargetType {
+    var deviceID: String {
+        if let id = UserDefaultStorage<String>().read(key: .deviceID) {
+            return id
+        } else {
+            fatalError()
+        }
     }
 }

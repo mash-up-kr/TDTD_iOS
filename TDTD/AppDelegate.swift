@@ -16,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        let storage = UserDefaultStorage<String>()
+        
+        if let deviceID = storage.read(key: .deviceID) {
+                Log("📌deviceID: \(deviceID)")
+        } else {
+            let deviceID = UUID().uuidString
+            storage.write(deviceID, key: .deviceID)
+        }
         
         return true
     }

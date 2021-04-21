@@ -12,5 +12,6 @@ pod 'Moya', '~> 14.0'
 # Firebase
 pod 'Firebase/Analytics'
 pod 'Firebase/DynamicLinks'
+pod 'Firebase/Crashlytics'
 
 end
