@@ -43,6 +43,6 @@ extension UIFont {
     }
     
     static func uhBeeCustom(_ fixedSize: CGFloat, weight: CustomFontWeight = .regular) -> UIFont {
-        return UIFont(name: weight.name, size: fixedSize) ?? UIFont.systemFont(ofSize: fixedSize)
+        return UIFont(name: weight.name, size: fixedSize) ?? UIFont.systemFont(ofSize: fixedSize-2)
     }
 }

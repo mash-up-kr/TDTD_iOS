@@ -38,6 +38,7 @@ struct UITextViewWrapper: UIViewRepresentable {
     @Binding var isWrite: Bool
     @Binding var isFocused: Bool
     let placeholder: String
+    private let font = UIFont.uhBeeCustom(20, weight: .bold)
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -47,7 +48,7 @@ struct UITextViewWrapper: UIViewRepresentable {
         let textView = UITextView()
         textView.text = placeholder
         textView.textColor = UIColor(named: "grayscale_4")
-        textView.font = UIFont.uhBeeCustom(20, weight: .bold)
+        textView.font = font
         textView.delegate = context.coordinator
         textView.backgroundColor = .clear
         textView.autocorrectionType = .no
