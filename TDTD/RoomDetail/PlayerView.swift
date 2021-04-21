@@ -68,6 +68,10 @@ struct PlayerView: View {
         .frame(height: viewModel.roomType == .voice ? 202 : 290)
         .cornerRadius(radius: 24, cornerStyle: [.topLeft, .topRight])
         .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 6)
+        .onAppear {
+            viewModel.curPlayTime = "00:00"
+            viewModel.totalPlayTime = "00:00"
+        }
     }
     
     func playerViewWithType(roomType: RoomType) -> some View {

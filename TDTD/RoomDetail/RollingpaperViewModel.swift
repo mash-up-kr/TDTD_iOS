@@ -215,7 +215,7 @@ extension RollingpaperViewModel: PlayManagerDelegate {
             self?.totalPlayTime = self?.convertTimeString(PlayManager.shared.playTime) ?? "00:00"
         }
         
-        timerCancellable = Timer.publish(every: 0.5, on: .main, in: .common)
+        timerCancellable = Timer.publish(every: 0.01, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 if let curTime = self?.convertTimeString(PlayManager.shared.curTime) {
