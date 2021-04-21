@@ -30,6 +30,7 @@
 		068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068EC20125EE145200484FBB /* PlaceholderView.swift */; };
 		06C2F2F0262F3B6D0090DD70 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2F2EF262F3B6D0090DD70 /* String+.swift */; };
 		06C2F2F7262FFA9F0090DD70 /* UserDefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2F2F6262FFA9F0090DD70 /* UserDefaultStorage.swift */; };
+		06C2F30A2630349B0090DD70 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2F3092630349A0090DD70 /* URL+.swift */; };
 		06FDBFE225F21417003DB1FC /* RollingpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FDBFE125F21417003DB1FC /* RollingpaperView.swift */; };
 		57220E8425F6487600CDE9BC /* DebugManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57220E8325F6487600CDE9BC /* DebugManager.swift */; };
 		57220E8A25F64B6500CDE9BC /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57220E8925F64B6500CDE9BC /* NetworkLogger.swift */; };
@@ -93,6 +94,7 @@
 		068EC20125EE145200484FBB /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		06C2F2EF262F3B6D0090DD70 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		06C2F2F6262FFA9F0090DD70 /* UserDefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultStorage.swift; sourceTree = "<group>"; };
+		06C2F3092630349A0090DD70 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		06FDBFE125F21417003DB1FC /* RollingpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperView.swift; sourceTree = "<group>"; };
 		0737BB496E529BCE72086DD9 /* Pods_TDTD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TDTD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4075CB972E59A445BE514786 /* Pods-TDTD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDTD.release.xcconfig"; path = "Target Support Files/Pods-TDTD/Pods-TDTD.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				B1ED9B3D25EA3BA8000A8C4D /* Font+.swift */,
 				068EC1FE25ECE5AE00484FBB /* View+.swift */,
 				06C2F2EF262F3B6D0090DD70 /* String+.swift */,
+				06C2F3092630349A0090DD70 /* URL+.swift */,
 			);
 			path = GlobalExtension;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				B1ED9B4225EA401B000A8C4D /* HomeView.swift in Sources */,
 				D545118625EA7B5700B19C66 /* FocusView.swift in Sources */,
 				D545119525EAC8A800B19C66 /* SelectRoomTypeView.swift in Sources */,
+				06C2F30A2630349B0090DD70 /* URL+.swift in Sources */,
 				B1ED9B3E25EA3BA8000A8C4D /* Font+.swift in Sources */,
 				B137F53425EAA15800F86D45 /* RoomSummary.swift in Sources */,
 				06837AF725F6141B004EA12B /* AlertView.swift in Sources */,

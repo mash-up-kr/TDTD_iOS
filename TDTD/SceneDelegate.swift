@@ -90,22 +90,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let urlToOpen = userActivity.webpageURL else {
               return
           }
-        Log(urlToOpen)
+
         DynamicLinks.dynamicLinks().handleUniversalLink(urlToOpen) { [weak self] (dynamiclink, error) in
             guard let self = self else {
                 return
             }
             
-            if let redirectURL = dynamiclink?.url {
-                Log(redirectURL)
+            // https://sokdak.site?room-code=abc12345678&a=3
+            guard let url = dynamiclink?.url else {
+                Log("dynamiclink not exist")
+                return
             }
-            APIRequest.shared.requestJoinRoom(roomCode: "yqY4KKDKR-6W-wVIJaNeWw")
+            Log(url)
+            let queryItem = url.queryItems
+            Log(queryItem)
+            guard let roomCode = queryItem["room-code"] else {
+                return
+            }
+            
+            APIRequest.shared.requestJoinRoom(roomCode: roomCode)
                 .replaceError(with: .init(statusCode: -1, data: Data()))
                 .sink { [weak self] response in
                     do {
                         if let responseModel = try response.mapJSON() as? [String: Any] {
                             if responseModel["code"] as? Int != 2000 {
-                                Log("Fail JoinRoom")
+                                Log("fail joinRoom")
                                 self?.isUpdate = false
                             } else {
                                 self?.isUpdate = true
