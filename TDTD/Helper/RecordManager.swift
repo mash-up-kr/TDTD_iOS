@@ -40,7 +40,7 @@ final class RecordManager: NSObject {
         setAudioSession()
         try setRecorder()
         try AVAudioSession.sharedInstance().setActive(true)
-        recorder.record(forDuration: limitDuration)
+        recorder.record()
     }
     
     func stop() {

@@ -70,12 +70,6 @@ final class RollingpaperWriteViewModel: ObservableObject {
         self.roomCode = roomCode
         model = RollingpaperWriteModel(roomType: roomType)
         RecordManager.shared.delegate = self
-        
-        // FIXME: - 디버그용 추후 삭제 해야해용
-        $model.sink {
-            Log($0)
-        }
-        .store(in: &cancelBag)
     }
 
     func record() {
@@ -84,18 +78,20 @@ final class RollingpaperWriteViewModel: ObservableObject {
         timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
-                print(RecordManager.shared.recordTime)
                 if RecordManager.shared.recordTime >= RecordManager.shared.limitDuration {
                     self.stopRecord()
+                    self.timerString = "01:00"
+                    return
                 }
+                Log(RecordManager.shared.recordTime)
                 self.timerString = String(format: "00:%02d", Int(floor(RecordManager.shared.recordTime)))
             }
     }
     
     func stopRecord() {
         recordStatus = .end
-        RecordManager.shared.stop()
         timerCancellable?.cancel()
+        RecordManager.shared.stop()
     }
     
     func play() {
@@ -112,7 +108,7 @@ final class RollingpaperWriteViewModel: ObservableObject {
                     }
                 }
         } catch {
-            print("player error")
+            Log("player error")
         }
     }
     
