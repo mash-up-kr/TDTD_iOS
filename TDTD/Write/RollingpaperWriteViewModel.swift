@@ -64,6 +64,7 @@ final class RollingpaperWriteViewModel: ObservableObject {
     private var timerCancellable: AnyCancellable?
     @Published var timerString: String = "최대 1분"
     private var cancelBag = Set<AnyCancellable>()
+    private var isLoading: Bool = false
     
     // MARK: - 방생성 직후 룸접근
     init(roomCode: String, roomType: RoomType) {
@@ -160,6 +161,10 @@ protocol RecordManagerDelegate: class {
 
 extension RollingpaperWriteViewModel {
     func requestWriteComment() {
+        if isLoading {
+            return
+        }
+        isLoading = true
         let tempModel = model
         APIRequest.shared.requestWriteComment(roomCode: roomCode, data: tempModel.multipartData)
             .replaceError(with: Response(statusCode: -1, data: Data()))
@@ -175,6 +180,7 @@ extension RollingpaperWriteViewModel {
                 } catch {
                     Log("decode error")
                 }
+                self?.isLoading = false
             }
             .store(in: &cancelBag)
     }
