@@ -51,6 +51,9 @@ struct RollingpaperWriteView: View {
                 isPresentWriteView = false
             }
         }
+        .onDisappear {
+            viewModel.reset()
+        }
     }
     
     @ViewBuilder
@@ -129,7 +132,7 @@ struct RollingpaperWriteView: View {
     private func bottomButtonView() -> some View {
         HStack {
             Button(action: {
-                
+                isPresentWriteView = false
             }, label: {
                 Text("취소")
             })

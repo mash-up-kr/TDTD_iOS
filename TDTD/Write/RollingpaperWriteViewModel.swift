@@ -72,6 +72,10 @@ final class RollingpaperWriteViewModel: ObservableObject {
         model = RollingpaperWriteModel(roomType: roomType)
         RecordManager.shared.delegate = self
     }
+    
+    deinit {
+        Log("deinit")
+    }
 
     func record() {
         recordStatus = .record
@@ -120,6 +124,7 @@ final class RollingpaperWriteViewModel: ObservableObject {
         PlayManager.shared.stop()
         RecordManager.shared.deleteAllFile()
         model.voice = nil
+        timerCancellable?.cancel()
     }
     
     func pause() {

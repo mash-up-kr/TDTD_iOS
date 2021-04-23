@@ -19,7 +19,7 @@ final class RecordManager: NSObject {
     var recordTime: TimeInterval {
         recorder.currentTime
     }
-    unowned var delegate: RecordManagerDelegate?
+    weak var delegate: RecordManagerDelegate?
     
     private func setAudioSession() {
         try? AVAudioSession.sharedInstance().setCategory(.playAndRecord,
