@@ -53,6 +53,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
+        
+        // 앱꺼진상태에서 링크클릭시 딥링크함수 동작안해서 아래와 같이 추가해줘야함
+        if let userActivity = connectionOptions.userActivities.first {
+            if let deepLink = userActivity.webpageURL {
+                requestJoinRoomFromDeepLink(urlToOpen: deepLink)
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -90,7 +97,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let urlToOpen = userActivity.webpageURL else {
               return
           }
-
+        requestJoinRoomFromDeepLink(urlToOpen: urlToOpen)
+    }
+    
+    private func requestJoinRoomFromDeepLink(urlToOpen: URL) {
         DynamicLinks.dynamicLinks().handleUniversalLink(urlToOpen) { [weak self] (dynamiclink, error) in
             guard let self = self else {
                 return
