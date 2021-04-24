@@ -19,6 +19,7 @@ class CreateRoomViewModel: ObservableObject {
     private var requestMakeRoomCancellable: AnyCancellable?
     
     private(set) var newRoomCode: String?
+    private var isLoading: Bool = false
     
     func updateRoom(type: RoomType) {
         self.type = type
@@ -36,7 +37,11 @@ class CreateRoomViewModel: ObservableObject {
 
 extension CreateRoomViewModel {
     private func requestMakeRoom() {
+        if isLoading {
+            return
+        }
         requestMakeRoomCancellable?.cancel()
+        isLoading = true
         requestMakeRoomCancellable = APIRequest.shared.requestMakeRoom(title: title, type: type)
             .sink(receiveCompletion: { _ in }
                   , receiveValue: { [weak self] in
@@ -46,6 +51,7 @@ extension CreateRoomViewModel {
                             self?.isCreated = true
                         }
                     }
+                    self?.isLoading = false
                   })
     }
 }
