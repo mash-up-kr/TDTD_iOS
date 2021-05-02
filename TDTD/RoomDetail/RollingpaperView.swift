@@ -78,6 +78,7 @@ struct RollingpaperView: View {
                 RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode,
                                                                             roomType: viewModel.roomType),
                                       isPresentWriteView: $isPresentWriteView)
+                    .environmentObject(viewModel)
             }
             .navigationBarHidden(isNaviBarHidden)
             .onAppear {

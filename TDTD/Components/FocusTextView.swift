@@ -87,5 +87,15 @@ struct UITextViewWrapper: UIViewRepresentable {
             parent.isWrite = false
             parent.isFocused = false
         }
+        
+        func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            guard let curString = textView.text,
+                  let stringRange = Range(range, in: curString) else {
+                return false
+            }
+            
+            let updateText = curString.replacingCharacters(in: stringRange, with: text)
+            return updateText.count < 200
+        }
     }
 }
