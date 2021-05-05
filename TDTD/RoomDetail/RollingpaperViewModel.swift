@@ -80,10 +80,12 @@ final class RollingpaperViewModel: ObservableObject {
                     let model = RoomModel(model: responseModel.result)
                     roomType = model.type
                     isHost = model.isHost
-                    models = model.comments
                     shareURL = model.shareURL
-                    roomTitleText = model.title
-                    isEnableWriteButton = true
+                    withAnimation(.linear(duration: 0.3)) {
+                        models = model.comments
+                        roomTitleText = model.title
+                        isEnableWriteButton = true
+                    }
                 } catch {
                     Log(error)
                 }
