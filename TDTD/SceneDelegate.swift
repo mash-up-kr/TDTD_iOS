@@ -30,7 +30,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .onReceive($isUpdate) {
                 if let isUpdate = $0, isUpdate {
                     Log("Deep Link Update")
-                    viewModel.requestRooms(isDeepLink: true)
+                    viewModel.popToRoot()
+                    viewModel.requestRooms()
                 }
             }
 

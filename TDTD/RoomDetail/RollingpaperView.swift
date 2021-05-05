@@ -83,6 +83,7 @@ struct RollingpaperView: View {
             }
             .navigationBarHidden(isNaviBarHidden)
             .onAppear {
+                isDeepLinkRefresh = false
                 viewModel.requestRoomDetailInfo()
             }
             .onReceive(viewModel.$isRoomRemoved) { isRemove in
@@ -115,13 +116,12 @@ struct RollingpaperView: View {
                 viewModel.playerReset()
             }
         }
-        .onChange(of: isDeepLinkRefresh) {
-            if $0 {
-                presentationMode.wrappedValue.dismiss()
+        .onChange(of: isDeepLinkRefresh) { isBack in
+            if isBack {
+                DispatchQueue.main.async {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
-        }
-        .onDisappear() {
-            isDeepLinkRefresh = false
         }
     }
     
@@ -396,7 +396,7 @@ struct RollingpaperView_Previews: PreviewProvider {
                                                                                 roomCode: "1ab3",
                                                                                 isBookmark: true,
                                                                                 createdAt: "2021-04-12T16:59:35",
-                                                                                shareURL: nil)), isDeepLinkRefresh: Binding<Bool>.constant(false))
+                                                                                shareURL: nil)), isDeepLinkRefresh: .constant(true))
     }
 }
 

@@ -9,15 +9,16 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var presentCreatRoom = false
     @State private var showFavoritesOnly = false
     @State private var isCanMakeRoomFirstEnter = true
+    @State private var isDeepLinkRefresh = false
     
     private var rooms: [RoomSummary] {
-        Array(viewModel.rooms.filter { roomSummary in
+        viewModel.rooms.filter { roomSummary in
             (!showFavoritesOnly || roomSummary.isBookmark)
-        }).sorted { $0.createdAt ?? "" > $1.createdAt ?? "" }
+        }.sorted { $0.createdAt ?? "" > $1.createdAt ?? "" }
     }
     
     init(viewModel: HomeViewModel) {
@@ -45,9 +46,7 @@ struct HomeView: View {
                         .padding(.horizontal, 16)
                         LazyVStack(spacing: 8) {
                             ForEach(rooms, id: \.roomCode) { roomSummary in
-                                let view = RollingpaperView(viewModel: RollingpaperViewModel(roomInfo: roomSummary),
-                                                            isDeepLinkRefresh: Binding(get: { viewModel.isPopToRoot },
-                                                                                       set: { viewModel.isPopToRoot = $0 }))
+                                let view = RollingpaperView(viewModel: RollingpaperViewModel(roomInfo: roomSummary), isDeepLinkRefresh: $isDeepLinkRefresh)
                                 NavigationLink(destination: view) {
                                     CardView(roomSummary: roomSummary)
                                 }
@@ -64,6 +63,11 @@ struct HomeView: View {
             .onAppear {
                 viewModel.requestRooms()
             }
+            .onReceive(viewModel.$isPopToRoot) {
+                if $0 {
+                    isDeepLinkRefresh = true
+                }
+            }
         }
         .sheet(isPresented: $presentCreatRoom, content: {
             let viewModel = CreateRoomViewModel()
@@ -79,8 +83,7 @@ struct HomeView: View {
         if let roomCode = viewModel.roomCode {
             let newViewModel = RollingpaperViewModel(roomCode: roomCode)
             let newRollingPaperView = RollingpaperView(viewModel: newViewModel,
-                                                       isDeepLinkRefresh: Binding(get: { viewModel.isPopToRoot },
-                                                                                  set: { viewModel.isPopToRoot = $0 }))
+                                                       isDeepLinkRefresh: $isDeepLinkRefresh)
             NavigationLink(destination: newRollingPaperView, isActive: .constant(true)) {
                 EmptyView()
             }

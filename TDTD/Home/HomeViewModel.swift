@@ -16,10 +16,7 @@ final class HomeViewModel: ObservableObject {
 }
 
 extension HomeViewModel {
-    func requestRooms(isDeepLink: Bool = false) {
-        if isDeepLink {
-            isPopToRoot = true
-        }
+    func requestRooms() {
         APIRequest.shared.requestRooms()
             .sink(receiveCompletion: { _ in }
             , receiveValue: {
@@ -29,4 +26,9 @@ extension HomeViewModel {
             })
             .store(in: &bag)
     }
+    
+    func popToRoot() {
+        isPopToRoot = true
+    }
+    
 }

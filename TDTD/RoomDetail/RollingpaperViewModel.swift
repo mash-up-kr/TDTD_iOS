@@ -31,7 +31,6 @@ final class RollingpaperViewModel: ObservableObject {
     private(set) var roomCreatedAt: String?
     private var playMode: PlayMode = .none
     
-    
     private var timerCancellable: AnyCancellable?
     
     var selectIndex: Int?
