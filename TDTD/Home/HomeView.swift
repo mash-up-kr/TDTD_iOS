@@ -61,11 +61,9 @@ struct HomeView: View {
 // TODO: 추후 설정창 옵션추가시 구현
 //            trailing: Image("ic_settingButton_40")
             .onAppear {
-                Log("🎉")
                 viewModel.requestRooms()
             }
             .onReceive(viewModel.$isPopToRoot) {
-                Log("🎉🎉\($0)")
                 if $0 {
                     isDeepLinkRefresh = true
                 }
@@ -88,7 +86,6 @@ struct HomeView: View {
             let newRollingPaperView = RollingpaperView(viewModel: newViewModel,
                                                        isDeepLinkRefresh: $isDeepLinkRefresh)
                 .onDisappear {
-                    Log("🎉🎉🎉")
                     viewModel.roomCode = nil
                     viewModel.roomType = nil
                 }
