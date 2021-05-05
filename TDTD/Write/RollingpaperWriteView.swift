@@ -138,7 +138,7 @@ struct RollingpaperWriteView: View {
             })
             .buttonStyle(RoundButtonStyle(style: .light))
             Button(action: {
-                if viewModel.model.nickname?.isEmpty ?? true {
+                if viewModel.model.nickname?.trimmingCharacters(in: .whitespaces).isEmpty ?? true {
                     toastMessage = "닉네임을 입력해주세요!"
                     isShowToast = true
                 } else if viewModel.model.isEmptyData {
