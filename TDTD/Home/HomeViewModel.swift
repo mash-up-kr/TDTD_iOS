@@ -10,12 +10,16 @@ import Combine
 
 final class HomeViewModel: ObservableObject {
     @Published var rooms = [RoomSummary]()
+    @Published var isPopToRoot: Bool = false
     var roomCode: String?
     private var bag = Set<AnyCancellable>()
 }
 
 extension HomeViewModel {
-    func requestRooms() {
+    func requestRooms(isDeepLink: Bool = false) {
+        if isDeepLink {
+            isPopToRoot = true
+        }
         APIRequest.shared.requestRooms()
             .sink(receiveCompletion: { _ in }
             , receiveValue: {

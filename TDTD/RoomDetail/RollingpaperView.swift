@@ -14,10 +14,11 @@ struct RollingpaperView: View {
     @State private var isPresentHostOptionView: Bool = false
     @State private var isRequestErrorAlert: Bool = false
     @State private var isPresentExitRoomAlert: Bool = false
-    @State var isRemoveRollingpaper: Bool = false
-    @State var isReportRollingpaper: Bool = false
-    @State var isPresentPlayer: Bool = false
-    @State var isPresentCopyConfirmAlert: Bool = false
+    @State private var isRemoveRollingpaper: Bool = false
+    @State private var isReportRollingpaper: Bool = false
+    @State private var isPresentPlayer: Bool = false
+    @State private var isPresentCopyConfirmAlert: Bool = false
+    @Binding var isDeepLinkRefresh: Bool
     
     var randomRotate: Double {
         Double(Int.random(in: -10...10))
@@ -113,6 +114,14 @@ struct RollingpaperView: View {
             if !$0 {
                 viewModel.playerReset()
             }
+        }
+        .onChange(of: isDeepLinkRefresh) {
+            if $0 {
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
+        .onDisappear() {
+            isDeepLinkRefresh = false
         }
     }
     
@@ -387,7 +396,7 @@ struct RollingpaperView_Previews: PreviewProvider {
                                                                                 roomCode: "1ab3",
                                                                                 isBookmark: true,
                                                                                 createdAt: "2021-04-12T16:59:35",
-                                                                                shareURL: nil)))
+                                                                                shareURL: nil)), isDeepLinkRefresh: Binding<Bool>.constant(false))
     }
 }
 
