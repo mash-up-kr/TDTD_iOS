@@ -60,9 +60,10 @@ final class RollingpaperViewModel: ObservableObject {
     /// - parameters:
     ///    - isMakeRoom: 바로 방만든경우 true
     /// - 방만든 직후 생성할 때 사용하는 생성자
-    init(roomCode: String) {
+    init(roomCode: String, roomType: RoomType) {
         self.isMakeRoom = true
         self.roomCode = roomCode
+        self.roomType = roomType
     }
     
     deinit {

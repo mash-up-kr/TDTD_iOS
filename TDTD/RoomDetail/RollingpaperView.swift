@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RollingpaperView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var viewModel: RollingpaperViewModel
+    @StateObject var viewModel: RollingpaperViewModel
     @State private var isPresentWriteView: Bool = false
     @State private var isPresentHostOptionView: Bool = false
     @State private var isRequestErrorAlert: Bool = false

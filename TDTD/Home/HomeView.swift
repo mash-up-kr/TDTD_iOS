@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var presentCreatRoom = false
     @State private var showFavoritesOnly = false
@@ -22,7 +22,7 @@ struct HomeView: View {
     }
     
     init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
@@ -61,9 +61,11 @@ struct HomeView: View {
 // TODO: 추후 설정창 옵션추가시 구현
 //            trailing: Image("ic_settingButton_40")
             .onAppear {
+                Log("🎉")
                 viewModel.requestRooms()
             }
             .onReceive(viewModel.$isPopToRoot) {
+                Log("🎉🎉\($0)")
                 if $0 {
                     isDeepLinkRefresh = true
                 }
@@ -80,15 +82,18 @@ struct HomeView: View {
     
     @ViewBuilder
     private func moveNewRoom() -> some View {
-        if let roomCode = viewModel.roomCode {
-            let newViewModel = RollingpaperViewModel(roomCode: roomCode)
+        if let roomCode = viewModel.roomCode,
+           let roomType = viewModel.roomType {
+            let newViewModel = RollingpaperViewModel(roomCode: roomCode, roomType: roomType)
             let newRollingPaperView = RollingpaperView(viewModel: newViewModel,
                                                        isDeepLinkRefresh: $isDeepLinkRefresh)
+                .onDisappear {
+                    Log("🎉🎉🎉")
+                    viewModel.roomCode = nil
+                    viewModel.roomType = nil
+                }
             NavigationLink(destination: newRollingPaperView, isActive: .constant(true)) {
                 EmptyView()
-            }
-            .onDisappear {
-                viewModel.roomCode = nil
             }
         }
     }

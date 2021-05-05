@@ -39,6 +39,7 @@ struct CreateRoomView: View {
             .onReceive(viewModel.$isCreated) {
                 if $0 {
                     presentCreatRoom = false
+                    homeViewModel.roomType = viewModel.type
                     homeViewModel.roomCode = viewModel.newRoomCode
                     homeViewModel.objectWillChange.send()
                 }
