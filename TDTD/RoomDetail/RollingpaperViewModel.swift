@@ -27,8 +27,10 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var totalPlayTime: String = "00:00"
     @Published var progressRate: Float = 0
     @Published var isPlay: Bool = false
+    @Published var isEnableWriteButton: Bool = false
     private(set) var roomCreatedAt: String?
     private var playMode: PlayMode = .none
+    
     
     private var timerCancellable: AnyCancellable?
     
@@ -81,6 +83,7 @@ final class RollingpaperViewModel: ObservableObject {
                     models = model.comments
                     shareURL = model.shareURL
                     roomTitleText = model.title
+                    isEnableWriteButton = true
                 } catch {
                     Log(error)
                 }

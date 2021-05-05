@@ -272,9 +272,11 @@ struct RollingpaperView: View {
                         isPresentWriteView = true
                     }, label: {
                         RoundedRectangle(cornerRadius: 18)
-                            .fill(Color("grayscale_1"))
+                            .fill(viewModel.isEnableWriteButton ?
+                                    ColorPallete.grayscale(1).color : ColorPallete.grayscale(1).color.opacity(0.3))
                             .overlay(Image("ic_write_32"))
                     })
+                    .allowsHitTesting(viewModel.isEnableWriteButton)
                     .frame(width: 56, height: 56)
                 }
             }
