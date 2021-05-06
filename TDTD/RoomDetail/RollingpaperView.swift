@@ -238,7 +238,7 @@ struct RollingpaperView: View {
                           msg: "정말 롤링페이퍼 방을 삭제하시겠어요?😭",
                           leftTitle: "방 삭제하기",
                           leftAction: {
-                            viewModel.requestExitRoom()
+                            viewModel.requestRemoveRoom()
                             isPresentExitRoomAlert = false
                           },
                           rightTitle: "안할래요!",
