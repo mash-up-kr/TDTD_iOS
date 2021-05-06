@@ -75,6 +75,10 @@ struct HomeView: View {
                            presentCreatRoom: $presentCreatRoom)
                 .environmentObject(self.viewModel)
         })
+        .alert(isPresented: $viewModel.isNotExistRoom) {
+            Alert(title: Text("이미 삭제된방 이에요😭"),
+                  message: Text("링크를 다시한번 확인해주세요"))
+        }
         
     }
     

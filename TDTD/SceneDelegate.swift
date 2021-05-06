@@ -28,10 +28,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewModel = HomeViewModel()
         let contentView = HomeView(viewModel: viewModel)
             .onReceive($isUpdate) {
-                if let isUpdate = $0, isUpdate {
-                    Log("Deep Link Update")
-                    viewModel.popToRoot()
-                    viewModel.requestRooms()
+                if let isUpdate = $0 {
+                    if isUpdate {
+                        Log("Deep Link Update")
+                        viewModel.popToRoot()
+                        viewModel.requestRooms()
+                    } else {
+                        viewModel.isNotExistRoom = true
+                    }
                 }
             }
 
@@ -124,10 +128,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 .sink { [weak self] response in
                     do {
                         if let responseModel = try response.mapJSON() as? [String: Any] {
-                            if responseModel["code"] as? Int != 2000 {
+                            let code = responseModel["code"] as? Int
+                            if code == 4044 {
                                 Log("fail joinRoom")
                                 self?.isUpdate = false
-                            } else {
+                            } else if code == 2000 {
                                 self?.isUpdate = true
                             }
                             Log(responseModel)
