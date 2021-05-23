@@ -205,7 +205,7 @@ final class RollingpaperViewModel: ObservableObject {
 
 // MARK: - PlayerView관련 동작
 
-protocol PlayManagerDelegate: class {
+protocol PlayManagerDelegate: AnyObject {
     func loadAudioDataComplete()
     func finishedPlay()
 }

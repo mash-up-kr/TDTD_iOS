@@ -26,7 +26,7 @@ enum RoomType: String {
         switch self {
         case .none:     return ""
         case .voice:    return "직접 음성 녹음을\n할 수 있어요!"
-        case .text:     return "텍스트로 쓰면 민지가\n읽어드려요!"
+        case .text:     return "텍스트로 메세지를 써서\n마음을 속닥여요!"
         }
     }
     

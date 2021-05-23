@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "select_method_img_text.png",
+      "filename" : "img_room_text.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "img_room_text@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "img_room_text@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
