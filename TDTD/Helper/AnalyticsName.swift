@@ -8,9 +8,9 @@
 import Foundation
 
 struct AnalyticsScreenName {
-    static let home = "Home" // 홈리스트화면
-    static let roomDetail = "RoomDetail" // 답장리스트화면
-    static let write = "Write" // 답장작성화면
+    static let home = "HomeView" // 홈리스트화면
+    static let roomDetail = "RoomDetailView" // 답장리스트화면
+    static let write = "WriteMessageView" // 답장작성화면
 }
 
 struct AnalyticsEventName {
