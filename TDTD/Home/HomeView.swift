@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
@@ -62,6 +63,8 @@ struct HomeView: View {
 //            trailing: Image("ic_settingButton_40")
             .onAppear {
                 viewModel.requestRooms()
+                Analytics.logEvent(AnalyticsScreenName.home,
+                                   parameters: nil)
             }
             .onReceive(viewModel.$isPopToRoot) {
                 if $0 {

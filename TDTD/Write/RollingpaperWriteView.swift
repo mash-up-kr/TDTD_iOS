@@ -8,6 +8,8 @@
 import SwiftUI
 import UIKit
 
+import FirebaseAnalytics
+
 struct RollingpaperWriteView: View {
     @EnvironmentObject var parentViewModel: RollingpaperViewModel
     @StateObject var viewModel: RollingpaperWriteViewModel
@@ -50,6 +52,10 @@ struct RollingpaperWriteView: View {
                 parentViewModel.requestRoomDetailInfo()
                 isPresentWriteView = false
             }
+        }
+        .onAppear {
+            Analytics.logEvent(AnalyticsScreenName.write,
+                               parameters: nil)
         }
         .onDisappear {
             viewModel.reset()

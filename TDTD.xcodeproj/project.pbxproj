@@ -17,6 +17,7 @@
 		0637E43125EA3FC6008049F7 /* FocusTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */; };
 		0637E43425EA4028008049F7 /* FocusTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43325EA4028008049F7 /* FocusTextView.swift */; };
 		0637E43725EA6205008049F7 /* RollingpaperWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */; };
+		064D91C0265A1F5C0064AB94 /* AnalyticsName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D91BF265A1F5C0064AB94 /* AnalyticsName.swift */; };
 		06837AF125F5FC11004EA12B /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837AF025F5FC11004EA12B /* PlayerView.swift */; };
 		06837AF425F605C2004EA12B /* RoundedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837AF325F605C2004EA12B /* RoundedViewModifier.swift */; };
 		06837AF725F6141B004EA12B /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06837AF625F6141B004EA12B /* AlertView.swift */; };
@@ -80,6 +81,7 @@
 		0637E43025EA3FC6008049F7 /* FocusTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextFieldView.swift; sourceTree = "<group>"; };
 		0637E43325EA4028008049F7 /* FocusTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextView.swift; sourceTree = "<group>"; };
 		0637E43625EA6205008049F7 /* RollingpaperWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingpaperWriteViewModel.swift; sourceTree = "<group>"; };
+		064D91BF265A1F5C0064AB94 /* AnalyticsName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsName.swift; sourceTree = "<group>"; };
 		06837AF025F5FC11004EA12B /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		06837AF325F605C2004EA12B /* RoundedViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedViewModifier.swift; sourceTree = "<group>"; };
 		06837AF625F6141B004EA12B /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				0637E40925E811BE008049F7 /* PlayManager.swift */,
 				06837B1725F9F7B0004EA12B /* ColorPallete.swift */,
 				06C2F2F6262FFA9F0090DD70 /* UserDefaultStorage.swift */,
+				064D91BF265A1F5C0064AB94 /* AnalyticsName.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				D545116D25EA6BA900B19C66 /* CreateRoomView.swift in Sources */,
 				0637E40525E80CBA008049F7 /* Date+.swift in Sources */,
 				B137F52A25EA7F7600F86D45 /* CardSectionTitleView.swift in Sources */,
+				064D91C0265A1F5C0064AB94 /* AnalyticsName.swift in Sources */,
 				0637E40225E809A3008049F7 /* RecordManager.swift in Sources */,
 				06FDBFE225F21417003DB1FC /* RollingpaperView.swift in Sources */,
 				0637E40A25E811BE008049F7 /* PlayManager.swift in Sources */,

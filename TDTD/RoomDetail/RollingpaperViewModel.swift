@@ -8,6 +8,8 @@
 import SwiftUI
 import Combine
 
+import FirebaseAnalytics
+
 enum PlayMode {
     case none, play, end, pause
 }
@@ -101,6 +103,8 @@ final class RollingpaperViewModel: ObservableObject {
             .sink { response in
                 if response.statusCode == 200 {
                     self.isBookmark = !self.isBookmark
+                    Analytics.logEvent(AnalyticsEventName.exitRoom,
+                                       parameters: ["value": self.isBookmark ? "on" : "off"])
                 } else {
                     self.isRequestErrorAlert = true
                 }
@@ -114,6 +118,8 @@ final class RollingpaperViewModel: ObservableObject {
             .replaceError(with: .init(statusCode: -1, data: Data()))
             .sink { [weak self] response in
                 if response.statusCode == 200 {
+                    Analytics.logEvent(AnalyticsEventName.exitRoom,
+                                       parameters: ["value": "host"])
                     self?.isRoomRemoved = true
                 } else {
                     self?.isRequestErrorAlert = true
@@ -128,6 +134,8 @@ final class RollingpaperViewModel: ObservableObject {
             .replaceError(with: .init(statusCode: -1, data: Data()))
             .sink { [weak self] response in
                 if response.statusCode == 200 {
+                    Analytics.logEvent(AnalyticsEventName.exitRoom,
+                                       parameters: ["value": "user"])
                     self?.isRoomRemoved = true
                 } else {
                     self?.isRequestErrorAlert = true
@@ -169,6 +177,8 @@ final class RollingpaperViewModel: ObservableObject {
                 .sink { [weak self] response in
                     if response.statusCode == 200 {
                         self?.removeModel(id: id)
+                        Analytics.logEvent(AnalyticsEventName.removeMessage,
+                                           parameters: ["value": "user"])
                         self?.isCommentRemoved = true
                     }
                 }
@@ -184,6 +194,8 @@ final class RollingpaperViewModel: ObservableObject {
                 .sink { [weak self] response in
                     if response.statusCode == 200 {
                         self?.removeModel(id: id)
+                        Analytics.logEvent(AnalyticsEventName.removeMessage,
+                                           parameters: ["value": "host"])
                         self?.isCommentRemoved = true
                     }
                 }

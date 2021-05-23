@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
+import FirebaseAnalytics
 
 class CreateRoomViewModel: ObservableObject {
     
@@ -47,6 +48,8 @@ extension CreateRoomViewModel {
                   , receiveValue: { [weak self] in
                     if let data = try? $0.map(ResponseModel<[String:String]>.self) {
                         if data.code == 2000 {
+                            Analytics.logEvent(AnalyticsEventName.createRoom,
+                                               parameters: ["value": self?.type.rawValue ?? "none"])
                             self?.newRoomCode = data.result["room_code"]
                             self?.isCreated = true
                         }

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import FirebaseAnalytics
+
 struct RollingpaperView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var viewModel: RollingpaperViewModel
@@ -85,6 +87,8 @@ struct RollingpaperView: View {
             .onAppear {
                 isDeepLinkRefresh = false
                 viewModel.requestRoomDetailInfo()
+                Analytics.logEvent(AnalyticsScreenName.roomDetail,
+                                   parameters: nil)
             }
             .onReceive(viewModel.$isRoomRemoved) { isRemove in
                 if isRemove {
@@ -385,6 +389,8 @@ struct RollingpaperView: View {
     private func copyRoomCodeLink() {
         let shareLink = viewModel.shareURL
         UIPasteboard.general.string = shareLink
+        Analytics.logEvent(AnalyticsEventName.copyLink,
+                           parameters: ["value": "copy"])
         isPresentCopyConfirmAlert = true
     }
 }
