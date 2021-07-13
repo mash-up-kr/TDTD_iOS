@@ -76,7 +76,14 @@ struct RollingpaperView: View {
             }))
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(viewModel.roomTitleText)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Image(viewModel.roomType == .voice ? "ic_record" : "ic_text")
+                        Text(viewModel.roomTitleText)
+                    }
+                }
+            }
             .sheet(isPresented: $isPresentWriteView) {
                 RollingpaperWriteView(viewModel: RollingpaperWriteViewModel(roomCode: viewModel.roomCode,
                                                                             roomType: viewModel.roomType),
