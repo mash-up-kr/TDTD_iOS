@@ -79,7 +79,7 @@ struct RollingpaperView: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        Image(viewModel.roomType == .voice ? "ic_record" : "ic_text")
+                        Image(viewModel.roomType == .voice ? "badge_record" : "badge_text")
                         Text(viewModel.roomTitleText)
                     }
                 }
@@ -294,7 +294,7 @@ struct RollingpaperView: View {
                         RoundedRectangle(cornerRadius: 18)
                             .fill(viewModel.isEnableWriteButton ?
                                     ColorPallete.grayscale(1).color : ColorPallete.grayscale(1).color.opacity(0.3))
-                            .overlay(Image("ic_write_32"))
+                            .overlay(Image(viewModel.roomType == .voice ? "ic_voice_32" : "ic_write_32"))
                     })
                     .allowsHitTesting(viewModel.isEnableWriteButton)
                     .frame(width: 56, height: 56)

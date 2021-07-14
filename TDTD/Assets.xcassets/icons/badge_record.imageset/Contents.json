@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic_text.png",
+      "filename" : "badge_record.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ic_text@2x.png",
+      "filename" : "badge_record@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ic_text@3x.png",
+      "filename" : "badge_record@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
