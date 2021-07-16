@@ -409,7 +409,7 @@ struct RollingpaperView_Previews: PreviewProvider {
                                                                                 roomCode: "1ab3",
                                                                                 isBookmark: true,
                                                                                 createdAt: "2021-04-12T16:59:35",
-                                                                                shareURL: nil)), isDeepLinkRefresh: .constant(true))
+                                                                                shareURL: nil, type: .record)), isDeepLinkRefresh: .constant(true))
     }
 }
 

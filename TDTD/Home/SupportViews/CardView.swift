@@ -15,7 +15,8 @@ struct CardView: View {
     
     var body: some View {
         VStack(spacing: 40) {
-            HStack() {
+            HStack(spacing: 8) {
+                Image(roomSummary.type == .record ? "badge_record" : "badge_text")
                 Text(roomSummary.title ?? "")
                     .foregroundColor(.init("grayscale_1"))
                     .font(.uhBeeCustom(20, weight: .bold))
@@ -55,8 +56,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(roomSummary: RoomSummary(isHost: true, title: "이거슨 타이틀입니다.", roomCode: "", isBookmark: true, createdAt: nil, shareURL: nil
-        ))
+        CardView(roomSummary: RoomSummary(isHost: true, title: "이거슨 타이틀입니다.", roomCode: "", isBookmark: true, createdAt: nil, shareURL: nil, type: .record))
             .padding(.horizontal, 16)
     }
 }
