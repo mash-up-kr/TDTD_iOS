@@ -345,6 +345,21 @@ struct RollingpaperView: View {
                             .frame(height: 48)
                             Spacer().frame(height: 8)
                             Button(action: {
+                                modifyRoomTitle()
+                            }, label: {
+                                HStack(spacing: 8) {
+                                    Image("ic_revise_32")
+                                    UhBeeZigleText("방 이름 바꾸기",
+                                                   size: 20,
+                                                   weight: .bold,
+                                                   pallete: .grayscale(1))
+                                        .layoutPriority(1)
+                                    Spacer()
+                                }
+                            })
+                            .frame(height: 48)
+                            Spacer().frame(height: 8)
+                            Button(action: {
                                 isPresentExitRoomAlert = true
                             }, label: {
                                 HStack(spacing: 8) {
@@ -399,6 +414,10 @@ struct RollingpaperView: View {
         Analytics.logEvent(AnalyticsEventName.copyLink,
                            parameters: ["value": "copy"])
         isPresentCopyConfirmAlert = true
+    }
+    
+    private func modifyRoomTitle() {
+        ModifyRoomTitleView(curTitle: "ㅇ")
     }
 }
 

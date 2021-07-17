@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0609A0262619A19700A81A2F /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0609A0252619A19700A81A2F /* ResponseModel.swift */; };
+		0630210426A3341900A4A038 /* ModifyRoomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0630210326A3341900A4A038 /* ModifyRoomTitleView.swift */; };
 		0637E3FD25E7FB77008049F7 /* TTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E3FC25E7FB77008049F7 /* TTSManager.swift */; };
 		0637E40225E809A3008049F7 /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E40125E809A3008049F7 /* RecordManager.swift */; };
 		0637E40525E80CBA008049F7 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0637E40425E80CBA008049F7 /* Date+.swift */; };
@@ -72,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		0609A0252619A19700A81A2F /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		0630210326A3341900A4A038 /* ModifyRoomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyRoomTitleView.swift; sourceTree = "<group>"; };
 		0637E3FC25E7FB77008049F7 /* TTSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSManager.swift; sourceTree = "<group>"; };
 		0637E40125E809A3008049F7 /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
 		0637E40425E80CBA008049F7 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				06837B0225F75D11004EA12B /* RollingpaperViewModel.swift */,
 				06837B0525F75D22004EA12B /* RollingpaperModel.swift */,
 				06837AF025F5FC11004EA12B /* PlayerView.swift */,
+				0630210326A3341900A4A038 /* ModifyRoomTitleView.swift */,
 			);
 			path = RoomDetail;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				06837AF725F6141B004EA12B /* AlertView.swift in Sources */,
 				0637E42925EA3368008049F7 /* RollingpaperWriteView.swift in Sources */,
 				0637E43425EA4028008049F7 /* FocusTextView.swift in Sources */,
+				0630210426A3341900A4A038 /* ModifyRoomTitleView.swift in Sources */,
 				068EC1FC25ECD87000484FBB /* RollingpaperWriteModel.swift in Sources */,
 				B137F53125EAA10B00F86D45 /* Home.swift in Sources */,
 				068EC20225EE145200484FBB /* PlaceholderView.swift in Sources */,
