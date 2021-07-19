@@ -20,6 +20,7 @@ struct RollingpaperView: View {
     @State private var isReportRollingpaper: Bool = false
     @State private var isPresentPlayer: Bool = false
     @State private var isPresentCopyConfirmAlert: Bool = false
+    @State private var isModifyRoomTitleView: Bool = false
     @Binding var isDeepLinkRefresh: Bool
     
     var randomRotate: Double {
@@ -41,7 +42,11 @@ struct RollingpaperView: View {
     }
     
     var isNaviBarHidden: Bool {
-        isReportRollingpaper || isRemoveRollingpaper || isPresentExitRoomAlert || isPresentCopyConfirmAlert
+        isReportRollingpaper ||
+            isRemoveRollingpaper ||
+            isPresentExitRoomAlert ||
+            isPresentCopyConfirmAlert ||
+            isModifyRoomTitleView
     }
     
     var body: some View {
@@ -120,6 +125,7 @@ struct RollingpaperView: View {
             playerOptionAlertView().ignoresSafeArea()
             exitRoomAlertView().ignoresSafeArea()
             copyConfirmAlertView().ignoresSafeArea()
+            modifyRoomTitleView()
         }
         .environmentObject(viewModel)
         .onChange(of: isPresentPlayer) {
@@ -330,6 +336,7 @@ struct RollingpaperView: View {
                         Spacer().frame(height: 16)
                         VStack(alignment: .leading) {
                             Button(action: {
+                                isPresentHostOptionView = false
                                 copyRoomCodeLink()
                             }, label: {
                                 HStack(spacing: 8) {
@@ -345,7 +352,10 @@ struct RollingpaperView: View {
                             .frame(height: 48)
                             Spacer().frame(height: 8)
                             Button(action: {
-                                modifyRoomTitle()
+                                isPresentHostOptionView = false
+                                withAnimation(.spring()) {
+                                    isModifyRoomTitleView = true
+                                }
                             }, label: {
                                 HStack(spacing: 8) {
                                     Image("ic_revise_32")
@@ -360,6 +370,7 @@ struct RollingpaperView: View {
                             .frame(height: 48)
                             Spacer().frame(height: 8)
                             Button(action: {
+                                isPresentHostOptionView = false
                                 isPresentExitRoomAlert = true
                             }, label: {
                                 HStack(spacing: 8) {
@@ -388,7 +399,7 @@ struct RollingpaperView: View {
                     .padding(.top, 24)
                     .padding(.bottom, 38)
                 }
-                .frame(height: 254)
+                .frame(height: 310)
                 .cornerRadius(radius: 24, cornerStyle: [.topLeft, .topRight])
             }
             .transition(.move(edge: .bottom))
@@ -416,8 +427,13 @@ struct RollingpaperView: View {
         isPresentCopyConfirmAlert = true
     }
     
-    private func modifyRoomTitle() {
-        ModifyRoomTitleView(curTitle: "ㅇ")
+    @ViewBuilder
+    private func modifyRoomTitleView() -> some View {
+        if isModifyRoomTitleView {
+            ModifyRoomTitleView(isPresent: $isModifyRoomTitleView,
+                                curTitle: viewModel.roomTitleText)
+                .transition(.move(edge: .bottom))
+        }
     }
 }
 

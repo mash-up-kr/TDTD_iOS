@@ -8,39 +8,52 @@
 import SwiftUI
 
 struct ModifyRoomTitleView: View {
-    @State private var title: String = "2"
+    @State private var title: String = ""
     @State private var isWrite: Bool = false
+    @Binding var isPresent: Bool
     var curTitle: String
     
     var body: some View {
-        ColorPallete.beige(1).color
-            .overlay(
-                VStack {
-                    TextFieldFormItem(text: $title,
-                                      isWrite: $isWrite,
-                                      title: "방 이름 바꾸기",
-                                      max: 35,
-                                      placeholder: curTitle)
-                        .disableAutocorrection(true)
-                    Spacer(minLength: 40)
-                    Button(action: {
-                        isWrite = false
-                    }, label: {
-                        Text("확인")
-                    })
-                    .buttonStyle(RoundButtonStyle(style: .dark))
-                    .opacity(title.isEmpty ? 0.5 : 1)
+        ZStack {
+            Color.black.opacity(0.55)
+                .onTapGesture {
+                    isPresent = false
                 }
-                .padding([.leading, .trailing, .bottom], 16)
-                .padding(.top, 24)
-            )
-            .frame(height: 204)
-            .cornerRadius(radius: 24, cornerStyle: [.topLeft, .topRight])
+            VStack {
+                Spacer()
+                ColorPallete.beige(1).color
+                    .overlay(
+                        VStack {
+                            TextFieldFormItem(text: $title,
+                                              isWrite: $isWrite,
+                                              title: "방 이름 바꾸기",
+                                              max: 35,
+                                              placeholder: curTitle)
+                                .disableAutocorrection(true)
+                            Spacer(minLength: 40)
+                            Button(action: {
+                                isWrite = false
+                                isPresent = false
+                            }, label: {
+                                Text("확인")
+                            })
+                            .disabled(title.isEmpty)
+                            .buttonStyle(RoundButtonStyle(style: .dark))
+                            .opacity(title.isEmpty ? 0.5 : 1)
+                        }
+                        .padding([.leading, .trailing, .bottom], 16)
+                        .padding(.top, 24)
+                    )
+                    .frame(height: 204)
+                    .cornerRadius(radius: 24, cornerStyle: [.topLeft, .topRight])
+            }
+        }
+        .ignoresSafeArea(.container, edges: [.bottom, .top])
     }
 }
 
 struct ModifyRoomTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        ModifyRoomTitleView(curTitle: "현재방제목은?")
+        ModifyRoomTitleView(isPresent: Binding.constant(true), curTitle: "현재방제목은?")
     }
 }
