@@ -21,6 +21,7 @@ struct RollingpaperView: View {
     @State private var isPresentPlayer: Bool = false
     @State private var isPresentCopyConfirmAlert: Bool = false
     @State private var isModifyRoomTitleView: Bool = false
+    @State private var isModifyRoomTitleToastView: Bool = false
     @Binding var isDeepLinkRefresh: Bool
     
     var randomRotate: Double {
@@ -127,6 +128,9 @@ struct RollingpaperView: View {
             copyConfirmAlertView().ignoresSafeArea()
             modifyRoomTitleView()
         }
+        .toast(isShowing: $isModifyRoomTitleToastView,
+               title: Text("방 이름이 바뀌었어요!"),
+               hideAfter: 3)
         .environmentObject(viewModel)
         .onChange(of: isPresentPlayer) {
             if !$0 {
@@ -431,6 +435,7 @@ struct RollingpaperView: View {
     private func modifyRoomTitleView() -> some View {
         if isModifyRoomTitleView {
             ModifyRoomTitleView(isPresent: $isModifyRoomTitleView,
+                                isToast: $isModifyRoomTitleToastView,
                                 curTitle: viewModel.roomTitleText)
                 .transition(.move(edge: .bottom))
         }

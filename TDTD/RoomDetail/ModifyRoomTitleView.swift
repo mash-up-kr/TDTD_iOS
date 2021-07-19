@@ -11,6 +11,7 @@ struct ModifyRoomTitleView: View {
     @State private var title: String = ""
     @State private var isWrite: Bool = false
     @Binding var isPresent: Bool
+    @Binding var isToast: Bool
     var curTitle: String
     
     var body: some View {
@@ -34,6 +35,7 @@ struct ModifyRoomTitleView: View {
                             Button(action: {
                                 isWrite = false
                                 isPresent = false
+                                isToast = true
                             }, label: {
                                 Text("확인")
                             })
@@ -54,6 +56,6 @@ struct ModifyRoomTitleView: View {
 
 struct ModifyRoomTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        ModifyRoomTitleView(isPresent: Binding.constant(true), curTitle: "현재방제목은?")
+        ModifyRoomTitleView(isPresent: Binding.constant(true), isToast: .constant(true), curTitle: "현재방제목은?")
     }
 }
