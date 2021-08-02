@@ -226,6 +226,9 @@ final class RollingpaperViewModel: ObservableObject {
             .replaceError(with: .init(statusCode: -1, data: Data()))
             .sink { [weak self] response in
                 self?.isModifyRoomTitleResponseCode = response.statusCode
+                if response.statusCode == 200 {
+                    self?.roomTitleText = title
+                }
             }
 
     }

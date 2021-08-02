@@ -54,6 +54,7 @@ struct ModifyRoomTitleView: View {
             failAlert()
         }
         .ignoresSafeArea(.container, edges: [.bottom, .top])
+        .onDisappear { viewModel.isModifyRoomTitleResponseCode = 0 }
         .onReceive(viewModel.$isModifyRoomTitleResponseCode) { stateCode in
             switch stateCode {
             case 0: break
