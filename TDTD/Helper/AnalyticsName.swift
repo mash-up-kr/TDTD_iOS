@@ -19,4 +19,5 @@ struct AnalyticsEventName {
     static let exitRoom = "ExitRoom" // 방나가기시 value: "host" or value: "user"
     static let removeMessage = "RemoveMessage" // 답장삭제시 value: "host" or value: "user"
     static let favorite = "Favorite" // 즐겨찾기클릭시 value: "on" or value: "off"
+    static let modifyTitle = "ModifyTitle" // 방제목수정 완료시 value: "roomTitle"
 }
