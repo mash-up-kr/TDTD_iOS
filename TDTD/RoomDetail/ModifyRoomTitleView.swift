@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct ModifyRoomTitleView: View {
+    @EnvironmentObject var viewModel: RollingpaperViewModel
     @State private var title: String = ""
     @State private var isWrite: Bool = false
     @Binding var isPresent: Bool
     @Binding var isToast: Bool
+    @State private var isFail: Bool = false
+    
     var curTitle: String
     
     var body: some View {
@@ -33,9 +36,8 @@ struct ModifyRoomTitleView: View {
                                 .disableAutocorrection(true)
                             Spacer(minLength: 40)
                             Button(action: {
+                                viewModel.requestModifyRoomTitle(title: title)
                                 isWrite = false
-                                isPresent = false
-                                isToast = true
                             }, label: {
                                 Text("확인")
                             })
@@ -49,8 +51,31 @@ struct ModifyRoomTitleView: View {
                     .frame(height: 204)
                     .cornerRadius(radius: 24, cornerStyle: [.topLeft, .topRight])
             }
+            failAlert()
         }
         .ignoresSafeArea(.container, edges: [.bottom, .top])
+        .onReceive(viewModel.$isModifyRoomTitleResponseCode) { stateCode in
+            switch stateCode {
+            case 0: break
+            case 200:
+                isToast = true
+                isPresent = false
+            default:
+                isFail = true
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func failAlert() -> some View {
+        if isFail {
+            AlertView(title: "오류",
+                      msg: "다시 시도해주세요 😭",
+                      rightTitle: "확인",
+                      rightAction: {
+                        isFail = false
+                      })
+        }
     }
 }
 

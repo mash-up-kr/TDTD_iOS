@@ -30,6 +30,8 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var progressRate: Float = 0
     @Published var isPlay: Bool = false
     @Published var isEnableWriteButton: Bool = false
+    @Published var isModifyRoomTitleResponseCode: Int = 0
+    
     private(set) var roomCreatedAt: String?
     private var playMode: PlayMode = .none
     
@@ -49,6 +51,7 @@ final class RollingpaperViewModel: ObservableObject {
     private var requestRemoveRoomCancellable: AnyCancellable?
     private var requestReportCancellable: AnyCancellable?
     private var requestRemoveCommentCancellable: AnyCancellable?
+    private var requestModifyRoomTitleCancellable: AnyCancellable?
     private var cancelBag = Set<AnyCancellable>()
     private(set) var shareURL: String = ""
     
@@ -212,6 +215,19 @@ final class RollingpaperViewModel: ObservableObject {
     func speackButtonTouchUpInside() {
         isPlay = !isPlay
         isPlay ? play() : pause()
+    }
+    
+    /// 방제목 수정
+    func requestModifyRoomTitle(title: String) {
+        Analytics.logEvent(AnalyticsEventName.modifyTitle,
+                           parameters: ["value": "host"])
+        requestModifyRoomTitleCancellable?.cancel()
+        requestModifyRoomTitleCancellable = APIRequest.shared.requestModifyRoomTitle(roomCode: roomCode, title: title)
+            .replaceError(with: .init(statusCode: -1, data: Data()))
+            .sink { [weak self] response in
+                self?.isModifyRoomTitleResponseCode = response.statusCode
+            }
+
     }
 }
 
