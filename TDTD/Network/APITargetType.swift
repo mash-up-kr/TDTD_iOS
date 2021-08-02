@@ -10,10 +10,14 @@ import Moya
 
 extension TargetType {
     var baseURL: URL {
+        #if DEBUG
+        guard let url = URL(string: "http://dev.sokdak.site/") else { fatalError("Wrong URL") }
+        #else
         guard let url = URL(string: "https://sokdak.site") else { fatalError("Wrong URL") }
+        #endif
         return url
     }
-
+    
     var headers: [String: String]? {
         return ["Device-Id": deviceID]
     }

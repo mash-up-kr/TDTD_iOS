@@ -20,6 +20,7 @@ enum API {
     case requestReport(commentId: Int)
     case requestRemoveCommentFromUser(commentId: Int)
     case requestRemoveCommentFromHost(commentId: Int)
+    case requestModifyRoomTitle(roomCode: String, title: String)
 }
 
 extension API: TargetType {
@@ -47,6 +48,8 @@ extension API: TargetType {
             return "/api/v1/comments/\(commentId)"
         case let .requestRemoveCommentFromHost(commentId):
             return "/api/v1/host/comments/\(commentId)"
+        case let .requestModifyRoomTitle(roomCode, _):
+            return "/api/v1/host/rooms/\(roomCode)"
         }
     }
     
@@ -73,6 +76,8 @@ extension API: TargetType {
             return .delete
         case .requestRemoveCommentFromHost:
             return .delete
+        case .requestModifyRoomTitle:
+            return .patch
         }
     }
     
@@ -115,6 +120,12 @@ extension API: TargetType {
             
         case .requestRemoveCommentFromHost:
             return .requestPlain
+
+        case let .requestModifyRoomTitle(_, title):
+            let parameters: [String: Any] = [
+                "new_title": title
+            ]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
 }

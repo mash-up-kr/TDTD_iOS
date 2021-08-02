@@ -87,5 +87,9 @@ extension APIRequest {
     func requestJoinRoom(roomCode: String) -> Future<Response, Error> {
         request(.requestJoinRoom(roomCode: roomCode))
     }
+    
+    func requestModifyRoomTitle(roomCode: String, title: String) -> Future<Response, Error> {
+        request(.requestModifyRoomTitle(roomCode: roomCode, title: title))
+    }
 }
 
