@@ -220,7 +220,7 @@ final class RollingpaperViewModel: ObservableObject {
     /// 방제목 수정
     func requestModifyRoomTitle(title: String) {
         Analytics.logEvent(AnalyticsEventName.modifyTitle,
-                           parameters: ["value": "host"])
+                           parameters: ["value": "roomTitle"])
         requestModifyRoomTitleCancellable?.cancel()
         requestModifyRoomTitleCancellable = APIRequest.shared.requestModifyRoomTitle(roomCode: roomCode, title: title)
             .replaceError(with: .init(statusCode: -1, data: Data()))
