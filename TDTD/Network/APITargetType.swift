@@ -10,7 +10,7 @@ import Moya
 
 extension TargetType {
     var baseURL: URL {
-        guard let url = URL(string: "http://52.79.54.20") else { fatalError("Wrong URL") }
+        guard let url = URL(string: "https://sokdak.site") else { fatalError("Wrong URL") }
         return url
     }
 
