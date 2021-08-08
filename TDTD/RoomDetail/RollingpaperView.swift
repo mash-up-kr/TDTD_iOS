@@ -50,7 +50,7 @@ struct RollingpaperView: View {
             isModifyRoomTitleView
     }
     
-    private let navigationTitlePadding: CGFloat = 160
+    private let navigationTitlePadding: CGFloat = 150
     
     var body: some View {
         ZStack {
@@ -88,11 +88,10 @@ struct RollingpaperView: View {
                 ToolbarItem(placement: .principal) {
                     HStack {
                         Image(viewModel.roomType == .voice ? "badge_record" : "badge_text")
-                        Text(viewModel.roomTitleText)
+                        UhBeeZigleText(viewModel.roomTitleText, weight: .bold, pallete: .grayscale(1))
                             .truncationMode(.tail)
                             .lineLimit(1)
-                            .frame(width: UIScreen.main.bounds.width - navigationTitlePadding)
-                    }
+                    }.frame(width: UIScreen.main.bounds.width - navigationTitlePadding)
                 }
             }
             .sheet(isPresented: $isPresentWriteView) {
