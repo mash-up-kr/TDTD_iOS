@@ -24,17 +24,17 @@ struct RollingpaperView: View {
     @State private var isModifyRoomTitleToastView: Bool = false
     @Binding var isDeepLinkRefresh: Bool
     
-    var randomRotate: Double {
+    private var randomRotate: Double {
         Double(Int.random(in: -10...10))
     }
-    func randomImage(isSelect: Bool) -> Image {
+    private func randomImage(isSelect: Bool) -> Image {
         if isSelect {
             return CharacterAsset.select(color: CharacterAsset.randomColor).image
         } else {
             return CharacterAsset.normal(color: CharacterAsset.randomColor).image
         }
     }
-    func imageColor(color: CharacterAsset.Color, isSelect: Bool) -> Image {
+    private func imageColor(color: CharacterAsset.Color, isSelect: Bool) -> Image {
         if isSelect {
             return CharacterAsset.select(color: color).image
         } else {
@@ -42,13 +42,15 @@ struct RollingpaperView: View {
         }
     }
     
-    var isNaviBarHidden: Bool {
+    private var isNaviBarHidden: Bool {
         isReportRollingpaper ||
             isRemoveRollingpaper ||
             isPresentExitRoomAlert ||
             isPresentCopyConfirmAlert ||
             isModifyRoomTitleView
     }
+    
+    private let navigationTitlePadding: CGFloat = 160
     
     var body: some View {
         ZStack {
@@ -87,6 +89,9 @@ struct RollingpaperView: View {
                     HStack {
                         Image(viewModel.roomType == .voice ? "badge_record" : "badge_text")
                         Text(viewModel.roomTitleText)
+                            .truncationMode(.tail)
+                            .lineLimit(1)
+                            .frame(width: UIScreen.main.bounds.width - navigationTitlePadding)
                     }
                 }
             }
@@ -445,7 +450,7 @@ struct RollingpaperView: View {
 struct RollingpaperView_Previews: PreviewProvider {
     static var previews: some View {
         RollingpaperView(viewModel: RollingpaperViewModel(roomInfo: RoomSummary(isHost: true,
-                                                                                title: "타이틀",
+                                                                                title: "123456712345123451234512345123456",
                                                                                 roomCode: "1ab3",
                                                                                 isBookmark: true,
                                                                                 createdAt: "2021-04-12T16:59:35",

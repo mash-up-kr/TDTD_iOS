@@ -160,7 +160,7 @@ extension RollingpaperWriteViewModel: RecordManagerDelegate {
     }
 }
 
-protocol RecordManagerDelegate: class {
+protocol RecordManagerDelegate: AnyObject {
     func recordComplete(recordFile: Data?)
 }
 
