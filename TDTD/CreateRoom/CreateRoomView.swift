@@ -13,6 +13,7 @@ struct CreateRoomView: View {
     @StateObject var viewModel: CreateRoomViewModel
     @State private var isWrite: Bool = false
     @Binding var presentCreatRoom: Bool
+    @Binding var isPresentCreateAfterDirectView: Bool
     
     var body: some View {
         ZStack {
@@ -41,7 +42,7 @@ struct CreateRoomView: View {
                     presentCreatRoom = false
                     homeViewModel.roomType = viewModel.type
                     homeViewModel.roomCode = viewModel.newRoomCode
-                    homeViewModel.objectWillChange.send()
+                    isPresentCreateAfterDirectView = true
                 }
             }
         }

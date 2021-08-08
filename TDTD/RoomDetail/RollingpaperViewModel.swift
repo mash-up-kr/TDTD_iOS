@@ -60,6 +60,7 @@ final class RollingpaperViewModel: ObservableObject {
         self.roomCode = roomInfo.roomCode ?? ""
         self.isBookmark = roomInfo.isBookmark
         self.roomCreatedAt = roomInfo.createdAt ?? ""
+        Log(roomInfo)
     }
     
     /// - parameters:
@@ -69,6 +70,8 @@ final class RollingpaperViewModel: ObservableObject {
         self.isMakeRoom = true
         self.roomCode = roomCode
         self.roomType = roomType
+        Log(roomCode)
+        Log(roomType)
     }
     
     deinit {

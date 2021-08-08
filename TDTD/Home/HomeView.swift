@@ -13,9 +13,8 @@ struct HomeView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var presentCreatRoom = false
     @State private var showFavoritesOnly = false
-    @State private var isCanMakeRoomFirstEnter = true
     @State private var isDeepLinkRefresh = false
-    
+    @State private var isPresentCreateAfterDirectView = false
     private var rooms: [RoomSummary] {
         viewModel.rooms.filter { roomSummary in
             (!showFavoritesOnly || roomSummary.isBookmark)
@@ -75,7 +74,7 @@ struct HomeView: View {
         .sheet(isPresented: $presentCreatRoom, content: {
             let viewModel = CreateRoomViewModel()
             CreateRoomView(viewModel: viewModel,
-                           presentCreatRoom: $presentCreatRoom)
+                           presentCreatRoom: $presentCreatRoom, isPresentCreateAfterDirectView: $isPresentCreateAfterDirectView)
                 .environmentObject(self.viewModel)
         })
         .alert(isPresented: $viewModel.isNotExistRoom) {
@@ -95,8 +94,9 @@ struct HomeView: View {
                 .onDisappear {
                     viewModel.roomCode = nil
                     viewModel.roomType = nil
+                    isPresentCreateAfterDirectView = false
                 }
-            NavigationLink(destination: newRollingPaperView, isActive: .constant(true)) {
+            NavigationLink(destination: newRollingPaperView, isActive: $isPresentCreateAfterDirectView) {
                 EmptyView()
             }
         }

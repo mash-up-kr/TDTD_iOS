@@ -23,9 +23,7 @@ struct CardView: View {
                     .lineLimit(2)
                 Spacer(minLength: 16)
                 if roomSummary.isHost {
-                    Button(action: {}) {
-                        Image("ic_crown_24")
-                    }
+                    Image("ic_crown_24")
                 }
             }
             
@@ -37,10 +35,7 @@ struct CardView: View {
                     .foregroundColor(.init("grayscale_2"))
                     .font(.uhBeeCustom(14, weight: .bold))
                 Spacer()
-                Button(action: {
-                }) {
-                    roomSummary.isBookmark ? Image("ic_favorties_on_16") : Image("ic_favorties_off_16")
-                }
+                Image(roomSummary.isBookmark ? "ic_favorties_on_16" : "ic_favorties_off_16")
                 .padding(.trailing, 4)
             }
         }
