@@ -14,4 +14,7 @@ pod 'Firebase/Analytics'
 pod 'Firebase/DynamicLinks'
 pod 'Firebase/Crashlytics'
 
+# AdMob
+pod 'Google-Mobile-Ads-SDK'
+
 end
