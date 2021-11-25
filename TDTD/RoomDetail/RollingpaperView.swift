@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 import FirebaseAnalytics
 
 struct RollingpaperView: View {
@@ -131,6 +130,7 @@ struct RollingpaperView: View {
             exitRoomAlertView().ignoresSafeArea()
             copyConfirmAlertView().ignoresSafeArea()
             modifyRoomTitleView()
+            adMobView()
         }
         .toast(isShowing: $isModifyRoomTitleToastView,
                title: Text("방 이름이 바뀌었어요!"),
@@ -442,6 +442,19 @@ struct RollingpaperView: View {
                                 isToast: $isModifyRoomTitleToastView,
                                 curTitle: viewModel.roomTitleText)
                 .transition(.move(edge: .bottom))
+        }
+    }
+    
+    @ViewBuilder
+    private func adMobView() -> some View {
+        if viewModel.isAdmobPresented {
+            GeometryReader { geometryProxy in
+                AdMobView()
+                    .frame(width: geometryProxy.size.width, height: geometryProxy.size.height)
+                    .onDisappear {
+                        viewModel.isAdmobPresented = false
+                    }
+            }
         }
     }
 }

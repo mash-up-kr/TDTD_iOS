@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Combine
-
 import FirebaseAnalytics
 
 enum PlayMode {
@@ -31,6 +30,7 @@ final class RollingpaperViewModel: ObservableObject {
     @Published var isPlay: Bool = false
     @Published var isEnableWriteButton: Bool = false
     @Published var isModifyRoomTitleResponseCode: Int = 0
+    @Published var isAdmobPresented: Bool = false
     
     private(set) var roomCreatedAt: String?
     private var playMode: PlayMode = .none
@@ -234,6 +234,11 @@ final class RollingpaperViewModel: ObservableObject {
                 }
             }
 
+    }
+
+    /// 광고
+    func presentAdmob() {
+        isAdmobPresented = true
     }
 }
 

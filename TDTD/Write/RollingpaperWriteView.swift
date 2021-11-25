@@ -7,7 +7,6 @@
 
 import SwiftUI
 import UIKit
-
 import FirebaseAnalytics
 
 struct RollingpaperWriteView: View {
@@ -51,6 +50,7 @@ struct RollingpaperWriteView: View {
             if let isCreated = $0, isCreated {
                 parentViewModel.requestRoomDetailInfo()
                 isPresentWriteView = false
+                parentViewModel.presentAdmob()
             }
         }
         .onAppear {
