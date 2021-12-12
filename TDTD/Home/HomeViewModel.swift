@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AppTrackingTransparency
 
 final class HomeViewModel: ObservableObject {
     @Published var rooms = [RoomSummary]()
@@ -35,4 +36,22 @@ extension HomeViewModel {
         isPopToRoot = true
     }
     
+    func requestAuth() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization {
+                switch $0 {
+                case .authorized:
+                    print("auth")
+                case .denied:
+                    print("denied")
+                case .notDetermined:
+                    print("not determind")
+                case .restricted:
+                    print("restrict")
+                default:
+                    print("default")
+                }
+            }
+        }
+    }
 }

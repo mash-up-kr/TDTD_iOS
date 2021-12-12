@@ -61,6 +61,7 @@ struct HomeView: View {
 // TODO: 추후 설정창 옵션추가시 구현
 //            trailing: Image("ic_settingButton_40")
             .onAppear {
+                viewModel.requestAuth()
                 viewModel.requestRooms()
                 Analytics.logEvent(AnalyticsScreenName.home, parameters: nil)
             }

@@ -8,7 +8,6 @@
 import UIKit
 import Firebase
 import GoogleMobileAds
-import AppTrackingTransparency
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,23 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             let deviceID = UUID().uuidString
             storage.write(deviceID, key: .deviceID)
-        }
-        
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization {
-                switch $0 {
-                case .authorized:
-                    print("auth")
-                case .denied:
-                    print("denied")
-                case .notDetermined:
-                    print("not determind")
-                case .restricted:
-                    print("restrict")
-                default:
-                    print("default")
-                }
-            }
         }
         
         // Initialize the Google Mobile Ads SDK.
