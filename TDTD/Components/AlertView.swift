@@ -67,8 +67,7 @@ struct AlertView: View {
                 .padding(.bottom, 16)
                 .padding(.horizontal, 16)
             }
-            .frame(width: 264)
-            .aspectRatio(contentMode: .fit)
+            .frame(width: 264, height: 156)
         }
     }
 }
