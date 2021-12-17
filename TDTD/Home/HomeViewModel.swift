@@ -35,23 +35,4 @@ extension HomeViewModel {
     func popToRoot() {
         isPopToRoot = true
     }
-    
-    func requestAuth() {
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization {
-                switch $0 {
-                case .authorized:
-                    print("auth")
-                case .denied:
-                    print("denied")
-                case .notDetermined:
-                    print("not determind")
-                case .restricted:
-                    print("restrict")
-                default:
-                    print("default")
-                }
-            }
-        }
-    }
 }

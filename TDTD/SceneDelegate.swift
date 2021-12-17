@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import Firebase
 import Combine
+import AppTrackingTransparency
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -35,6 +36,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         viewModel.requestRooms()
                     } else {
                         viewModel.isNotExistRoom = true
+                    }
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                ATTrackingManager.requestTrackingAuthorization {
+                    switch $0 {
+                    case .authorized:
+                        print("auth")
+                    case .denied:
+                        print("denied")
+                    case .notDetermined:
+                        print("not determind")
+                    case .restricted:
+                        print("restrict")
+                    default:
+                        print("default")
                     }
                 }
             }
