@@ -40,15 +40,7 @@ struct RollingpaperView: View {
             return CharacterAsset.normal(color: color).image
         }
     }
-    
-    private var isNaviBarHidden: Bool {
-        isReportRollingpaper ||
-            isRemoveRollingpaper ||
-            isPresentExitRoomAlert ||
-            isPresentCopyConfirmAlert ||
-            isModifyRoomTitleView
-    }
-    
+    @State private var isNaviBarHidden: Bool = false
     private let navigationTitlePadding: CGFloat = 150
     
     var body: some View {
@@ -60,37 +52,45 @@ struct RollingpaperView: View {
                 stickerGridView()
                 bottomTrailingOptionButtonView()
             }
-            .navigationBarItems(leading: Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }, label: {
-                NavigationItemView(name: "ic_arrow_left_24")
-            }),
-            trailing: Button(action: {
-                if viewModel.isHost {
-                    withAnimation(.spring()) {
-                        isPresentHostOptionView = true
-                        isPresentPlayer = false
-                    }
-                } else {
-                    isPresentExitRoomAlert = true
-                }
-            }, label: {
-                if viewModel.isHost {
-                    NavigationItemView(name: "ic_more_24")
-                } else {
-                    NavigationItemView(name: "ic_leave_24")
-                }
-            }))
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if !isNaviBarHidden {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            NavigationItemView(name: "ic_arrow_left_24")
+                        })
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if !isNaviBarHidden {
+                        Button(action: {
+                            if viewModel.isHost {
+                                withAnimation(.spring()) {
+                                    isPresentHostOptionView = true
+                                    isPresentPlayer = false
+                                }
+                            } else {
+                                isPresentExitRoomAlert = true
+                            }
+                        }, label: {
+                            if viewModel.isHost {
+                                NavigationItemView(name: "ic_more_24")
+                            } else {
+                                NavigationItemView(name: "ic_leave_24")
+                            }
+                        })
+                    }
+                }
                 ToolbarItem(placement: .principal) {
-                    HStack {
-                        Image(viewModel.roomType == .voice ? "badge_record" : "badge_text")
-                        UhBeeZigleText(viewModel.roomTitleText, weight: .bold, pallete: .grayscale(1))
-                            .truncationMode(.tail)
-                            .lineLimit(1)
-                    }.frame(width: UIScreen.main.bounds.width - navigationTitlePadding)
+                    if !isNaviBarHidden {
+                        HStack {
+                            Image(viewModel.roomType == .voice ? "badge_record" : "badge_text")
+                            UhBeeZigleText(viewModel.roomTitleText, weight: .bold, pallete: .grayscale(1))
+                                .truncationMode(.tail)
+                                .lineLimit(1)
+                        }.frame(width: UIScreen.main.bounds.width - navigationTitlePadding)
+                    }
                 }
             }
             .sheet(isPresented: $isPresentWriteView) {
@@ -99,7 +99,15 @@ struct RollingpaperView: View {
                                       isPresentWriteView: $isPresentWriteView)
                     .environmentObject(viewModel)
             }
-            .navigationBarHidden(isNaviBarHidden)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: isReportRollingpaper ||
+                      isRemoveRollingpaper ||
+                      isPresentExitRoomAlert ||
+                      isPresentCopyConfirmAlert ||
+                      isModifyRoomTitleView) {
+                isNaviBarHidden = $0
+            }
             .onAppear {
                 isDeepLinkRefresh = false
                 viewModel.requestRoomDetailInfo()
@@ -128,7 +136,9 @@ struct RollingpaperView: View {
             }
             playerOptionAlertView().ignoresSafeArea()
             exitRoomAlertView().ignoresSafeArea()
-            copyConfirmAlertView().ignoresSafeArea()
+            copyConfirmAlertView()
+                .ignoresSafeArea()
+                .transition(.opacity.animation(.easeInOut))
             modifyRoomTitleView()
             adMobView()
         }
@@ -422,8 +432,8 @@ struct RollingpaperView: View {
                       msg: "초대코드를 친구들에게 전달해주세요!🥰",
                       rightTitle: "확인",
                       rightAction: {
-                        isPresentCopyConfirmAlert = false
-                      })
+                isPresentCopyConfirmAlert = false
+            })
         }
     }
     
