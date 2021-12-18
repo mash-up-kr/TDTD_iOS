@@ -32,6 +32,7 @@ struct RoomTypeButton: View {
                         .foregroundColor(Color("grayscale_2"))
                         .lineLimit(2)
                         .multilineTextAlignment(.center)
+                        .fixedSize()
                     Image(type.image)
                         .frame(height: 80, alignment: .bottom)
                 }
@@ -45,6 +46,6 @@ struct RoomTypeButton: View {
 
 struct RoomTypeButton_Previews: PreviewProvider {
     static var previews: some View {
-        RoomTypeButton(type: .voice, selectedType: .constant(.voice))
+        RoomTypeButton(type: .text, selectedType: .constant(.voice))
     }
 }
