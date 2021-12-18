@@ -57,7 +57,11 @@ struct HomeView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: Image("logo"))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Image("logo")
+                }
+            }
 // TODO: 추후 설정창 옵션추가시 구현
 //            trailing: Image("ic_settingButton_40")
             .onAppear {
