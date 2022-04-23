@@ -47,6 +47,11 @@ struct CreateRoomView: View {
             }
         }
         .environmentObject(viewModel)
+        .alert(isPresented: $viewModel.isError) {
+            Alert(title: Text("error"),
+                  message: Text(viewModel.error?.localizedDescription ?? ""),
+                  dismissButton: .cancel())
+        }
     }
     
 }
