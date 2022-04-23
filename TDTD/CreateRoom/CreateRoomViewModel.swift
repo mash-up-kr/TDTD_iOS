@@ -51,8 +51,10 @@ extension CreateRoomViewModel {
                 case .failure(let error):
                     self?.error = error
                     self?.isError = true
-                case .finished: break
+                case .finished:
+                    break
                 }
+                self?.isLoading = false
             } , receiveValue: { [weak self] in
                 if let data = try? $0.map(ResponseModel<[String:String]>.self) {
                     if data.code == 2000 {
@@ -62,7 +64,6 @@ extension CreateRoomViewModel {
                         self?.isCreated = true
                     }
                 }
-                self?.isLoading = false
             })
     }
 }
